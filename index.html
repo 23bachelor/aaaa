@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>God Bless América 路书</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=IBM+Plex+Mono:wght@400;500&family=Noto+Color+Emoji&family=Noto+Sans+SC:wght@400;500;700;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+<style>
+/* Layout: a passport you travel with. Sticky section nav, passport-page hero with the roll call,
+   a to-scale route plot, every stop as a ticket stub, and a visa-page grid you stamp as you go. */
+:root{
+  --bg:#ECF0F1;        /* 雨后的天：带一点青的中性底 */
+  --page:#F8FAFA;      /* 护照内页 */
+  --stub:#E6ECEE;      /* 票根 */
+  --guil:#DFE6E9;      /* 防伪底纹 */
+  --ink:#14213A;       /* 海军蓝墨 */
+  --muted:#53607A;
+  --line:#C5CFD7;
+  --flame:#C9381F;     /* flamboyán：波多黎各火焰树的花色 */
+  --flame-soft:#F7E0D9;
+  --stamp:#3446A6;     /* 印章蓝墨 */
+  --leaf:#2D7650;      /* 甘蔗绿 */
+  --display:"Bungee","Noto Sans SC",system-ui,sans-serif;
+  --body:"Schibsted Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --emoji:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C131D; --page:#121C29; --stub:#0F1824; --guil:#172333;
+    --ink:#E7ECF2; --muted:#9AA8BA; --line:#283850;
+    --flame:#FF6B4E; --flame-soft:#3A201D; --stamp:#96A4FF; --leaf:#5DC68B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C131D; --page:#121C29; --stub:#0F1824; --guil:#172333;
+  --ink:#E7ECF2; --muted:#9AA8BA; --line:#283850;
+  --flame:#FF6B4E; --flame-soft:#3A201D; --stamp:#96A4FF; --leaf:#5DC68B;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--stamp);outline-offset:2px}
+.flag{font-family:var(--emoji);font-style:normal;line-height:1}
+.mono{font-family:var(--mono)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--display);font-size:15px;white-space:nowrap;text-decoration:none}
+.nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{padding:5px 10px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--page)}
+.pp-pill{font-family:var(--mono);font-size:13px;padding:4px 11px;border:1.5px solid var(--stamp);color:var(--stamp);border-radius:999px;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums}
+
+/* ---------- page ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:24px 72px;display:grid;gap:80px}
+section{min-width:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 32px;margin-bottom:22px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.8vw,2.5rem);line-height:1.1;margin:0}
+h2 .lat{font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--muted);margin-left:12px;vertical-align:middle}
+.sec-head p{margin:0;color:var(--muted);max-width:62ch}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.5;padding:1px 7px;border:1px solid currentColor;border-radius:3px;margin-right:8px;vertical-align:1px;white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--page);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,4.5vw,52px);
+  background-image:repeating-radial-gradient(circle at 92% 8%,transparent 0 17px,var(--guil) 17px 18px)}
+.eyebrow{margin:0;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.shout{font-family:var(--display);font-weight:400;font-size:clamp(2.5rem,8.6vw,6.4rem);line-height:.98;margin:.32em 0 .4em;text-wrap:balance}
+.shout em{font-style:normal;color:var(--flame)}
+.rollcall{margin:0;font-family:var(--display);font-size:clamp(1.02rem,2.35vw,1.5rem);line-height:1.55;max-width:none}
+.rc{display:inline;animation:call 1s ease both;animation-delay:calc(var(--i) * 110ms + .35s)}
+.rc.got{color:var(--stamp)}
+.rc-sep{color:var(--line);margin:0 .28em}
+@keyframes call{0%,100%{color:inherit}35%{color:var(--flame)}}
+.rc.got{animation:none}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px 48px;margin-top:30px;align-items:end}
+.hero-lede{margin:0;font-size:17px;max-width:58ch}
+.facts{display:flex;flex-wrap:wrap;gap:18px 32px;margin:0}
+.facts div{display:grid;gap:0}
+.facts dt{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);order:2}
+.facts dd{margin:0;font-family:var(--display);font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums;order:1}
+.mrz{margin:30px 0 0;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:min(.95rem,calc((100vw - 72px) / 27.5));letter-spacing:.06em;line-height:1.6;color:var(--muted);white-space:pre;overflow-x:auto}
+
+/* ---------- route ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;color:var(--ink);font:inherit;font-size:14px;line-height:1.4;padding:6px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--page)}
+.date-field{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--muted)}
+.date-field input{font-family:var(--mono);font-size:14px;padding:6px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--page);color:var(--ink)}
+.date-field small{font-family:var(--mono);font-size:12px}
+.map-wrap{background:var(--page);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+#map{display:block;width:100%;min-width:640px;height:auto}
+#map .grid line{stroke:var(--line);stroke-width:1}
+#map .grid text{fill:var(--muted);font-family:var(--mono);font-size:13px}
+#map .sea{fill:var(--muted);font-family:var(--body);font-size:19px;letter-spacing:.3em;opacity:.75}
+#map .leg{fill:none;stroke:var(--ink);stroke-linecap:round}
+#map .leg.plane{stroke-width:2.2;stroke-dasharray:1 8}
+#map .leg.train{stroke-width:2.2;stroke-dasharray:12 6}
+#map .leg.car{stroke-width:3}
+#map .dot{fill:var(--flame);stroke:var(--page);stroke-width:4}
+#map .code{fill:var(--ink);font-family:var(--display);font-size:24px}
+#map .num{fill:var(--muted);font-family:var(--mono);font-size:13px}
+#map .off .dot{fill:var(--line)}
+#map .off text{opacity:.4}
+#map a:hover .dot{stroke:var(--flame);stroke-width:6}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:12px 2px 0;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend svg{width:36px;height:8px}
+.legend line{stroke:var(--ink);stroke-linecap:round}
+.strip{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:16px 0 0}
+.strip a{display:flex;gap:7px;align-items:baseline;padding:5px 11px;border:1px solid var(--line);border-radius:4px;background:var(--page);text-decoration:none;font-size:13px;color:var(--muted)}
+.strip a b{font-family:var(--display);font-weight:400;color:var(--ink);font-size:14px}
+.strip a:hover{border-color:var(--ink)}
+
+/* ---------- stops ---------- */
+.stops{list-style:none;padding:0;margin:0;display:grid;gap:22px}
+.stop{display:grid;grid-template-columns:160px minmax(0,1fr);background:var(--page);border:1px solid var(--line);border-radius:10px;scroll-margin-top:76px}
+.stub{position:relative;padding:24px 18px;background:var(--stub);border-right:2px dashed var(--line);border-radius:10px 0 0 10px;display:flex;flex-direction:column;gap:4px}
+.stub::before,.stub::after{content:"";position:absolute;right:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.stub::before{top:-12px}
+.stub::after{bottom:-12px}
+.stub-n{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.stub-code{font-family:var(--display);font-size:46px;line-height:1.05}
+.stub-days{font-weight:700;font-size:15px;margin-top:6px}
+.stub-date{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ticket{padding:24px clamp(18px,3.2vw,36px) 22px;min-width:0;display:grid;gap:16px}
+.kicker{margin:0;font-size:14px;color:var(--muted)}
+.kicker .en{font-family:var(--mono);font-size:12px;letter-spacing:.03em;margin-left:8px}
+.ticket h3{margin:-8px 0 0;font-size:clamp(1.3rem,2.3vw,1.65rem);line-height:1.3;font-weight:900;text-wrap:balance}
+.ticket .lede{margin:0;max-width:66ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14px;line-height:1.4;padding:5px 13px 5px 10px;border-radius:999px;border:1.5px dashed var(--stamp);background:transparent;color:var(--stamp);cursor:pointer}
+.chip:hover{border-style:solid}
+.chip[aria-pressed="true"]{border-style:solid;background:var(--stamp);color:var(--page)}
+.chip .x{font-family:var(--mono);font-size:11px;opacity:.8}
+.chips-hint{font-family:var(--mono);font-size:12px;color:var(--muted);align-self:center}
+.cols{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:18px 36px}
+.cols > div{min-width:0;display:grid;gap:14px;align-content:start}
+h4{margin:0 0 4px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;font-weight:500;color:var(--muted)}
+.cols ul{margin:0;padding-left:1.1em;display:grid;gap:7px}
+.cols li::marker{color:var(--flame)}
+.play li{list-style:none;margin-left:-1.1em}
+.play cite{font-style:normal;font-weight:700}
+.play small{display:block;color:var(--muted);font-size:13px;line-height:1.5}
+.note{margin:0;font-size:15px}
+.note .tag{color:var(--flame)}
+.note.fiesta .tag{color:var(--leaf)}
+.next{margin:0;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.next .tag{color:var(--ink)}
+
+/* ---------- passport ---------- */
+.pp-top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-bottom:18px}
+.pp-count{font-family:var(--display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.pp-count small{font-size:18px;color:var(--muted)}
+.meter{flex:1 1 220px;height:10px;border-radius:999px;background:var(--stub);border:1px solid var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--stamp);transition:width .45s ease}
+.pp-cover{font-size:14px;color:var(--muted)}
+.pp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.visa{position:relative;overflow:hidden;text-align:left;font:inherit;color:var(--ink);background:var(--page);border:1px solid var(--line);border-radius:6px;padding:12px 13px 13px;cursor:pointer;min-height:118px;display:flex;flex-direction:column;gap:1px}
+.visa:hover{border-color:var(--stamp)}
+.visa .flag{font-size:24px;margin-bottom:6px}
+.visa .es{font-weight:700;font-size:15px;line-height:1.3;padding-right:24px}
+.visa .zh{font-size:13px;color:var(--muted);line-height:1.4}
+.visa .at{margin-top:auto;padding-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.visa .ord{position:absolute;top:11px;right:12px;font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.visa.off .at{color:var(--flame)}
+.stamp{position:absolute;right:8px;bottom:6px;width:80px;height:80px;border:2.5px solid var(--stamp);border-radius:50%;color:var(--stamp);display:grid;place-content:center;text-align:center;font-family:var(--mono);font-size:10px;line-height:1.25;letter-spacing:.04em;
+  box-shadow:inset 0 0 0 3px var(--page),inset 0 0 0 4.5px var(--stamp);background:color-mix(in srgb,var(--page) 55%,transparent);
+  transform:rotate(-14deg) scale(1.5);opacity:0;transition:opacity .18s ease,transform .28s cubic-bezier(.3,1.6,.6,1);pointer-events:none}
+.stamp b{font-family:var(--display);font-weight:400;font-size:18px;line-height:1.1}
+.visa[aria-pressed="true"] .stamp{opacity:.92;transform:rotate(-14deg) scale(1)}
+.pp-sub{margin:28px 0 10px;font-size:15px;font-weight:700}
+.pp-sub span{font-weight:400;color:var(--muted)}
+.together{margin:22px 0 0;padding:22px;border:2.5px solid var(--flame);border-radius:8px;text-align:center}
+.together p{margin:0}
+.together .big{font-family:var(--display);font-size:clamp(1.4rem,4vw,2.4rem);color:var(--flame);line-height:1.2}
+.pp-actions{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.ghost{font:inherit;font-size:13px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.ghost.armed{color:var(--flame);border-color:var(--flame)}
+.pp-actions small{font-size:12px;color:var(--muted)}
+
+/* ---------- calendar ---------- */
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.month{background:var(--page);border:1px solid var(--line);border-radius:6px;padding:14px 16px 16px}
+.month.trip{border-color:var(--stamp)}
+.month.now{border-color:var(--flame);border-width:2px;padding:13px 15px 15px}
+.month header{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.month h3{margin:0;font-family:var(--display);font-weight:400;font-size:22px;line-height:1.1}
+.month .abbr{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.month .tags{margin-left:auto;display:flex;gap:4px}
+.month .tags .tag{margin:0}
+.month .t-now{color:var(--flame)}
+.month .t-trip{color:var(--stamp)}
+.month ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.month li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:14px;line-height:1.45}
+.month li .where{font-family:var(--mono);font-size:11px;color:var(--muted);padding-top:2px;min-width:34px}
+.month li small{grid-column:2;color:var(--muted);font-size:12.5px}
+
+/* ---------- prep ---------- */
+.prep{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px 36px}
+.prep article{border-top:2px solid var(--ink);padding-top:12px}
+.prep h3{margin:0 0 6px;font-size:17px;font-weight:900}
+.prep p{margin:0 0 8px;font-size:15px}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 24px;margin:26px 0 0}
+.gloss div{border-left:1px solid var(--line);padding-left:12px}
+.gloss dt{font-family:var(--display);font-size:18px}
+.gloss dd{margin:0;font-size:14px;color:var(--muted)}
+
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px;line-height:1.7}
+footer p{margin:0 0 6px;max-width:80ch}
+
+@media (max-width:760px){
+  .hero-foot{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{gap:64px}
+  .stop{grid-template-columns:1fr}
+  .stub{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:2px 14px;padding:16px 18px 18px;border-right:0;border-bottom:2px dashed var(--line);border-radius:10px 10px 0 0}
+  .stub::before,.stub::after{top:auto;bottom:-12px;right:auto}
+  .stub::before{left:-12px}
+  .stub::after{right:-12px}
+  .stub-n{width:100%}
+  .stub-code{font-size:36px}
+  .stub-days{margin-top:0}
+  .brand{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">GBA 路书</a>
+    <nav class="nav-links" aria-label="章节">
+      <a href="#route">航线</a>
+      <a href="#stops">路书</a>
+      <a href="#passport">护照</a>
+      <a href="#fiestas">节庆</a>
+      <a href="#prep">出发前</a>
+    </nav>
+    <a class="pp-pill" href="#passport" id="pill">护照 0/25</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top" aria-labelledby="shout">
+    <p class="eyebrow">Super Bowl LX · Levi's Stadium · 2026-02-08</p>
+    <h1 class="shout" id="shout">God bless <em>America</em></h1>
+    <p class="rollcall" id="rollcall" aria-label="他点到的 25 个国家和地区"></p>
+    <div class="hero-foot">
+      <p class="hero-lede">中场秀最后，Bad Bunny 用英语喊出这一句，接着用西班牙语从智利一路点名到加拿大，最后落在波多黎各。他说的 America 是整片大陆。这本路书不出美国（波多黎各也在美国版图里），沿着 12 站把这 25 个名字一个个找回来，每找到一个，就在护照上盖一个章。</p>
+      <dl class="facts">
+        <div><dt>天</dt><dd id="fDays">26</dd></div>
+        <div><dt>站</dt><dd id="fStops">12</dd></div>
+        <div><dt>能盖的章</dt><dd id="fCover">25/25</dd></div>
+      </dl>
+    </div>
+    <p class="mrz" id="mrz" aria-hidden="true"></p>
+  </section>
+
+  <section id="route" aria-labelledby="h-route">
+    <div class="sec-head">
+      <h2 id="h-route">航线<span class="lat">ROUTE</span></h2>
+      <p>从中场秀的球场出发，往东南走，最后到他的家。按经纬度比例画，点击城市代码跳到那一站。</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="路线版本">
+        <button type="button" id="mFull" aria-pressed="true">全程 26 天</button>
+        <button type="button" id="mCore" aria-pressed="false">精华 10 天</button>
+      </div>
+      <label class="date-field" for="startDate">出发日期
+        <input type="date" id="startDate" value="2026-10-26">
+        <small>示例日期，改了下面每站的日期和当月节庆都会跟着变</small>
+      </label>
+    </div>
+    <div class="map-wrap"><svg id="map" role="img" aria-label="路线示意图"></svg></div>
+    <div class="legend" aria-hidden="true">
+      <span><svg viewBox="0 0 36 8"><line x1="2" y1="4" x2="34" y2="4" stroke-width="2.2" stroke-dasharray="1 8"/></svg>飞</span>
+      <span><svg viewBox="0 0 36 8"><line x1="2" y1="4" x2="34" y2="4" stroke-width="2.2" stroke-dasharray="12 6"/></svg>火车</span>
+      <span><svg viewBox="0 0 36 8"><line x1="2" y1="4" x2="34" y2="4" stroke-width="3"/></svg>自驾</span>
+    </div>
+    <ol class="strip" id="strip"></ol>
+  </section>
+
+  <section id="stops" aria-labelledby="h-stops">
+    <div class="sec-head">
+      <h2 id="h-stops">路书<span class="lat">ITINERARY</span></h2>
+      <p>每站下面的蓝色小旗就是能在那里盖的章。去过了，点一下。</p>
+    </div>
+    <ol class="stops" id="stopList"></ol>
+  </section>
+
+  <section id="passport" aria-labelledby="h-pp">
+    <div class="sec-head">
+      <h2 id="h-pp">美洲护照<span class="lat">PASAPORTE</span></h2>
+      <p>右上角的数字是他点名的顺序。章只存在你这台设备的浏览器里。</p>
+    </div>
+    <div class="pp-top">
+      <div class="pp-count" id="ppCount">0<small>/25</small></div>
+      <div class="meter" aria-hidden="true"><i id="ppMeter"></i></div>
+      <div class="pp-cover" id="ppCover"></div>
+    </div>
+    <div class="pp-grid" id="ppGrid"></div>
+    <p class="pp-sub">彩蛋 <span>他没点到名，但也在这条路上</span></p>
+    <div class="pp-grid" id="ppExtra"></div>
+    <div class="together" id="together" hidden>
+      <p class="big">Together, We Are America</p>
+      <p>25 个章全齐了。</p>
+    </div>
+    <div class="pp-actions">
+      <button type="button" class="ghost" id="reset">清空所有章</button>
+      <small id="resetHint"></small>
+    </div>
+  </section>
+
+  <section id="fiestas" aria-labelledby="h-fi">
+    <div class="sec-head">
+      <h2 id="h-fi">节庆日历<span class="lat">FIESTAS</span></h2>
+      <p>想赶上哪个节，就倒推出发日期。红框是这个月，蓝框是你选的日期会经过的月份。具体日期每年会变，出发前查官方公告。</p>
+    </div>
+    <div class="cal" id="cal"></div>
+  </section>
+
+  <section id="prep" aria-labelledby="h-prep">
+    <div class="sec-head">
+      <h2 id="h-prep">出发前<span class="lat">ANTES DE SALIR</span></h2>
+    </div>
+    <div class="prep">
+      <article>
+        <h3>证件</h3>
+        <p>中国护照需要有效的美国 B1/B2 签证，十年签还要先在 EVUS 登记。</p>
+        <p>波多黎各是美国领土，从本土飞过去算国内航班，不过海关。非美国公民仍要随身带护照当身份证件。</p>
+        <p>从波多黎各飞回本土前，行李要过美国农业部（USDA）检查，新鲜水果和植物多半带不走。</p>
+      </article>
+      <article>
+        <h3>季节</h3>
+        <p>大西洋飓风季是 6 月 1 日到 11 月 30 日，8 到 10 月最集中，迈阿密、基韦斯特、波多黎各和路易斯安那都在范围里。</p>
+        <p>比较稳的窗口是 3–4 月，或者 10 月底到 11 月。示例日期从 10 月 26 日出发，11 月 1–2 日正好在圣安东尼奥过亡灵节。</p>
+      </article>
+      <article>
+        <h3>交通</h3>
+        <p>需要租车的段落：圣安东尼奥 → 拉法叶 → 新奥尔良，迈阿密 → 基韦斯特，还有波多黎各岛上（Vega Baja、Loíza、El Yunque）。</p>
+        <p>纽约、芝加哥、华盛顿坐地铁就够。纽约地铁直接用银行卡或手机在 OMNY 闸机上刷。</p>
+      </article>
+      <article>
+        <h3>当个好客人</h3>
+        <p>这些街区是别人的家。去家庭小店吃饭，按美国习惯付小费，拍人之前先问一句。不少老店只收现金，身上备点零钱。</p>
+      </article>
+    </div>
+    <dl class="gloss">
+      <div><dt>¡Wepa!</dt><dd>波多黎各人的欢呼，高兴了就喊</dd></div>
+      <div><dt>Boricua</dt><dd>波多黎各人，来自岛的原住民名 Borikén</dd></div>
+      <div><dt>Pa'lante</dt><dd>“para adelante”，往前走</dd></div>
+      <div><dt>Pana</dt><dd>哥们、朋友，波多黎各和委内瑞拉常用</dd></div>
+      <div><dt>Asere</dt><dd>古巴人打招呼用的“兄弟”</dd></div>
+      <div><dt>Chévere</dt><dd>很棒、很酷，加勒比一带都听得懂</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <p>资料核对于 2026 年 10 月。节庆日期、营业时间和导览安排每年会变，以官方信息为准。护照上的章只保存在当前浏览器里。</p>
+    <p>中场秀细节参考：<a href="https://www.rollingstone.com/music/music-latin/bad-bunny-super-bowl-meaning-1235513218/" target="_blank" rel="noopener">Rolling Stone</a> · <a href="https://www.cbssports.com/nfl/news/super-bowl-2026-halftime-show-bad-bunny-setlist-guests-best-moments/" target="_blank" rel="noopener">CBS Sports</a> · <a href="https://www.forbes.com/sites/hannahabraham/2026/02/08/bad-bunnys-first-english-words-at-the-super-bowl-halftime-show-were-about-america/" target="_blank" rel="noopener">Forbes</a></p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* 他点名的顺序：从智利一路往北到加拿大，最后是波多黎各 */
+  var COUNTRIES = [
+    ["cl", "Chile", "智利", "🇨🇱"],
+    ["ar", "Argentina", "阿根廷", "🇦🇷"],
+    ["uy", "Uruguay", "乌拉圭", "🇺🇾"],
+    ["py", "Paraguay", "巴拉圭", "🇵🇾"],
+    ["bo", "Bolivia", "玻利维亚", "🇧🇴"],
+    ["pe", "Perú", "秘鲁", "🇵🇪"],
+    ["ec", "Ecuador", "厄瓜多尔", "🇪🇨"],
+    ["br", "Brasil", "巴西", "🇧🇷"],
+    ["co", "Colombia", "哥伦比亚", "🇨🇴"],
+    ["ve", "Venezuela", "委内瑞拉", "🇻🇪"],
+    ["gy", "Guyana", "圭亚那", "🇬🇾"],
+    ["pa", "Panamá", "巴拿马", "🇵🇦"],
+    ["cr", "Costa Rica", "哥斯达黎加", "🇨🇷"],
+    ["ni", "Nicaragua", "尼加拉瓜", "🇳🇮"],
+    ["hn", "Honduras", "洪都拉斯", "🇭🇳"],
+    ["sv", "El Salvador", "萨尔瓦多", "🇸🇻"],
+    ["gt", "Guatemala", "危地马拉", "🇬🇹"],
+    ["mx", "México", "墨西哥", "🇲🇽"],
+    ["cu", "Cuba", "古巴", "🇨🇺"],
+    ["do", "República Dominicana", "多米尼加", "🇩🇴"],
+    ["jm", "Jamaica", "牙买加", "🇯🇲"],
+    ["ht", "Haití", "海地", "🇭🇹"],
+    ["us", "Estados Unidos", "美国（含原住民族）", "🇺🇸"],
+    ["ca", "Canadá", "加拿大", "🇨🇦"],
+    ["pr", "Puerto Rico", "波多黎各", "🇵🇷"]
+  ];
+  var EXTRAS = [
+    ["tt", "Trinidad y Tobago", "特立尼达和多巴哥", "🇹🇹"],
+    ["bs", "Bahamas", "巴哈马", "🇧🇸"]
+  ];
+  var NAMED = COUNTRIES.length;
+
+  var STOPS = [
+    {
+      id: "sjc", code: "SJC", city: "圣克拉拉 · 旧金山", en: "Santa Clara & San Francisco, CA",
+      days: 2, lat: 37.40, lon: -121.97, lab: [0, -20, "middle"], leg: "plane",
+      title: "起点：回到中场秀现场",
+      lede: "2026 年 2 月 8 日，Levi's Stadium。Bad Bunny 在这里喊出 “God bless America”，然后把整片美洲点了一遍名。旅程从这块草坪出发，再去旧金山的 Mission 区，那里是湾区拉美文化的老家。",
+      countries: ["mx", "sv", "ni", "cl"],
+      go: [
+        "Levi's Stadium 门口合影，球场导览场次在官网查询",
+        "Mission 区 24th Street（Calle 24 拉丁文化区）：面包房、pupusería、拉美杂货店一路排开",
+        "Balmy Alley 壁画巷：从 1980 年代起画满了中美洲主题的壁画",
+        "Telegraph Hill 山脚：1849 年淘金热时，智利矿工聚居在这一带，当时叫 “Chilecito”"
+      ],
+      eat: ["Mission 风格大卷饼，发源地就在这个区", "萨尔瓦多 pupusa 配腌菜 curtido"],
+      play: [["Oye Como Va", "Santana", "Carlos Santana 少年时在 Mission 区长大"]],
+      bunny: "中场秀收尾时，他举起一颗橄榄球，上面写着 “Together, We Are America”。",
+      next: "飞 LAX 约 1.5 小时；时间宽裕可以花两天自驾 1 号公路"
+    },
+    {
+      id: "lax", code: "LAX", city: "洛杉矶", en: "Los Angeles, CA",
+      days: 2, lat: 34.05, lon: -118.24, lab: [0, 34, "middle"], leg: "plane",
+      title: "墨西哥与中美洲的大城",
+      lede: "洛杉矶 1781 年由一群西班牙、非洲和原住民混血的定居者建立，1848 年前属于墨西哥。今天这里也是全美萨尔瓦多人和危地马拉人最多的城市，中美洲各国的社区都找得到。",
+      countries: ["mx", "sv", "gt", "hn", "cr"],
+      go: [
+        "El Pueblo 与 Olvera Street：建城旧址，旁边的 LA Plaza de Cultura y Artes 讲墨西哥裔美国人的历史",
+        "Boyle Heights 的 Mariachi Plaza：穿 charro 礼服的乐手在这里等人请去演出",
+        "Pico-Union 的 Vermont Avenue（萨尔瓦多社区走廊）和 MacArthur Park 一带：危地马拉、洪都拉斯、哥斯达黎加小店都在这片",
+        "11 月 1–2 日前后来，能看到 Día de Muertos 的祭坛和游行"
+      ],
+      eat: ["Tacos al pastor", "危地马拉早餐：黑豆泥、炸大蕉、奶油和奶酪", "洪都拉斯 baleada：面饼夹豆泥和奶油"],
+      play: [["La Bamba", "Los Lobos", "东洛杉矶乐队，1987 年把这首韦拉克鲁斯民歌唱上 Billboard 榜首"]],
+      next: "飞 ABQ 约 2 小时"
+    },
+    {
+      id: "abq", code: "ABQ", city: "阿尔伯克基 · 圣塔菲", en: "Albuquerque & Santa Fe, NM",
+      days: 2, lat: 35.08, lon: -106.65, lab: [0, -20, "middle"], leg: "plane",
+      title: "在所有国界之前",
+      lede: "他点到的每一个国家，都建在原住民的土地上。新墨西哥有 19 个普韦布洛（Pueblo）部族，西班牙语在这里也比英语早到了两百多年。",
+      countries: ["us", "mx"],
+      go: [
+        "Indian Pueblo Cultural Center：由 19 个普韦布洛共同拥有，周末常有传统舞蹈",
+        "圣塔菲 Palace of the Governors（1610 年）：原住民匠人在长廊下摆摊卖银饰和陶器，直接从做的人手里买",
+        "阿尔伯克基 Old Town：1706 年建城的广场和 San Felipe de Neri 教堂",
+        "4 月来可以赶上 Gathering of Nations，北美规模最大的 powwow 之一"
+      ],
+      eat: ["“Red or green?” 是州官方问题，问你要红辣椒酱还是绿辣椒酱；两样都要就答 “Christmas”", "Sopaipilla 蘸蜂蜜", "普韦布洛土炉烤面包和 frybread"],
+      play: [["Come and Get Your Love", "Redbone", "原住民成员组成的乐队，1974 年打进 Billboard 前五"]],
+      next: "飞 SAT 约 1.5 小时"
+    },
+    {
+      id: "sat", code: "SAT", city: "圣安东尼奥", en: "San Antonio, TX",
+      days: 2, lat: 29.42, lon: -98.49, lab: [0, 36, "middle"], leg: "car",
+      title: "Tejano 的心脏",
+      lede: "德克萨斯在 1836 年以前属于墨西哥。在圣安东尼奥，手风琴、玉米饼和双语招牌都是城市日常的一部分。",
+      countries: ["mx"],
+      go: [
+        "San Antonio Missions：五座 18 世纪西班牙传教站（含阿拉莫），2015 年列入世界遗产",
+        "Historic Market Square（El Mercado）：全美最大的墨西哥市场之一",
+        "沿 River Walk 走到 La Villita 老街区",
+        "4 月的 Fiesta San Antonio 连办十来天；11 月初的亡灵节也是全美最热闹的之一"
+      ],
+      eat: ["Puffy taco：炸到鼓起来的玉米饼，圣安东尼奥特产", "早餐 taco", "Market Square 的墨西哥甜面包 pan dulce"],
+      play: [["Bidi Bidi Bom Bom", "Selena", "Tejano 女王"], ["Ay Te Dejo en San Antonio", "Flaco Jiménez", "圣安东尼奥的 conjunto 手风琴大师"]],
+      next: "沿 I-10 往东自驾约 6–7 小时，可以在休斯敦歇一晚"
+    },
+    {
+      id: "lft", code: "LFT", city: "拉法叶 · 阿卡迪亚纳", en: "Lafayette, LA",
+      days: 1, lat: 30.22, lon: -92.02, lab: [-14, -14, "end"], leg: "car",
+      title: "路易斯安那里的加拿大",
+      lede: "1755 年起，英国把讲法语的阿卡迪亚人逐出今天加拿大的新斯科舍一带。许多人辗转来到路易斯安那南部，“Acadian” 慢慢念成了 “Cajun”。他点到 Canadá 的时候，这里也算一份。",
+      countries: ["ca"],
+      go: [
+        "Vermilionville：活态历史村，讲阿卡迪亚人、克里奥尔人和原住民的故事",
+        "Breaux Bridge：自称“世界小龙虾之都”，周末常有现场 Cajun 和 zydeco 音乐",
+        "周六上午去 Eunice 或 Mamou 一带赶一场 Cajun 音乐 jam，出发前确认时间",
+        "10 月的 Festivals Acadiens et Créoles"
+      ],
+      eat: ["Boudin：猪肉米饭香肠", "小龙虾 étouffée（产季大约 1–6 月）", "Gumbo"],
+      play: [["Jolie Blonde", "Cajun 传统曲", "常被称作 Cajun 国歌"], ["Zydeco Sont Pas Salé", "Clifton Chenier", "“Zydeco 之王”"]],
+      next: "自驾约 2 小时到新奥尔良"
+    },
+    {
+      id: "msy", code: "MSY", city: "新奥尔良", en: "New Orleans, LA",
+      days: 2, lat: 29.95, lon: -90.07, lab: [14, 30, "start"], leg: "train",
+      title: "加勒比最北的港口",
+      lede: "新奥尔良常被叫作“加勒比最北的城市”。爵士乐里有古巴的哈巴涅拉节奏，老城住过海地革命的难民，香蕉贸易又把洪都拉斯人带到了这里。",
+      countries: ["ht", "hn", "cu", "us"],
+      go: [
+        "Congo Square（Louis Armstrong Park 内）：被奴役的非洲人曾在周日聚在这里击鼓跳舞，常被视为爵士乐的源头之一",
+        "Tremé：1809 年前后，约一万名圣多明各（今海地）难民经古巴来到新奥尔良，城市人口几乎翻倍",
+        "Frenchmen Street 听现场爵士和铜管乐",
+        "去 Kenner 或 Mid-City 吃洪都拉斯菜，这里是美国最早的洪都拉斯社区之一"
+      ],
+      eat: ["Gumbo、po'boy、beignet", "洪都拉斯 baleada 和 plato típico"],
+      play: [["The Crave", "Jelly Roll Morton", "他说爵士乐里要带一点 “Spanish tinge”，也就是加勒比节奏"], ["What a Wonderful World", "Louis Armstrong", "新奥尔良出生"]],
+      next: "坐 Amtrak “City of New Orleans” 卧铺约 19 小时到芝加哥，或飞约 2 小时"
+    },
+    {
+      id: "ord", code: "ORD", city: "芝加哥", en: "Chicago, IL",
+      days: 2, lat: 41.88, lon: -87.63, lab: [0, -20, "middle"], leg: "plane",
+      title: "中西部的墨西哥与波多黎各",
+      lede: "芝加哥有全美最大的墨西哥裔社区之一，Humboldt Park 一带则是美国本土最有名的波多黎各街区之一。",
+      countries: ["mx", "pr"],
+      go: [
+        "Pilsen：National Museum of Mexican Art 免费参观，秋天有大型亡灵节展；18th Street 两边全是壁画",
+        "Little Village 的 26th Street：从 “Bienvenidos a Little Village” 拱门进去，一整条墨西哥商业街",
+        "Humboldt Park 的 Paseo Boricua：Division Street 两头各立着一面巨大的钢铸波多黎各国旗",
+        "6 月有 Puerto Rican Fest；9 月 16 日前后 26th Street 有墨西哥独立日游行"
+      ],
+      eat: ["Jibarito：用压扁炸过的青大蕉代替面包的三明治，芝加哥发明", "Carnitas 和 tamales"],
+      play: [["Volver, Volver", "Vicente Fernández", "墨西哥 ranchera 金曲"], ["Tití Me Preguntó", "Bad Bunny", "中场秀开场曲"]],
+      next: "飞 DCA 约 2 小时"
+    },
+    {
+      id: "dca", code: "DCA", city: "华盛顿 · 北弗吉尼亚", en: "Washington, DC & Arlington, VA",
+      days: 2, lat: 38.91, lon: -77.04, lab: [-14, 26, "end"], leg: "train",
+      title: "美洲国家的会客厅",
+      lede: "美洲国家组织（OAS）的总部就在白宫附近。萨尔瓦多人是华盛顿地区最大的拉美群体，河对岸的阿灵顿住着全美最大的玻利维亚社区。",
+      countries: ["sv", "bo", "us"],
+      go: [
+        "OAS 总部大楼（Pan American Union Building）和旁边的 Art Museum of the Americas：拉美和加勒比的现当代艺术",
+        "National Museum of the American Indian：免费，展品从北极圈一直到火地岛",
+        "Columbia Heights 与 Mount Pleasant：萨尔瓦多人开的 pupusería",
+        "阿灵顿：上午吃 salteña；节庆时能看到玻利维亚 Caporales、Morenada 舞团上街"
+      ],
+      eat: ["Salteña：玻利维亚烤馅饼，汤汁多，当地习惯上午吃", "Pupusa 配 curtido"],
+      play: [["Llorando se fue", "Los Kjarkas", "玻利维亚民谣，后来被改编成了 “Lambada”"]],
+      next: "坐 Amtrak 约 3–3.5 小时到纽约"
+    },
+    {
+      id: "nyc", code: "NYC", city: "纽约 · 新泽西", en: "New York, NY & North Jersey",
+      days: 4, lat: 40.71, lon: -74.01, lab: [14, -14, "start"], leg: "plane", core: true,
+      title: "一座城里的半个美洲",
+      lede: "全程最密的一站。上曼哈顿说多米尼加西语，东哈林叫 El Barrio，皇后区的罗斯福大道每过一站换一个国家，布鲁克林过加勒比的节，河对岸的新泽西还有秘鲁和巴西。",
+      countries: ["do", "pr", "co", "ec", "mx", "py", "gy", "ht", "jm", "pa", "pe", "br", "us", "tt"],
+      go: [
+        "第 1 天 · 曼哈顿：上午 Washington Heights 与 Inwood（多米尼加），下午 El Museo del Barrio 和东哈林壁画，晚上去下东区 Nuyorican Poets Cafe；下城 Bowling Green 的美洲印第安人博物馆纽约馆也免费",
+        "第 2 天 · 皇后区：坐 7 号线到 Jackson Heights 和 Corona，哥伦比亚、厄瓜多尔、墨西哥、巴拉圭小馆一路吃过去；再去 Richmond Hill 的 Liberty Avenue（Little Guyana）",
+        "第 3 天 · 布鲁克林：Flatbush 与 Crown Heights 的 Little Haiti、牙买加、特立尼达、巴拿马社区；劳动节当天 Eastern Parkway 有 West Indian Day 狂欢节",
+        "第 4 天 · 新泽西：Paterson 的 “Little Lima” 吃秘鲁菜、看 Great Falls，回程在 Newark 的 Ironbound 吃巴西烤肉"
+      ],
+      eat: ["多米尼加 mangú 和 morir soñando（橙汁兑牛奶）", "特立尼达 doubles、牙买加 jerk chicken、海地 griot", "秘鲁 ceviche 和 pollo a la brasa", "巴西 rodízio、圭亚那 roti"],
+      play: [["NUEVAYoL", "Bad Bunny", "采样了 El Gran Combo 的 “Un Verano en Nueva York”"], ["El Cantante", "Héctor Lavoe", "纽约萨尔萨"], ["Ojalá Que Llueva Café", "Juan Luis Guerra", "多米尼加"]],
+      bunny: "中场秀的 casita 段落里，他唱了 “NUEVAYoL” 和 “DtMF”。",
+      next: "飞 MIA 约 3 小时"
+    },
+    {
+      id: "mia", code: "MIA", city: "迈阿密", en: "Miami, FL",
+      days: 3, lat: 25.76, lon: -80.19, lab: [16, 8, "start"], leg: "car", legCore: "plane", core: true,
+      title: "每个街区一个首都",
+      lede: "迈阿密市一半以上的居民出生在美国以外。Little Havana、Little Haiti、“Doralzuela”、“Little Managua”，这些外号连起来就是一张地图。",
+      countries: ["cu", "ht", "ve", "ni", "ar", "uy", "co"],
+      go: [
+        "Little Havana 的 Calle Ocho：Máximo Gómez 公园看老人下多米诺，在路边 ventanita 窗口买一杯 cafecito；每月最后一个周五有 Viernes Culturales",
+        "Little Haiti：Little Haiti Cultural Complex 的展览和演出，周边的海地小馆",
+        "Doral（“Doralzuela”）吃委内瑞拉 arepa，Sweetwater（“Little Managua”）吃尼加拉瓜 fritanga",
+        "迈阿密滩北段一带的阿根廷、乌拉圭餐馆：asado 烤肉、chivito 三明治，配一壶 mate",
+        "3 月有 Calle Ocho Music Festival"
+      ],
+      eat: ["古巴三明治、croqueta、cortadito", "委内瑞拉 arepa 和 tequeño", "尼加拉瓜 nacatamal", "乌拉圭 chivito"],
+      play: [["La Vida Es Un Carnaval", "Celia Cruz", "萨尔萨女王"], ["Conga", "Gloria Estefan & Miami Sound Machine", "迈阿密的古巴裔乐队"]],
+      next: "沿 Overseas Highway（US-1）自驾约 4 小时，经过 Seven Mile Bridge",
+      nextCore: "飞 SJU 约 2.5 小时"
+    },
+    {
+      id: "eyw", code: "EYW", city: "基韦斯特", en: "Key West, FL",
+      days: 1, lat: 24.56, lon: -81.78, lab: [-16, 22, "end"], leg: "plane",
+      title: "离古巴 90 英里",
+      lede: "美国本土最南端。这里离古巴海岸只有 90 英里，比到迈阿密还近。",
+      countries: ["cu", "bs"],
+      go: [
+        "Southernmost Point 浮标，上面写着 “90 Miles to Cuba”",
+        "Duval Street 的 San Carlos Institute：1871 年古巴流亡者创办，何塞·马蒂在这里演讲过",
+        "Bahama Village：19 世纪巴哈马移民聚居的老街区",
+        "Mallory Square 看日落"
+      ],
+      eat: ["Key lime pie", "Conch fritter：炸海螺丸子，跟着巴哈马移民一起来的", "古巴咖啡"],
+      play: [["Chan Chan", "Buena Vista Social Club", "古巴 son"]],
+      next: "开回迈阿密，飞 SJU 约 2.5 小时"
+    },
+    {
+      id: "sju", code: "SJU", city: "波多黎各", en: "San Juan & Vega Baja, Puerto Rico",
+      days: 3, lat: 18.47, lon: -66.11, lab: [0, -22, "middle"], core: true,
+      title: "终点：No me quiero ir de aquí",
+      lede: "最后一站是他的家。波多黎各是美国的自由邦，居民是美国公民，从本土飞来不用过海关；街上说西班牙语，音乐和旗帜都是 boricua 的。",
+      countries: ["pr"],
+      go: [
+        "Viejo San Juan：El Morro 城堡和彩色老街 Calle San Sebastián；1 月中旬有 SanSe 街头节",
+        "Santurce：白天逛 La Placita 菜市场，入夜那里变成露天舞池；Calle Cerra 一带满墙壁画",
+        "Loíza 与 Piñones：非裔波多黎各文化的中心，听 bomba 鼓，在路边摊吃 alcapurria 和 bacalaíto；7 月的 Fiestas de Santiago Apóstol 能看到 vejigante 面具",
+        "Vega Baja：他长大的地方，从圣胡安往西约 45 分钟车程，顺路去 Puerto Nuevo 海滩",
+        "Coliseo de Puerto Rico（人称 “El Choli”）：2025 年驻场演出 “No Me Quiero Ir de Aquí” 的场馆",
+        "多一天的话：El Yunque 是美国国家森林体系里唯一的热带雨林；周末去 Cayey 的 Guavate 吃烤乳猪"
+      ],
+      eat: ["Mofongo", "Lechón asado", "Alcapurria、bacalaíto", "Piragua 刨冰", "圣诞季的 coquito"],
+      play: [["DtMF", "Bad Bunny", "中场秀的最后一首"], ["VOY A LLeVARTE PA PR", "Bad Bunny", "把你带去波多黎各"], ["CAFé CON RON", "Bad Bunny", "和 Los Pleneros de la Cresta 合作的 plena"]],
+      bunny: "DtMF 是 Debí Tirar Más Fotos 的缩写，意思是“我该多拍点照片的”。到了最后一站，多拍点。",
+      next: "旅程结束。回本土前，行李要过 USDA 农检。"
+    }
+  ];
+
+  /* m 为月份；at 为站点代码，global 表示全美都有、不挂在单站上 */
+  var FIESTAS = [
+    { m: [1], at: ["SJU"], name: "Fiestas de la Calle San Sebastián", when: "1 月中旬，老城连办四天的街头节" },
+    { m: [2, 3], at: ["MSY"], name: "Mardi Gras", when: "2 月或 3 月，随复活节日期变动" },
+    { m: [3], at: ["MIA"], name: "Calle Ocho Music Festival", when: "3 月，Little Havana" },
+    { m: [4], at: ["SAT"], name: "Fiesta San Antonio", when: "4 月，连办十来天" },
+    { m: [4], at: ["ABQ"], name: "Gathering of Nations", when: "4 月下旬，北美规模最大的 powwow 之一" },
+    { m: [4, 5], at: ["MSY"], name: "Jazz & Heritage Festival", when: "4 月底到 5 月初" },
+    { m: [5], at: ["LAX", "SAT"], name: "Cinco de Mayo", when: "5 月 5 日" },
+    { m: [6], at: ["NYC"], name: "National Puerto Rican Day Parade", when: "6 月第二个周日，第五大道" },
+    { m: [6], at: ["ORD"], name: "Puerto Rican Fest", when: "6 月，Humboldt Park" },
+    { m: [7], at: ["SJU"], name: "Fiestas de Santiago Apóstol", when: "7 月下旬，Loíza" },
+    { m: [8], at: ["NYC"], name: "Dominican Day Parade", when: "8 月，第六大道" },
+    { m: [9], at: ["NYC"], name: "West Indian American Day Carnival", when: "劳动节（9 月第一个周一），Eastern Parkway" },
+    { m: [9], at: ["ORD", "SAT", "LAX"], name: "墨西哥独立日", when: "9 月 16 日前后" },
+    { m: [9, 10], at: [], global: true, name: "西语裔传统月", when: "9 月 15 日到 10 月 15 日，全美" },
+    { m: [10], at: ["LFT"], name: "Festivals Acadiens et Créoles", when: "10 月，Girard Park" },
+    { m: [11], at: ["LAX", "SAT", "ORD"], name: "Día de Muertos", when: "11 月 1–2 日" },
+    { m: [12, 1], at: ["SJU"], name: "波多黎各圣诞季", when: "parranda 一路唱到 1 月的 SanSe" }
+  ];
+
+  var MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  var DEFAULT_START = "2026-10-26";
+  var KEY = "gba-roadbook-v1";
+
+  var INFO = {};
+  COUNTRIES.concat(EXTRAS).forEach(function (c, i) {
+    INFO[c[0]] = { id: c[0], es: c[1], zh: c[2], flag: c[3], named: i < NAMED, ord: i + 1 };
+  });
+
+  var state = { stamps: {}, mode: "full", start: DEFAULT_START };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") {
+      if (saved.stamps && typeof saved.stamps === "object") state.stamps = saved.stamps;
+      if (saved.mode === "core" || saved.mode === "full") state.mode = saved.mode;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(saved.start || "")) state.start = saved.start;
+    }
+  } catch (e) { /* 无痕窗口等情况下没有存储，照常显示 */ }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch];
+    });
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function flag(id) { return '<span class="flag" aria-hidden="true">' + INFO[id].flag + "</span>"; }
+
+  /* ---------- 日程计算（全部用 UTC，避免时区让日期错一天） ---------- */
+  function parseDate(str) {
+    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(str || "") || /^(\d{4})-(\d{2})-(\d{2})$/.exec(DEFAULT_START);
+    return new Date(Date.UTC(+p[1], +p[2] - 1, +p[3]));
+  }
+  function addDays(d, n) { return new Date(d.getTime() + n * 86400000); }
+  function md(d) { return pad(d.getUTCMonth() + 1) + "/" + pad(d.getUTCDate()); }
+  function activeStops() { return STOPS.filter(function (s) { return state.mode === "full" || s.core; }); }
+  function plan() {
+    var start = parseDate(state.start), day = 1;
+    return activeStops().map(function (s, i) {
+      var from = day, to = day + s.days - 1;
+      day = to + 1;
+      return { s: s, i: i, from: from, to: to, d0: addDays(start, from - 1), d1: addDays(start, to - 1) };
+    });
+  }
+  function monthsBetween(d0, d1) {
+    var out = [], y = d0.getUTCFullYear(), m = d0.getUTCMonth();
+    var endKey = d1.getUTCFullYear() * 12 + d1.getUTCMonth();
+    while (y * 12 + m <= endKey) { out.push(m + 1); m++; if (m > 11) { m = 0; y++; } }
+    return out;
+  }
+  function coverage(stops) {
+    var set = {};
+    stops.forEach(function (s) { s.countries.forEach(function (c) { if (INFO[c].named) set[c] = true; }); });
+    return Object.keys(set).length;
+  }
+
+  /* ---------- hero ---------- */
+  function renderHero() {
+    $("rollcall").innerHTML = COUNTRIES.map(function (c, i) {
+      return '<span class="rc" data-rc="' + c[0] + '" style="--i:' + i + '">' + esc(c[1]) + "</span>";
+    }).join('<span class="rc-sep" aria-hidden="true">·</span>');
+    var l1 = "P<AMEGOD<BLESS<<AMERICA", l2 = "SBLX260208<USA<TOGETHER<WE<ARE<AMERICA";
+    while (l1.length < 44) l1 += "<";
+    while (l2.length < 44) l2 += "<";
+    $("mrz").textContent = l1 + "\n" + l2;
+  }
+  function renderFacts(p) {
+    var days = p.length ? p[p.length - 1].to : 0;
+    $("fDays").textContent = days;
+    $("fStops").textContent = p.length;
+    $("fCover").textContent = coverage(activeStops()) + "/" + NAMED;
+  }
+
+  /* ---------- map：等距圆柱投影，按北纬 30° 修正经度比例 ---------- */
+  var LON0 = -126, LON1 = -62, LAT0 = 15.5, LAT1 = 44.5, K = Math.cos(30 * Math.PI / 180), S = 18;
+  var MW = Math.round((LON1 - LON0) * K * S), MH = Math.round((LAT1 - LAT0) * S);
+  function px(lon, lat) { return [(lon - LON0) * K * S, (LAT1 - lat) * S]; }
+  function f1(n) { return n.toFixed(1); }
+  function legPath(a, b, mode) {
+    if (mode !== "plane") return "M" + f1(a[0]) + "," + f1(a[1]) + " L" + f1(b[0]) + "," + f1(b[1]);
+    var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1];
+    var len = Math.hypot(dx, dy), nx = -dy / len, ny = dx / len, bend = 0.16;
+    var cx = mx + nx * len * bend, cy = my + ny * len * bend;
+    if (cy > my) { cx = mx - nx * len * bend; cy = my - ny * len * bend; }
+    return "M" + f1(a[0]) + "," + f1(a[1]) + " Q" + f1(cx) + "," + f1(cy) + " " + f1(b[0]) + "," + f1(b[1]);
+  }
+  function renderMap() {
+    var svg = $("map"), act = activeStops(), h = [];
+    svg.setAttribute("viewBox", "0 0 " + MW + " " + MH);
+    h.push('<g class="grid">');
+    [20, 25, 30, 35, 40].forEach(function (lat) {
+      var y = px(LON0, lat)[1];
+      h.push('<line x1="0" x2="' + MW + '" y1="' + f1(y) + '" y2="' + f1(y) + '"/><text x="8" y="' + f1(y - 6) + '">' + lat + "°N</text>");
+    });
+    [-120, -110, -100, -90, -80, -70].forEach(function (lon) {
+      var x = px(lon, LAT0)[0];
+      h.push('<line y1="0" y2="' + MH + '" x1="' + f1(x) + '" x2="' + f1(x) + '"/><text x="' + f1(x + 6) + '" y="' + (MH - 8) + '">' + (-lon) + "°W</text>");
+    });
+    h.push("</g>");
+    [["太平洋", -120.5, 26.5], ["墨西哥湾", -90, 25.6], ["大西洋", -70.5, 32.5], ["加勒比海", -75.5, 17.2]].forEach(function (s) {
+      var p = px(s[1], s[2]);
+      h.push('<text class="sea" x="' + f1(p[0]) + '" y="' + f1(p[1]) + '" text-anchor="middle">' + s[0] + "</text>");
+    });
+    for (var i = 0; i < act.length - 1; i++) {
+      var a = act[i], b = act[i + 1];
+      var mode = state.mode === "core" && a.legCore ? a.legCore : a.leg;
+      h.push('<path class="leg ' + mode + '" d="' + legPath(px(a.lon, a.lat), px(b.lon, b.lat), mode) + '"/>');
+    }
+    var n = 0;
+    STOPS.forEach(function (s) {
+      var on = act.indexOf(s) !== -1, p = px(s.lon, s.lat);
+      if (on) n++;
+      var tx = p[0] + s.lab[0], ty = p[1] + s.lab[1];
+      var inner = '<circle class="dot" cx="' + f1(p[0]) + '" cy="' + f1(p[1]) + '" r="9"/>' +
+        '<text class="code" x="' + f1(tx) + '" y="' + f1(ty) + '" text-anchor="' + s.lab[2] + '">' + s.code + "</text>";
+      if (on) {
+        h.push('<a href="#stop-' + s.id + '" aria-label="第 ' + n + " 站 " + esc(s.city) + '"><g>' + inner + "</g></a>");
+      } else {
+        h.push('<g class="off">' + inner + "</g>");
+      }
+    });
+    svg.innerHTML = h.join("");
+    svg.setAttribute("aria-label", "路线示意图：" + act.map(function (s) { return s.city; }).join(" → "));
+  }
+
+  function renderStrip() {
+    $("strip").innerHTML = activeStops().map(function (s) {
+      return '<li><a href="#stop-' + s.id + '"><b>' + s.code + "</b>" + esc(s.city) + "</a></li>";
+    }).join("");
+  }
+
+  /* ---------- stops ---------- */
+  function chip(id, code) {
+    var c = INFO[id];
+    return '<button type="button" class="chip" data-stamp="' + id + '" data-at="' + code + '" aria-pressed="false" title="' + esc(c.zh) + '">' +
+      flag(id) + esc(c.es) + (c.named ? "" : ' <span class="x">彩蛋</span>') + "</button>";
+  }
+  function renderStops(p) {
+    $("stopList").innerHTML = p.map(function (x, idx) {
+      var s = x.s, last = idx === p.length - 1;
+      var months = monthsBetween(x.d0, x.d1);
+      var hits = FIESTAS.filter(function (f) {
+        return !f.global && f.at.indexOf(s.code) !== -1 && f.m.some(function (m) { return months.indexOf(m) !== -1; });
+      });
+      var next = state.mode === "core" && s.nextCore ? s.nextCore : s.next;
+      var dayLabel = x.from === x.to ? "第 " + x.from + " 天" : "第 " + x.from + "–" + x.to + " 天";
+      var dateLabel = x.from === x.to ? md(x.d0) : md(x.d0) + " – " + md(x.d1);
+      return '<li class="stop" id="stop-' + s.id + '">' +
+        '<div class="stub">' +
+          '<span class="stub-n">STOP ' + pad(idx + 1) + "</span>" +
+          '<span class="stub-code">' + s.code + "</span>" +
+          '<span class="stub-days">' + dayLabel + "</span>" +
+          '<span class="stub-date">' + dateLabel + "</span>" +
+        "</div>" +
+        '<div class="ticket">' +
+          '<p class="kicker">' + esc(s.city) + '<span class="en">' + esc(s.en) + "</span></p>" +
+          "<h3>" + esc(s.title) + "</h3>" +
+          '<p class="lede">' + esc(s.lede) + "</p>" +
+          '<div class="chips">' + s.countries.map(function (c) { return chip(c, s.code); }).join("") + "</div>" +
+          '<div class="cols">' +
+            "<div><div><h4>去哪</h4><ul>" + s.go.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div></div>" +
+            "<div>" +
+              "<div><h4>吃什么</h4><ul>" + s.eat.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div>" +
+              '<div><h4>路上听</h4><ul class="play">' + s.play.map(function (t) {
+                return "<li><cite>" + esc(t[0]) + "</cite> · " + esc(t[1]) + (t[2] ? "<small>" + esc(t[2]) + "</small>" : "") + "</li>";
+              }).join("") + "</ul></div>" +
+            "</div>" +
+          "</div>" +
+          (s.bunny ? '<p class="note"><span class="tag">BAD BUNNY</span>' + esc(s.bunny) + "</p>" : "") +
+          hits.map(function (f) {
+            return '<p class="note fiesta"><span class="tag">当月当地</span>' + esc(f.name) + "（" + esc(f.when) + "）</p>";
+          }).join("") +
+          '<p class="next"><span class="tag">' + (last ? "FIN" : "NEXT") + "</span>" + esc(next) + "</p>" +
+        "</div>" +
+      "</li>";
+    }).join("");
+  }
+
+  /* ---------- passport ---------- */
+  function stopsFor(id, list) { return list.filter(function (s) { return s.countries.indexOf(id) !== -1; }); }
+  function visa(id) {
+    var c = INFO[id], act = activeStops(), here = stopsFor(id, act), all = stopsFor(id, STOPS);
+    var at = (here[0] || all[0]).code;
+    var where = here.length ? here.map(function (s) { return s.code; }).join(" · ") : "精华版不经过 · 全程见 " + all.map(function (s) { return s.code; }).join(" · ");
+    return '<button type="button" class="visa' + (here.length ? "" : " off") + '" data-stamp="' + id + '" data-at="' + at + '" aria-pressed="false" aria-label="' + esc(c.es + " " + c.zh) + '">' +
+      (c.named ? '<span class="ord">' + pad(c.ord) + "</span>" : "") +
+      flag(id) +
+      '<span class="es">' + esc(c.es) + "</span>" +
+      '<span class="zh">' + esc(c.zh) + "</span>" +
+      '<span class="at">' + where + "</span>" +
+      '<span class="stamp" aria-hidden="true"></span>' +
+    "</button>";
+  }
+  function renderPassport() {
+    $("ppGrid").innerHTML = COUNTRIES.map(function (c) { return visa(c[0]); }).join("");
+    $("ppExtra").innerHTML = EXTRAS.map(function (c) { return visa(c[0]); }).join("");
+    var cov = coverage(activeStops());
+    $("ppCover").textContent = state.mode === "core"
+      ? "精华 10 天能盖 " + cov + " 个，全程能盖齐 " + NAMED + " 个"
+      : "全程 " + STOPS.length + " 站能盖齐全部 " + NAMED + " 个";
+  }
+
+  /* ---------- calendar ---------- */
+  function renderCal(p) {
+    var now = new Date().getMonth() + 1, trip = {};
+    p.forEach(function (x) { monthsBetween(x.d0, x.d1).forEach(function (m) { trip[m] = true; }); });
+    var html = "";
+    for (var m = 1; m <= 12; m++) {
+      var evs = FIESTAS.filter(function (f) { return f.m[0] === m; });
+      var cls = "month" + (trip[m] ? " trip" : "") + (m === now ? " now" : "");
+      html += '<article class="' + cls + '"><header><h3>' + m + ' 月</h3><span class="abbr">' + MONTHS[m - 1] + '</span><span class="tags">' +
+        (m === now ? '<span class="tag t-now">现在</span>' : "") +
+        (trip[m] ? '<span class="tag t-trip">你的行程</span>' : "") +
+        "</span></header><ul>" +
+        evs.map(function (f) {
+          return '<li><span class="where">' + (f.global ? "全美" : f.at.join(" ")) + "</span><span>" + esc(f.name) + "</span><small>" + esc(f.when) + "</small></li>";
+        }).join("") + "</ul></article>";
+    }
+    $("cal").innerHTML = html;
+  }
+
+  /* ---------- 盖章 ---------- */
+  function syncStamps() {
+    var st = state.stamps;
+    document.querySelectorAll("[data-stamp]").forEach(function (el) {
+      var rec = st[el.getAttribute("data-stamp")];
+      el.setAttribute("aria-pressed", rec ? "true" : "false");
+      var mark = el.querySelector(".stamp");
+      if (mark) mark.innerHTML = rec ? "<b>" + esc(rec.at) + "</b>" + esc(rec.d) : "";
+    });
+    document.querySelectorAll("[data-rc]").forEach(function (el) {
+      el.classList.toggle("got", !!st[el.getAttribute("data-rc")]);
+    });
+    var got = COUNTRIES.filter(function (c) { return st[c[0]]; }).length;
+    $("ppCount").innerHTML = got + "<small>/" + NAMED + "</small>";
+    $("ppMeter").style.width = (got / NAMED * 100) + "%";
+    $("pill").textContent = "护照 " + got + "/" + NAMED;
+    $("together").hidden = got < NAMED;
+  }
+  function toggle(id, at) {
+    if (!INFO[id]) return;
+    if (state.stamps[id]) {
+      delete state.stamps[id];
+    } else {
+      var t = new Date();
+      state.stamps[id] = { at: at, d: String(t.getFullYear()).slice(2) + "." + pad(t.getMonth() + 1) + "." + pad(t.getDate()) };
+    }
+    save();
+    syncStamps();
+  }
+
+  function renderAll() {
+    var p = plan();
+    renderFacts(p);
+    renderMap();
+    renderStrip();
+    renderStops(p);
+    renderPassport();
+    renderCal(p);
+    $("mFull").setAttribute("aria-pressed", state.mode === "full" ? "true" : "false");
+    $("mCore").setAttribute("aria-pressed", state.mode === "core" ? "true" : "false");
+    syncStamps();
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-stamp]");
+    if (b) toggle(b.getAttribute("data-stamp"), b.getAttribute("data-at"));
+  });
+  $("mFull").addEventListener("click", function () { state.mode = "full"; save(); renderAll(); });
+  $("mCore").addEventListener("click", function () { state.mode = "core"; save(); renderAll(); });
+  var dateInput = $("startDate");
+  dateInput.value = state.start;
+  dateInput.addEventListener("change", function () {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateInput.value)) { state.start = dateInput.value; save(); renderAll(); }
+  });
+
+  var resetBtn = $("reset"), resetTimer = null;
+  resetBtn.addEventListener("click", function () {
+    if (!resetBtn.classList.contains("armed")) {
+      resetBtn.classList.add("armed");
+      resetBtn.textContent = "再点一次，确认清空";
+      $("resetHint").textContent = "清空后无法恢复";
+      resetTimer = setTimeout(disarm, 4000);
+      return;
+    }
+    clearTimeout(resetTimer);
+    state.stamps = {};
+    save();
+    syncStamps();
+    disarm();
+    $("resetHint").textContent = "已清空";
+  });
+  function disarm() {
+    resetBtn.classList.remove("armed");
+    resetBtn.textContent = "清空所有章";
+    if ($("resetHint").textContent === "清空后无法恢复") $("resetHint").textContent = "";
+  }
+
+  renderHero();
+  renderAll();
+})();
+</script>
+</body>
+</html>
