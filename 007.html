@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>007 路书</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Courier+Prime:wght@400;700&family=Hanken+Grotesk:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap">
+<style>
+/* Layout: an MI6 case dossier. Cover page with the gun barrel, a to-scale operations map,
+   one case file per city with a scene-location checklist, a film index, and field notes. */
+:root{
+  /* dark-first: midnight-blue dinner jacket, gold, classified red */
+  --bg:#0A0E16;
+  --panel:#10161F;
+  --panel2:#151D29;
+  --ink:#ECE6D6;
+  --muted:#9BA1AE;
+  --line:#242D3C;
+  --gold:#D3AA4A;
+  --gold-ink:#17120A;
+  --red:#E0313F;
+  --barrel1:#04070C;
+  --barrel2:#18212F;
+  --aperture:#F3F0E8;
+  --aperture-ink:#0A0E16;
+  --display:"Bodoni Moda","Noto Serif SC",Didot,"Times New Roman",serif;
+  --serif-zh:"Noto Serif SC","Songti SC",serif;
+  --body:"Hanken Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --type:"Courier Prime","Courier New",ui-monospace,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#E5E8ED; --panel:#F6F7F9; --panel2:#ECEFF3; --ink:#111621; --muted:#4C5364; --line:#C4CAD4;
+    --gold:#8A6810; --gold-ink:#FFFFFF; --red:#B30F22;
+    --barrel1:#151B27; --barrel2:#2B3446; --aperture:#FAF9F5; --aperture-ink:#111621;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#E5E8ED; --panel:#F6F7F9; --panel2:#ECEFF3; --ink:#111621; --muted:#4C5364; --line:#C4CAD4;
+  --gold:#8A6810; --gold-ink:#FFFFFF; --red:#B30F22;
+  --barrel1:#151B27; --barrel2:#2B3446; --aperture:#FAF9F5; --aperture-ink:#111621;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--gold);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.type{font-family:var(--type)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--display);font-style:italic;font-weight:700;font-size:18px;white-space:nowrap;text-decoration:none}
+.brand b{color:var(--gold);font-weight:700}
+.nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{padding:5px 10px;border-radius:3px;color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--panel)}
+.pill{font-family:var(--type);font-size:13px;padding:3px 10px;border:1.5px solid var(--gold);color:var(--gold);border-radius:3px;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums}
+
+/* ---------- page ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:24px 72px;display:grid;gap:84px}
+section{min-width:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 32px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2{margin:0;font-family:var(--serif-zh);font-weight:900;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.15}
+h2 .en{font-family:var(--display);font-style:italic;font-weight:500;color:var(--gold);margin-left:12px;font-size:.75em}
+.sec-head p{margin:0;color:var(--muted);max-width:60ch}
+.tag{display:inline-block;font-family:var(--type);font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1.5;padding:0 6px;border:1px solid currentColor;border-radius:2px;margin-right:8px;vertical-align:1px;white-space:nowrap}
+
+/* ---------- cover ---------- */
+.cover{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px 48px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:clamp(22px,4.5vw,52px);position:relative;overflow:hidden}
+.classif{margin:0;font-family:var(--type);font-size:13px;letter-spacing:.14em;color:var(--muted)}
+.classif b{color:var(--red)}
+.title{margin:.25em 0 .35em;line-height:1}
+.title .t-en{display:block;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(2.6rem,7.4vw,5.6rem);letter-spacing:-.01em;text-wrap:balance}
+.title .t-zh{display:block;margin-top:.45em;font-family:var(--serif-zh);font-weight:900;font-size:clamp(1.15rem,2.4vw,1.6rem);letter-spacing:.06em;color:var(--gold)}
+.cover-lede{margin:0;font-size:17px;max-width:56ch}
+.agent{margin-top:26px;display:grid;gap:6px;max-width:440px}
+.agent label{font-family:var(--type);font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.agent input{font-family:var(--type);font-size:18px;color:var(--ink);background:transparent;border:0;border-bottom:1.5px dashed var(--muted);padding:4px 2px;width:100%}
+.agent input:focus{outline:none;border-bottom-color:var(--gold);border-bottom-style:solid}
+.intro{margin:4px 0 0;font-family:var(--display);font-style:italic;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.35}
+.intro .num{font-family:var(--type);font-style:normal;font-size:.62em;color:var(--gold);margin-left:10px;letter-spacing:.06em;white-space:nowrap}
+.meta{display:flex;flex-wrap:wrap;gap:6px 26px;margin:26px 0 0;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--type);font-size:12.5px;color:var(--muted)}
+.meta div{display:flex;gap:8px}
+.meta dt{letter-spacing:.1em}
+.meta dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.barrel-wrap{position:relative;display:grid;place-items:center}
+.barrel{position:relative;width:min(100%,380px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--barrel1);box-shadow:0 0 0 10px var(--barrel1),0 20px 60px -20px rgba(0,0,0,.6)}
+.grooves{position:absolute;inset:-2%;border-radius:50%;background:repeating-conic-gradient(from 6deg,var(--barrel1) 0deg 9deg,var(--barrel2) 9deg 30deg);animation:rifling 1.8s cubic-bezier(.2,.75,.25,1) both}
+.shade{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,transparent 26%,var(--barrel1) 78%)}
+.aperture{position:absolute;inset:29%;border-radius:50%;background:var(--aperture);display:grid;place-items:center;box-shadow:0 0 0 5px var(--barrel1),inset 0 0 26px rgba(0,0,0,.18);animation:open 1.4s .2s cubic-bezier(.2,.75,.25,1) both}
+.aperture span{font-family:var(--display);font-style:italic;font-weight:700;font-size:clamp(2rem,6vw,3.5rem);color:var(--aperture-ink);letter-spacing:-.02em}
+@keyframes rifling{from{transform:rotate(-55deg)}to{transform:rotate(0)}}
+@keyframes open{from{transform:scale(.82)}to{transform:scale(1)}}
+.ts{position:absolute;left:2%;bottom:8%;transform:rotate(-12deg);font-family:var(--type);font-weight:700;font-size:15px;letter-spacing:.16em;color:var(--red);border:2.5px solid var(--red);padding:5px 12px;border-radius:3px;background:color-mix(in srgb,var(--panel) 70%,transparent);box-shadow:inset 0 0 0 2px var(--panel),inset 0 0 0 3.5px var(--red)}
+
+/* ---------- map ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin-bottom:16px}
+.switch{display:inline-flex;align-items:center;gap:12px;font:inherit;font-size:14px;color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:4px;padding:7px 14px 7px 10px;cursor:pointer}
+.switch .knob{width:34px;height:20px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);position:relative;flex:none;transition:background .2s}
+.switch .knob::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
+.switch[aria-pressed="true"]{border-color:var(--gold)}
+.switch[aria-pressed="true"] .knob{background:var(--gold)}
+.switch[aria-pressed="true"] .knob::after{transform:translateX(14px);background:var(--gold-ink)}
+.controls small{font-family:var(--type);font-size:12px;color:var(--muted)}
+.map-wrap{background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow-x:auto}
+#map{display:block;width:100%;min-width:640px;height:auto}
+#map .grid line{stroke:var(--line);stroke-width:1}
+#map .grid text{fill:var(--muted);font-family:var(--type);font-size:13px}
+#map .sea{fill:var(--muted);font-family:var(--serif-zh);font-size:19px;letter-spacing:.3em;opacity:.7}
+#map .leg{fill:none;stroke:var(--ink);stroke-linecap:round;opacity:.85}
+#map .leg.plane{stroke-width:2.2;stroke-dasharray:1 8}
+#map .leg.car{stroke-width:3}
+#map .leg.ext{stroke:var(--gold)}
+#map .dot{fill:var(--gold);stroke:var(--panel);stroke-width:4}
+#map .ext .dot{fill:var(--panel);stroke:var(--gold);stroke-width:3}
+#map .code{fill:var(--ink);font-family:var(--type);font-weight:700;font-size:22px}
+#map .off .dot{fill:var(--line);stroke:var(--panel)}
+#map .off text{opacity:.35}
+#map a:hover .dot{stroke:var(--red);stroke-width:5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:12px 2px 0;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend svg{width:36px;height:12px}
+.legend line{stroke:var(--ink);stroke-linecap:round}
+.legend circle{stroke-width:2}
+
+/* ---------- case files ---------- */
+.cases{list-style:none;padding:0;margin:0;display:grid;gap:26px}
+.case{background:var(--panel);border:1px solid var(--line);border-radius:0 4px 4px 4px;scroll-margin-top:84px;position:relative;margin-top:22px}
+.case-head{position:absolute;left:-1px;bottom:100%;display:flex;align-items:stretch;gap:0;font-family:var(--type);font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.case-head .tab{background:var(--gold);color:var(--gold-ink);padding:3px 12px;border-radius:4px 4px 0 0}
+.case-head .tab-days{background:var(--panel);color:var(--muted);border:1px solid var(--line);border-bottom:0;padding:2px 12px;border-radius:4px 4px 0 0;margin-left:4px;font-weight:400}
+.case.ext .case-head .tab{background:transparent;color:var(--gold);border:1px solid var(--gold);border-bottom:0}
+.case-body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.case-main{padding:26px clamp(18px,3vw,34px) 24px;display:grid;gap:14px;align-content:start;min-width:0}
+.case-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.case-code{font-family:var(--type);font-weight:700;font-size:40px;line-height:1;color:var(--gold)}
+.kicker{margin:0;font-size:14px;color:var(--muted)}
+.kicker .en{display:block;font-family:var(--type);font-size:12px;letter-spacing:.03em}
+.case h3{margin:0;font-family:var(--serif-zh);font-weight:900;font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.3;text-wrap:balance}
+.films{display:flex;flex-wrap:wrap;gap:6px}
+.film{font-family:var(--type);font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+.film i{font-family:var(--display);font-size:14px;color:var(--ink)}
+.case .lede{margin:0;max-width:66ch}
+h4{margin:6px 0 2px;font-family:var(--type);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
+.spots{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.spot{width:100%;display:grid;grid-template-columns:22px minmax(0,1fr);gap:2px 12px;text-align:left;font:inherit;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:3px;padding:11px 14px 12px 12px;cursor:pointer}
+.spot:hover{border-color:var(--gold)}
+.spot .box{grid-row:span 3;width:20px;height:20px;margin-top:3px;border:1.5px solid var(--muted);border-radius:2px;display:grid;place-items:center;font-size:13px;font-weight:700;line-height:1;color:transparent}
+.spot[aria-pressed="true"]{border-color:var(--gold)}
+.spot[aria-pressed="true"] .box{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.spot .sp-n{font-weight:700;line-height:1.4}
+.spot .sp-n .tag{margin:0 0 0 8px;color:var(--gold);font-size:10px}
+.spot .sp-a{font-family:var(--type);font-size:12.5px;color:var(--muted);line-height:1.4}
+.spot .sp-s{font-size:14.5px;line-height:1.6;margin-top:3px}
+.spot.static{cursor:default;background:transparent;border-style:dashed}
+.spot.static:hover{border-color:var(--line)}
+.spot.static .box{border:0;color:var(--muted);font-family:var(--type);font-size:11px}
+.spot.gone .sp-n{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--red)}
+.spot.gone .tag{color:var(--red)}
+.case-side{background:var(--panel2);border-left:1px solid var(--line);padding:26px clamp(18px,2.6vw,28px) 24px;border-radius:0 4px 0 0;min-width:0}
+.side-in{position:sticky;top:84px;display:grid;gap:18px}
+.case-side p{margin:0;font-size:14.5px}
+.case-side cite{font-family:var(--display);font-style:italic;font-size:18px;font-weight:600}
+.case-side small{display:block;color:var(--muted);font-size:13px;line-height:1.55;margin-top:2px}
+.next{grid-column:1 / -1;margin:0;padding:12px clamp(18px,3vw,34px);border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.next .tag{color:var(--ink)}
+
+/* ---------- film index ---------- */
+.films-idx{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.frow{display:grid;grid-template-columns:72px minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.3fr) auto;gap:6px 22px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line)}
+.frow .yr{font-family:var(--display);font-weight:600;font-size:28px;line-height:1;font-variant-numeric:lining-nums tabular-nums;color:var(--gold)}
+.frow .ft{min-width:0}
+.frow .ft i{display:block;font-family:var(--display);font-size:19px;font-weight:600;line-height:1.25}
+.frow .ft span{font-size:14px;color:var(--muted)}
+.frow .actor{font-size:14px}
+.frow .actor small{display:block;font-family:var(--type);font-size:12px;color:var(--muted)}
+.frow .song{font-size:13.5px;color:var(--muted);min-width:0}
+.seen{font:inherit;font-size:13px;padding:5px 12px;border:1px solid var(--line);border-radius:3px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seen:hover{border-color:var(--gold);color:var(--ink)}
+.seen[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.idx-note{margin:16px 0 0;font-size:14px;color:var(--muted);max-width:76ch}
+.idx-note b{color:var(--ink);font-weight:600}
+
+/* ---------- field notes ---------- */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px 36px}
+.notes article{border-top:2px solid var(--gold);padding-top:12px;min-width:0}
+.notes h3{margin:0 0 6px;font-family:var(--serif-zh);font-size:18px;font-weight:900}
+.notes p{margin:0 0 8px;font-size:15px}
+.recipe{margin:30px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:18px 36px;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:clamp(18px,3vw,30px)}
+.recipe h3{margin:0;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15}
+.recipe h3 small{display:block;font-family:var(--serif-zh);font-style:normal;font-size:15px;color:var(--gold);margin-top:6px}
+.recipe ol{margin:0;padding-left:1.3em;display:grid;gap:6px;font-size:15px}
+.recipe ol li::marker{font-family:var(--type);color:var(--gold)}
+.recipe p{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.ghost{font:inherit;font-size:13px;padding:6px 14px;border:1px solid var(--line);border-radius:3px;background:transparent;color:var(--muted);cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.ghost.armed{color:var(--red);border-color:var(--red)}
+.actions small{font-size:12px;color:var(--muted)}
+
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px;line-height:1.7}
+footer p{margin:0 0 6px;max-width:84ch}
+
+@media (max-width:860px){
+  .cover{grid-template-columns:1fr}
+  .barrel-wrap{order:-1}
+  .barrel{width:min(64vw,260px)}
+  .case-body{grid-template-columns:1fr}
+  .case-side{border-left:0;border-top:1px solid var(--line);border-radius:0}
+  .side-in{position:static}
+  .frow{grid-template-columns:60px minmax(0,1fr) auto}
+  .frow .actor,.frow .song{grid-column:2 / 3}
+  .frow .seen{grid-column:3;grid-row:1}
+  .recipe{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .brand{display:none}
+  .wrap{gap:68px}
+  .case-code{font-size:32px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><b>007</b> 路书</a>
+    <nav class="nav-links" aria-label="章节">
+      <a href="#map-sec">行动地图</a>
+      <a href="#cases">案卷</a>
+      <a href="#films">片单</a>
+      <a href="#notes">出发前</a>
+    </nav>
+    <a class="pill" href="#cases" id="pill">打卡 0/0</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="cover" id="top" aria-labelledby="t">
+    <div>
+      <p class="classif">MI6 · 美国站 · <b>绝密</b></p>
+      <h1 class="title" id="t"><span class="t-en">Licence to Travel</span><span class="t-zh">007 路书 · 美国境内行动档案</span></h1>
+      <p class="cover-lede">九部邦德电影，从 1962 年的《诺博士》到 2006 年的《大战皇家赌场》。主线 14 天不出美国，从金门大桥一路走到波多黎各的阿雷西博天文台；想走得更远，可以加一段加勒比支线，去弗莱明写小说的牙买加和拍《霹雳弹》的巴哈马。Skyfall 及之后的不收。</p>
+      <div class="agent">
+        <label for="agent">特工姓名</label>
+        <input id="agent" type="text" value="James Bond" autocomplete="off" spellcheck="false">
+        <p class="intro" id="intro" aria-live="polite">The name's Bond. James Bond.</p>
+      </div>
+      <dl class="meta">
+        <div><dt>档案号</dt><dd>007/US-1962-2006</dd></div>
+        <div><dt>签发</dt><dd>2026-10</dd></div>
+        <div><dt>有效期</dt><dd>Forever</dd></div>
+      </dl>
+    </div>
+    <div class="barrel-wrap" aria-hidden="true">
+      <div class="barrel">
+        <div class="grooves"></div>
+        <div class="shade"></div>
+        <div class="aperture"><span>007</span></div>
+      </div>
+      <span class="ts">TOP SECRET</span>
+    </div>
+  </section>
+
+  <section id="map-sec" aria-labelledby="h-map">
+    <div class="sec-head">
+      <h2 id="h-map">行动地图<span class="en">Operations</span></h2>
+      <p>按经纬度比例画。金点是美国境内的主线，空心点是出境支线。点城市代码跳到那份案卷。</p>
+    </div>
+    <div class="controls">
+      <button type="button" class="switch" id="extBtn" aria-pressed="false"><span class="knob" aria-hidden="true"></span>加勒比支线（出境）</button>
+      <small id="routeSum"></small>
+    </div>
+    <div class="map-wrap"><svg id="map" role="img" aria-label="行动路线图"></svg></div>
+    <div class="legend" aria-hidden="true">
+      <span><svg viewBox="0 0 36 12"><line x1="2" y1="6" x2="34" y2="6" stroke-width="2.2" stroke-dasharray="1 8"/></svg>飞</span>
+      <span><svg viewBox="0 0 36 12"><line x1="2" y1="6" x2="34" y2="6" stroke-width="3"/></svg>自驾</span>
+      <span><svg viewBox="0 0 36 12"><circle cx="18" cy="6" r="4" style="fill:var(--gold);stroke:var(--gold)"/></svg>美国境内</span>
+      <span><svg viewBox="0 0 36 12"><circle cx="18" cy="6" r="4" style="fill:var(--panel);stroke:var(--gold)"/></svg>出境支线</span>
+    </div>
+  </section>
+
+  <section id="cases" aria-labelledby="h-cases">
+    <div class="sec-head">
+      <h2 id="h-cases">案卷<span class="en">Case Files</span></h2>
+      <p>每份案卷列出这座城市的取景地、对应的场景和地址。到了现场，点一下打卡。打卡记录只存在这台设备的浏览器里。</p>
+    </div>
+    <ol class="cases" id="caseList"></ol>
+  </section>
+
+  <section id="films" aria-labelledby="h-films">
+    <div class="sec-head">
+      <h2 id="h-films">片单<span class="en">Briefing Reels</span></h2>
+      <p>出发前按年份补课。最右边标记看过没有。</p>
+    </div>
+    <ol class="films-idx" id="filmList"></ol>
+    <p class="idx-note">按你的要求不收：<b>Skyfall（2012）</b>、<b>Spectre（2015）</b>、<b>No Time to Die（2021）</b>。五任正传邦德里只有乔治·拉扎贝没出场，他唯一的一部《女王密使》在瑞士和葡萄牙拍。《大破量子危机》（2008）没有美国或加勒比的取景地，所以也不在路线上。</p>
+  </section>
+
+  <section id="notes" aria-labelledby="h-notes">
+    <div class="sec-head">
+      <h2 id="h-notes">出发前<span class="en">Field Notes</span></h2>
+    </div>
+    <div class="notes">
+      <article>
+        <h3>证件</h3>
+        <p>主线全在美国境内，波多黎各也算，从本土飞过去不过海关。非美国公民记得随身带护照。</p>
+        <p>加勒比支线要出境：巴哈马和牙买加的入境政策出发前查清楚。回美国需要还在有效期内的多次入境签证，十年签还要登记 EVUS。拿骚机场有美国海关预检，在巴哈马就办完美国入境。</p>
+      </article>
+      <article>
+        <h3>进不去的地方</h3>
+        <p>诺克斯堡金库不对外开放，在军事基地里，只能在路边远远看。Elrod House 是私宅。Laughing Waters 属于私人庄园，能否进入出发前查。阿雷西博要提前在官网买票。</p>
+      </article>
+      <article>
+        <h3>已经消失的</h3>
+        <p>拉斯维加斯拆得最快：《金刚钻》里的 Riviera（2016 年拆除）、Tropicana（2024 年拆除）、Landmark（1995 年拆除）都已经不在了。阿雷西博的大望远镜 2020 年坍塌。新奥尔良 Lakefront Airport 的航站楼被卡特里娜飓风毁坏后又修复了。</p>
+      </article>
+      <article>
+        <h3>季节</h3>
+        <p>大西洋飓风季是 6 月 1 日到 11 月 30 日，基韦斯特、波多黎各、新奥尔良、巴哈马和牙买加都在范围里。棕榈泉和拉斯维加斯夏天常常超过 40°C。比较稳的是 11 月到次年 4 月。</p>
+      </article>
+    </div>
+    <div class="recipe">
+      <h3>Vesper<small>《大战皇家赌场》里邦德自己发明的马天尼</small></h3>
+      <div>
+        <ol>
+          <li>三份 Gordon's 金酒</li>
+          <li>一份伏特加</li>
+          <li>半份 Kina Lillet</li>
+          <li>摇到冰透，不要搅拌</li>
+          <li>加一大片薄柠檬皮</li>
+        </ol>
+        <p>Kina Lillet 早已停产，现在一般用 Lillet Blanc 代替。他用心上人 Vesper Lynd 的名字给这杯酒命名。</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="ghost" id="reset">清空打卡和片单记录</button>
+      <small id="resetHint"></small>
+    </div>
+  </section>
+
+  <footer>
+    <p>资料核对于 2026 年 10 月。场馆开放、导览和营业时间会变，以官方信息为准。打卡记录只保存在当前浏览器里。</p>
+    <p>取景地参考：<a href="https://movie-locations.com/" target="_blank" rel="noopener">The Worldwide Guide to Movie Locations</a> · <a href="https://www.mi6-hq.com/" target="_blank" rel="noopener">MI6-HQ</a> · <a href="https://en.wikipedia.org/wiki/List_of_James_Bond_film_locations" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://areciboc3.org/visit/" target="_blank" rel="noopener">Arecibo C3</a> · <a href="https://www.bahamas.com/natural-wonders/thunderball-grotto" target="_blank" rel="noopener">Bahamas.com</a></p>
+    <p>姊妹篇：<a href="https://claude.ai/artifact/RNxN5jJc8eXz3nZv1ZzhWZ" target="_blank" rel="noopener">God Bless América 路书</a></p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var FILMS = [
+    { id: "drno", y: 1962, en: "Dr. No", zh: "诺博士", actor: "肖恩·康纳利", song: "James Bond Theme · Monty Norman" },
+    { id: "gf", y: 1964, en: "Goldfinger", zh: "金手指", actor: "肖恩·康纳利", song: "Goldfinger · Shirley Bassey" },
+    { id: "tb", y: 1965, en: "Thunderball", zh: "霹雳弹", actor: "肖恩·康纳利", song: "Thunderball · Tom Jones" },
+    { id: "daf", y: 1971, en: "Diamonds Are Forever", zh: "金刚钻", actor: "肖恩·康纳利", song: "Diamonds Are Forever · Shirley Bassey" },
+    { id: "lald", y: 1973, en: "Live and Let Die", zh: "你死我活", actor: "罗杰·摩尔", song: "Live and Let Die · Paul McCartney & Wings" },
+    { id: "avtak", y: 1985, en: "A View to a Kill", zh: "雷霆杀机", actor: "罗杰·摩尔", song: "A View to a Kill · Duran Duran" },
+    { id: "ltk", y: 1989, en: "Licence to Kill", zh: "杀人执照", actor: "提摩西·达尔顿", song: "Licence to Kill · Gladys Knight" },
+    { id: "ge", y: 1995, en: "GoldenEye", zh: "黄金眼", actor: "皮尔斯·布鲁斯南", song: "GoldenEye · Tina Turner" },
+    { id: "cr", y: 2006, en: "Casino Royale", zh: "大战皇家赌场", actor: "丹尼尔·克雷格", song: "You Know My Name · Chris Cornell" }
+  ];
+  var FILM = {};
+  FILMS.forEach(function (f) { FILM[f.id] = f; });
+
+  /* kind: undefined = 可打卡的取景地；gone = 已拆除；info = 资讯，不计入打卡 */
+  var STOPS = [
+    {
+      id: "sfo", code: "SFO", city: "旧金山 · 奥克兰", en: "San Francisco & Oakland, CA",
+      days: 2, lat: 37.77, lon: -122.42, lab: [0, -20, "middle"], leg: "plane", films: ["avtak"],
+      title: "在金门大桥的塔顶收场",
+      lede: "《雷霆杀机》是罗杰·摩尔的最后一部邦德。反派佐林想引爆圣安德烈亚斯断层和海沃德断层，把硅谷淹进海里，好独占全球芯片市场。最后的决斗在金门大桥的桥塔顶上。",
+      spots: [
+        { n: "金门大桥", a: "Golden Gate Bridge · 南端有游客中心", s: "片尾邦德和佐林在桥塔顶上搏斗，佐林的飞艇就拴在桥上。" },
+        { n: "旧金山市政厅", a: "1 Dr Carlton B Goodlett Pl", s: "片中的州政府大楼。佐林在这里杀人、纵火、嫁祸邦德，邦德和 Stacey 从电梯井逃生。工作日大厅可以进去看。" },
+        { n: "Third Street 吊桥", a: "Lefty O'Doul Bridge · Third St", s: "邦德开着云梯消防车从 Market Street 一路被警察追到这里，冲过正在升起的吊桥。" },
+        { n: "渔人码头", a: "Fisherman's Wharf", s: "邦德在这里和 CIA 联络人 Chuck Lee 接头。" },
+        { n: "Dunsmuir Hellman 庄园", a: "2960 Peralta Oaks Ct, Oakland", s: "邦女郎 Stacey Sutton 的家。平时多用来办活动，开放参观的日子出发前查。" }
+      ],
+      song: ["A View to a Kill", "Duran Duran", "唯一登上 Billboard Hot 100 榜首的邦德主题曲"],
+      trivia: "罗杰·摩尔拍这部时 57 岁，是正传里年纪最大的邦德。",
+      next: "飞棕榈泉（PSP）约 1.5 小时"
+    },
+    {
+      id: "psp", code: "PSP", city: "棕榈泉", en: "Palm Springs, CA",
+      days: 1, lat: 33.83, lon: -116.55, lab: [0, 36, "middle"], leg: "car", films: ["daf"],
+      title: "反派巢穴的建筑课",
+      lede: "70 年代的邦德反派爱住混凝土加玻璃的悬崖豪宅。棕榈泉是美国中世纪现代主义建筑最集中的地方之一，《金刚钻》里富豪 Willard Whyte 的避暑别墅就在这里。",
+      spots: [
+        { n: "Elrod House", a: "Southridge Dr · 私人住宅", s: "建筑师约翰·劳特纳 1968 年为室内设计师 Arthur Elrod 设计。邦德在这里被两个女保镖 Bambi 和 Thumper 围攻。私宅不开放，别去打扰住户。", kind: "info" },
+        { n: "棕榈泉游客中心", a: "2901 N Palm Canyon Dr", s: "阿尔伯特·弗雷设计的老加油站改建，屋顶像一片要起飞的翅膀，很有 60 年代的科幻感。" },
+        { n: "Palm Springs Aerial Tramway", a: "1 Tram Way", s: "旋转缆车十分钟升到山顶。这里不是取景地，只是很像邦德片。" },
+        { n: "Architecture and Design Center", a: "300 S Palm Canyon Dr", s: "棕榈泉艺术博物馆的建筑分馆，讲这座城市的现代主义建筑。" }
+      ],
+      trivia: "Willard Whyte 这个隐居富豪的原型是霍华德·休斯。",
+      next: "自驾约 4 小时到拉斯维加斯"
+    },
+    {
+      id: "las", code: "LAS", city: "拉斯维加斯", en: "Las Vegas, NV",
+      days: 2, lat: 36.17, lon: -115.14, lab: [14, -14, "start"], leg: "plane", films: ["daf"],
+      title: "布洛菲尔德住在顶层",
+      lede: "《金刚钻》是肖恩·康纳利回归的一部。布洛菲尔德冒充 Willard Whyte，躲在 Whyte 自家赌场酒店的顶层。拉斯维加斯拆得很快，片中的赌场一半已经不在了。",
+      spots: [
+        { n: "Westgate（当年的 International Hotel）", a: "3000 Paradise Rd", s: "片中 Whyte House 酒店的外景。邦德从电梯外侧一路爬上顶层去找布洛菲尔德。" },
+        { n: "Circus Circus", a: "2880 S Las Vegas Blvd", s: "邦德和 Tiffany Case 在这里接头交钻石，头顶就是空中飞人。" },
+        { n: "Fremont Street", a: "Fremont Street Experience", s: "邦德开红色福特野马被警车追，最后单侧两轮开进窄巷。仔细看：进巷时是右侧两轮着地，出巷变成了左侧。" },
+        { n: "Riviera", a: "2016 年拆除", s: "Plenty O'Toole 出场的赌场戏。", kind: "gone" },
+        { n: "Tropicana", a: "2024 年拆除", s: "邦德去看 Folies Bergère 歌舞秀。", kind: "gone" },
+        { n: "Landmark", a: "1995 年拆除", s: "片中出现过的赌场酒店。", kind: "gone" }
+      ],
+      song: ["Diamonds Are Forever", "Shirley Bassey", "她一共唱了三首邦德主题曲，另外两首是 Goldfinger 和 Moonraker"],
+      trivia: "片中的月球车追逐戏，是在拉斯维加斯郊外的沙漠里拍的。",
+      next: "飞新奥尔良（MSY）约 3.5 小时"
+    },
+    {
+      id: "msy", code: "MSY", city: "新奥尔良", en: "New Orleans, LA",
+      days: 2, lat: 29.95, lon: -90.07, lab: [0, 36, "middle"], leg: "plane", films: ["lald"],
+      title: "“这是谁的葬礼？”",
+      lede: "《你死我活》是罗杰·摩尔的第一部邦德，也是最“美国”的一部：爵士葬礼、巫毒、鳄鱼，再加一场在路易斯安那沼泽里跑了几十公里的快艇追逐。",
+      spots: [
+        { n: "Chartres St 与 Dumaine St 路口", a: "French Quarter", s: "爵士葬礼那场戏。路人问“这是谁的葬礼？”，送葬的人答“你的”，混在人群里的英国特工随即被刺杀。" },
+        { n: "Fillet of Soul 餐厅", a: "826 Chartres St", s: "反派 Mr. Big 在新奥尔良的据点。" },
+        { n: "Lakefront Airport", a: "6001 Stars and Stripes Blvd", s: "邦德被押到这里，抢了一架小飞机在跑道上横冲直撞，剧组在这里撞毁了好几架飞机。1934 年的装饰艺术航站楼被卡特里娜飓风毁坏后修复如初，可以进去看。" },
+        { n: "Irish Bayou", a: "市区往东，I-10 沿线", s: "快艇追逐戏的主要外景地。快艇飞越公路那一跳，创下了当时的吉尼斯纪录。想体验可以报一个沼泽游船团。" }
+      ],
+      song: ["Live and Let Die", "Paul McCartney & Wings", "第一首获得奥斯卡最佳原创歌曲提名的邦德主题曲"],
+      trivia: "快艇追逐里那个嚼烟草的胖警长 J.W. Pepper 太受欢迎，下一部《金枪人》又把他请了回来。",
+      next: "飞路易斯维尔（SDF）约 2 小时"
+    },
+    {
+      id: "sdf", code: "SDF", city: "诺克斯堡 · 路易斯维尔", en: "Fort Knox & Louisville, KY",
+      days: 1, lat: 38.25, lon: -85.76, lab: [0, -20, "middle"], leg: "plane", films: ["gf"],
+      title: "金手指的目标",
+      lede: "金手指的计划是在诺克斯堡金库里引爆一颗脏弹，让美国的黄金几十年都碰不了，他手里的黄金就会暴涨。他的养马场 Auric Stud 也设在肯塔基。",
+      spots: [
+        { n: "美国金库", a: "US Bullion Depository · Bullion Blvd", s: "电影里拍了真金库的外景，内部是在英国松林片场搭的。金库在军事基地里，不对外开放，只能在公路边远远看一眼，按现场标识行事。" },
+        { n: "Kentucky Derby Museum", a: "704 Central Ave, Louisville", s: "丘吉尔园马场旁的博物馆。肯塔基是美国赛马的中心，金手指把养马场放在这里不是随便选的。" },
+        { n: "波本酒厂", a: "Louisville 市区", s: "市区有好几家可以参观的波本酒厂，喝一杯肯塔基特产。", kind: "info" }
+      ],
+      song: ["Goldfinger", "Shirley Bassey", "最有名的邦德主题曲之一"],
+      trivia: "演金手指的德国演员 Gert Fröbe 英语不好，片中台词全是别人配的。",
+      next: "飞纽约约 2 小时"
+    },
+    {
+      id: "nyc", code: "NYC", city: "纽约", en: "New York, NY",
+      days: 1, lat: 40.71, lon: -74.01, lab: [14, -14, "start"], leg: "plane", films: ["lald"],
+      title: "从联合国一路追到哈林",
+      lede: "《你死我活》的开场在纽约：一名英国特工在联合国被暗杀，邦德一下飞机，司机就在 FDR 快速路上被毒镖射死。",
+      spots: [
+        { n: "联合国总部", a: "405 E 42nd St · 有公众导览", s: "电影的第一个镜头就是联合国大楼，前景是 FDR Drive。" },
+        { n: "FDR Drive", a: "沿东河的快速路", s: "邦德的司机 Charlie 在这条路上被毒镖射中。" },
+        { n: "Oh Cult 巫毒店", a: "33 E 65th St", s: "片中直接报出了这个地址。邦德从这里一路跟踪到 Fillet of Soul。" },
+        { n: "Fillet of Soul（纽约店）", a: "Second Ave 与 E 94th St 一带", s: "剧情说在哈林的 Lenox Ave 与 124th St，实际是在上东区拍的。" },
+        { n: "哈林区 118th St", a: "Harlem", s: "邦德在街头被一群人围住的打斗戏，隔壁的 117th St 也拍了几场。" }
+      ],
+      song: ["Live and Let Die", "Guns N' Roses", "1991 年的翻唱版，在美国流行程度不输原版"],
+      trivia: "片中的 Rosie Carver（Gloria Hendry 饰）是邦德系列第一位和邦德有感情戏的非裔邦女郎。",
+      next: "飞迈阿密约 3 小时"
+    },
+    {
+      id: "mia", code: "MIA", city: "迈阿密海滩", en: "Miami Beach, FL",
+      days: 1, lat: 25.79, lon: -80.13, lab: [-16, -10, "end"], leg: "car", films: ["gf", "cr"],
+      title: "金手指在泳池边出千",
+      lede: "《金手指》开场是一个从海上掠过迈阿密海滩、落到 Fontainebleau 酒店泳池的航拍镜头。四十多年后，《大战皇家赌场》又把一段戏设在了迈阿密。",
+      spots: [
+        { n: "Fontainebleau Miami Beach", a: "4441 Collins Ave", s: "金手指在泳池边打牌出千，Jill Masterson 在楼上套房用望远镜偷看对手的牌，再用无线电告诉他。主演们其实一个都没来，康纳利的戏全在英国松林片场的布景里拍。" },
+        { n: "迈阿密国际机场（只是剧情）", a: "实际在布拉格和英国 Dunsfold 机场拍", s: "《大战皇家赌场》里邦德在机场拦下炸飞机的阴谋。机场在剧情里是迈阿密，真正的拍摄地不在这里。", kind: "info" }
+      ],
+      song: ["You Know My Name", "Chris Cornell", "《大战皇家赌场》主题曲"],
+      trivia: "Fontainebleau 由建筑师莫里斯·拉皮德斯设计，1954 年开业，至今还在营业。",
+      next: "沿 Overseas Highway（US-1）自驾约 4 小时到基韦斯特，路上就会开过 Seven Mile Bridge"
+    },
+    {
+      id: "eyw", code: "EYW", city: "基韦斯特", en: "Key West, FL",
+      days: 2, lat: 24.56, lon: -81.78, lab: [-16, 24, "end"], leg: "plane", films: ["ltk"],
+      title: "在海明威家被吊销执照",
+      lede: "《杀人执照》是提摩西·达尔顿的第二部，也是最后一部邦德。毒枭把邦德的 CIA 老友 Felix Leiter 扔进了鲨鱼池，邦德抗命去报仇，M 当场收回了他的杀人执照。",
+      spots: [
+        { n: "Seven Mile Bridge", a: "US-1 · Marathon 到 Little Duck Key", s: "毒枭 Sanchez 在这座桥上越狱，押运车冲进了海里。" },
+        { n: "St. Mary Star of the Sea 教堂", a: "1010 Windsor Ln", s: "开场邦德和 Leiter 抓完毒枭，跳伞落在教堂门口，正好赶上 Leiter 的婚礼。" },
+        { n: "海明威故居", a: "907 Whitehead St", s: "M 在二楼的回廊上收回邦德的杀人执照。院子里住着一群六趾猫。" }
+      ],
+      song: ["Licence to Kill", "Gladys Knight", ""],
+      trivia: "这部原定的片名是 Licence Revoked（执照吊销），后来才改成现在的名字。",
+      next: "开回迈阿密，飞圣胡安（SJU）约 2.5 小时",
+      nextExt: "经迈阿密飞拿骚（NAS），飞行约 1 小时"
+    },
+    {
+      id: "nas", code: "NAS", city: "巴哈马 · 拿骚与埃克苏马", en: "Nassau & the Exumas, Bahamas",
+      days: 3, lat: 25.06, lon: -77.35, lab: [16, 10, "start"], leg: "plane", ext: true, films: ["tb", "cr"],
+      title: "霹雳弹洞和皇家赌场的酒店",
+      lede: "巴哈马在邦德电影里出现过好多次。《霹雳弹》的水下大战在这里拍，《大战皇家赌场》里克雷格追踪 Dimitrios 时住的度假村也在这里。",
+      spots: [
+        { n: "The Ocean Club", a: "Paradise Island · 现为 Four Seasons 旗下", s: "《大战皇家赌场》里邦德住的酒店，片中叫 One&Only Ocean Club。他在这里的牌局上赢走了 Dimitrios 的阿斯顿·马丁 DB5。" },
+        { n: "霹雳弹洞", a: "Thunderball Grotto · Staniel Cay, Exumas", s: "《霹雳弹》和后来的非正传《巡弋飞弹》都在这个石灰岩洞里拍过。退潮时可以浮潜游进去，阳光从洞顶照下来。" },
+        { n: "Big Major Cay", a: "Staniel Cay 旁", s: "不是取景地，但就在霹雳弹洞旁边：会游泳的猪。", kind: "info" }
+      ],
+      song: ["Thunderball", "Tom Jones", ""],
+      trivia: "从拿骚飞回美国，机场里就有美国海关预检，在巴哈马就办完了美国入境手续。",
+      next: "飞牙买加，多半要经迈阿密转机"
+    },
+    {
+      id: "ocj", code: "OCJ", city: "牙买加 · 奥乔里奥斯", en: "Ocho Rios & Oracabessa, Jamaica",
+      days: 3, lat: 18.40, lon: -76.95, lab: [0, 32, "middle"], leg: "plane", ext: true, films: ["drno", "lald"],
+      title: "一切开始的地方",
+      lede: "伊恩·弗莱明在牙买加北岸的 GoldenEye 庄园写出了全部 14 本邦德书，第一部邦德电影《诺博士》也在牙买加拍。附近的机场就叫伊恩·弗莱明国际机场（OCJ），以小型航班为主，多数人飞蒙特哥贝（MBJ）再开车过来。",
+      spots: [
+        { n: "GoldenEye", a: "Oracabessa · 现为度假酒店", s: "弗莱明的庄园。后来买下它的是 Island Records 创始人克里斯·布莱克威尔，他年轻时正是《诺博士》剧组在牙买加的选景助理。" },
+        { n: "Laughing Waters", a: "Ocho Rios 附近 · 私人庄园", s: "乌苏拉·安德丝穿白色比基尼从海里走出来的那一幕。能否进入出发前查。" },
+        { n: "Dunn's River Falls", a: "Ocho Rios", s: "也在《诺博士》里出现过。可以手拉手顺着瀑布往上爬。" },
+        { n: "金斯敦 South Parade", a: "Downtown Kingston", s: "《诺博士》开场“三只盲鼠”出现的地方。" },
+        { n: "Falmouth 鳄鱼农场", a: "Jamaica Swamp Safari Village", s: "《你死我活》里邦德踩着鳄鱼背逃生。农场主 Ross Kananga 亲自做了这个特技，反派 Kananga 的名字就是从他来的。" }
+      ],
+      song: ["James Bond Theme", "Monty Norman", "1962 年在《诺博士》里第一次响起"],
+      trivia: "GoldenEye 这个庄园名，后来成了布鲁斯南第一部邦德的片名。",
+      next: "飞圣胡安（SJU），多半要转机"
+    },
+    {
+      id: "sju", code: "SJU", city: "波多黎各 · 阿雷西博", en: "Arecibo, Puerto Rico",
+      days: 2, lat: 18.47, lon: -66.11, lab: [0, -22, "middle"], films: ["ge"],
+      title: "终点：“古巴”的巨型天线",
+      lede: "《黄金眼》是皮尔斯·布鲁斯南的第一部邦德。片尾叛变的 006 把基地藏在“古巴”一座巨型射电望远镜下面，那其实是波多黎各的阿雷西博天文台。",
+      spots: [
+        { n: "阿雷西博天文台旧址", a: "NSF Arecibo C3 · 需官网购票", s: "邦德和 006 在悬在天线上方的馈源平台上决斗。305 米的望远镜在 2020 年 12 月坍塌，原址改成了科学教育中心，2026 年起分阶段开放导览。" },
+        { n: "圣胡安老城", a: "Viejo San Juan · 开车约 1 小时多", s: "不是取景地。上一本《God Bless America 路书》的波多黎各站就从这里开始。", kind: "info" }
+      ],
+      song: ["GoldenEye", "Tina Turner", "由 U2 的 Bono 和 The Edge 写"],
+      trivia: "开场那个从水坝上蹦极跳下的镜头，是在瑞士的 Verzasca 大坝拍的。",
+      next: "行动结束。从波多黎各飞回本土前，行李要过 USDA 农检。"
+    }
+  ];
+
+  var KEY = "bond-roadbook-v1";
+  var state = { done: {}, seen: {}, ext: false, agent: "James Bond" };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") {
+      if (saved.done && typeof saved.done === "object") state.done = saved.done;
+      if (saved.seen && typeof saved.seen === "object") state.seen = saved.seen;
+      state.ext = saved.ext === true;
+      if (typeof saved.agent === "string" && saved.agent.length < 60) state.agent = saved.agent;
+    }
+  } catch (e) { /* 没有存储时照常显示 */ }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch];
+    });
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function activeStops() { return STOPS.filter(function (s) { return state.ext || !s.ext; }); }
+  function countable(s) { return s.spots.map(function (p, i) { return { p: p, key: s.id + "-" + i }; }).filter(function (x) { return !x.p.kind; }); }
+
+  /* ---------- 特工姓名 ---------- */
+  function introFor(raw) {
+    var name = raw.trim().replace(/\s+/g, " ") || "James Bond";
+    var cjk = /[㐀-鿿]/.test(name);
+    var surname = cjk ? name.replace(/\s/g, "").charAt(0) : name.split(" ").slice(-1)[0];
+    var code;
+    if (name.toLowerCase() === "james bond") code = 7;
+    else {
+      var h = 0;
+      for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+      code = [1, 2, 3, 4, 5, 6, 8, 9][h % 8];
+    }
+    return "The name's " + esc(surname) + ". " + esc(name) + '.<span class="num">代号 00' + code + "</span>";
+  }
+
+  /* ---------- 地图：等距圆柱投影，按北纬 30° 修正经度比例 ---------- */
+  var LON0 = -126, LON1 = -62, LAT0 = 15.5, LAT1 = 44.5, K = Math.cos(30 * Math.PI / 180), S = 18;
+  var MW = Math.round((LON1 - LON0) * K * S), MH = Math.round((LAT1 - LAT0) * S);
+  function px(lon, lat) { return [(lon - LON0) * K * S, (LAT1 - lat) * S]; }
+  function f1(n) { return n.toFixed(1); }
+  function legPath(a, b, mode) {
+    if (mode !== "plane") return "M" + f1(a[0]) + "," + f1(a[1]) + " L" + f1(b[0]) + "," + f1(b[1]);
+    var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1];
+    var len = Math.hypot(dx, dy), nx = -dy / len, ny = dx / len, bend = 0.16;
+    var cx = mx + nx * len * bend, cy = my + ny * len * bend;
+    if (cy > my) { cx = mx - nx * len * bend; cy = my - ny * len * bend; }
+    return "M" + f1(a[0]) + "," + f1(a[1]) + " Q" + f1(cx) + "," + f1(cy) + " " + f1(b[0]) + "," + f1(b[1]);
+  }
+  function renderMap() {
+    var act = activeStops(), h = [];
+    var svg = $("map");
+    svg.setAttribute("viewBox", "0 0 " + MW + " " + MH);
+    h.push('<g class="grid">');
+    [20, 25, 30, 35, 40].forEach(function (lat) {
+      var y = px(LON0, lat)[1];
+      h.push('<line x1="0" x2="' + MW + '" y1="' + f1(y) + '" y2="' + f1(y) + '"/><text x="8" y="' + f1(y - 6) + '">' + lat + "°N</text>");
+    });
+    [-120, -110, -100, -90, -80, -70].forEach(function (lon) {
+      var x = px(lon, LAT0)[0];
+      h.push('<line y1="0" y2="' + MH + '" x1="' + f1(x) + '" x2="' + f1(x) + '"/><text x="' + f1(x + 6) + '" y="' + (MH - 8) + '">' + (-lon) + "°W</text>");
+    });
+    h.push("</g>");
+    [["太平洋", -120.5, 27], ["墨西哥湾", -91, 25.4], ["大西洋", -69.5, 33], ["加勒比海", -71.5, 16.9]].forEach(function (s) {
+      var p = px(s[1], s[2]);
+      h.push('<text class="sea" x="' + f1(p[0]) + '" y="' + f1(p[1]) + '" text-anchor="middle">' + s[0] + "</text>");
+    });
+    for (var i = 0; i < act.length - 1; i++) {
+      var a = act[i], b = act[i + 1];
+      h.push('<path class="leg ' + a.leg + (a.ext || b.ext ? " ext" : "") + '" d="' + legPath(px(a.lon, a.lat), px(b.lon, b.lat), a.leg) + '"/>');
+    }
+    var n = 0;
+    STOPS.forEach(function (s) {
+      var on = act.indexOf(s) !== -1, p = px(s.lon, s.lat);
+      if (on) n++;
+      var inner = '<circle class="dot" cx="' + f1(p[0]) + '" cy="' + f1(p[1]) + '" r="9"/>' +
+        '<text class="code" x="' + f1(p[0] + s.lab[0]) + '" y="' + f1(p[1] + s.lab[1]) + '" text-anchor="' + s.lab[2] + '">' + s.code + "</text>";
+      var cls = (s.ext ? "ext" : "") + (on ? "" : " off");
+      if (on) h.push('<a href="#case-' + s.id + '" class="' + cls + '" aria-label="第 ' + n + " 站 " + esc(s.city) + '">' + inner + "</a>");
+      else h.push('<g class="' + cls + '">' + inner + "</g>");
+    });
+    svg.innerHTML = h.join("");
+    svg.setAttribute("aria-label", "行动路线：" + act.map(function (s) { return s.city; }).join(" → "));
+    var days = act.reduce(function (t, s) { return t + s.days; }, 0);
+    var films = {};
+    act.forEach(function (s) { s.films.forEach(function (f) { films[f] = true; }); });
+    $("routeSum").textContent = act.length + " 站 · " + days + " 天 · " + Object.keys(films).length + " 部电影";
+  }
+
+  /* ---------- 案卷 ---------- */
+  function renderCases() {
+    var day = 1, act = activeStops();
+    $("caseList").innerHTML = act.map(function (s, idx) {
+      var from = day, to = day + s.days - 1;
+      day = to + 1;
+      var last = idx === act.length - 1;
+      var next = state.ext && s.nextExt ? s.nextExt : s.next;
+      var spots = s.spots.map(function (p, i) {
+        var body = '<span class="sp-n">' + esc(p.n) +
+          (p.kind === "gone" ? '<span class="tag">已拆除</span>' : p.kind === "info" ? '<span class="tag">参考</span>' : "") + "</span>" +
+          '<span class="sp-a">' + esc(p.a) + "</span>" +
+          '<span class="sp-s">' + esc(p.s) + "</span>";
+        if (p.kind) {
+          return '<li><div class="spot static' + (p.kind === "gone" ? " gone" : "") + '"><span class="box" aria-hidden="true">' + (p.kind === "gone" ? "×" : "·") + "</span>" + body + "</div></li>";
+        }
+        return '<li><button type="button" class="spot" data-spot="' + s.id + "-" + i + '" aria-pressed="false"><span class="box" aria-hidden="true">✓</span>' + body + "</button></li>";
+      }).join("");
+      return '<li class="case' + (s.ext ? " ext" : "") + '" id="case-' + s.id + '">' +
+        '<div class="case-head"><span class="tab">FILE ' + pad(idx + 1) + (s.ext ? " · 出境" : "") + '</span><span class="tab-days">' +
+          (from === to ? "第 " + from + " 天" : "第 " + from + "–" + to + " 天") + "</span></div>" +
+        '<div class="case-body">' +
+          '<div class="case-main">' +
+            '<div class="case-top"><span class="case-code">' + s.code + '</span><p class="kicker">' + esc(s.city) + '<span class="en">' + esc(s.en) + "</span></p></div>" +
+            "<h3>" + esc(s.title) + "</h3>" +
+            '<div class="films">' + s.films.map(function (f) {
+              var m = FILM[f];
+              return '<span class="film"><i>' + esc(m.en) + "</i> · " + esc(m.zh) + " · " + m.y + "</span>";
+            }).join("") + "</div>" +
+            '<p class="lede">' + esc(s.lede) + "</p>" +
+            "<h4>取景地</h4>" +
+            '<ul class="spots">' + spots + "</ul>" +
+          "</div>" +
+          '<aside class="case-side"><div class="side-in">' +
+            (s.song ? "<div><h4>主题曲</h4><p><cite>" + esc(s.song[0]) + "</cite> · " + esc(s.song[1]) + (s.song[2] ? "<small>" + esc(s.song[2]) + "</small>" : "") + "</p></div>" : "") +
+            "<div><h4>冷知识</h4><p>" + esc(s.trivia) + "</p></div>" +
+          "</div></aside>" +
+          '<p class="next"><span class="tag">' + (last ? "END" : "NEXT") + "</span>" + esc(next) + "</p>" +
+        "</div>" +
+      "</li>";
+    }).join("");
+  }
+
+  /* ---------- 片单 ---------- */
+  function renderFilms() {
+    $("filmList").innerHTML = FILMS.map(function (f) {
+      var where = STOPS.filter(function (s) { return s.films.indexOf(f.id) !== -1; });
+      var main = where.filter(function (s) { return !s.ext; }).map(function (s) { return s.code; });
+      var ext = where.filter(function (s) { return s.ext; }).map(function (s) { return s.code; });
+      var stops = main.join(" · ") + (ext.length ? (main.length ? " · " : "") + "支线 " + ext.join(" · ") : "");
+      return '<li class="frow">' +
+        '<span class="yr">' + f.y + "</span>" +
+        '<span class="ft"><i>' + esc(f.en) + "</i><span>《" + esc(f.zh) + "》</span></span>" +
+        '<span class="actor">' + esc(f.actor) + "<small>" + stops + "</small></span>" +
+        '<span class="song">' + esc(f.song) + "</span>" +
+        '<button type="button" class="seen" data-seen="' + f.id + '" aria-pressed="false" aria-label="' + esc(f.en) + ' 看过">看过</button>' +
+      "</li>";
+    }).join("");
+  }
+
+  /* ---------- 同步打卡状态 ---------- */
+  function sync() {
+    document.querySelectorAll("[data-spot]").forEach(function (el) {
+      el.setAttribute("aria-pressed", state.done[el.getAttribute("data-spot")] ? "true" : "false");
+    });
+    document.querySelectorAll("[data-seen]").forEach(function (el) {
+      el.setAttribute("aria-pressed", state.seen[el.getAttribute("data-seen")] ? "true" : "false");
+    });
+    var all = [];
+    activeStops().forEach(function (s) { all = all.concat(countable(s)); });
+    var got = all.filter(function (x) { return state.done[x.key]; }).length;
+    $("pill").textContent = "打卡 " + got + "/" + all.length;
+    $("extBtn").setAttribute("aria-pressed", state.ext ? "true" : "false");
+  }
+
+  function renderAll() { renderMap(); renderCases(); renderFilms(); sync(); }
+
+  document.addEventListener("click", function (e) {
+    var spot = e.target.closest("[data-spot]");
+    if (spot) {
+      var k = spot.getAttribute("data-spot");
+      if (state.done[k]) delete state.done[k]; else state.done[k] = true;
+      save(); sync(); return;
+    }
+    var seen = e.target.closest("[data-seen]");
+    if (seen) {
+      var f = seen.getAttribute("data-seen");
+      if (state.seen[f]) delete state.seen[f]; else state.seen[f] = true;
+      save(); sync();
+    }
+  });
+  $("extBtn").addEventListener("click", function () { state.ext = !state.ext; save(); renderAll(); });
+
+  var agent = $("agent");
+  agent.value = state.agent;
+  $("intro").innerHTML = introFor(state.agent);
+  agent.addEventListener("input", function () {
+    state.agent = agent.value.slice(0, 59);
+    $("intro").innerHTML = introFor(state.agent);
+    save();
+  });
+
+  var resetBtn = $("reset"), resetTimer = null;
+  function disarm() {
+    resetBtn.classList.remove("armed");
+    resetBtn.textContent = "清空打卡和片单记录";
+    if ($("resetHint").textContent === "清空后无法恢复") $("resetHint").textContent = "";
+  }
+  resetBtn.addEventListener("click", function () {
+    if (!resetBtn.classList.contains("armed")) {
+      resetBtn.classList.add("armed");
+      resetBtn.textContent = "再点一次，确认清空";
+      $("resetHint").textContent = "清空后无法恢复";
+      resetTimer = setTimeout(disarm, 4000);
+      return;
+    }
+    clearTimeout(resetTimer);
+    state.done = {};
+    state.seen = {};
+    save(); sync(); disarm();
+    $("resetHint").textContent = "已清空";
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
