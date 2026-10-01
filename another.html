@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Another 路书</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700;900&family=Shippori+Mincho+B1:wght@500;700;800&display=swap">
+<style>
+/* Layout: a class register for 3-3. Seating chart on the cover, a to-scale map of the Shō River corridor,
+   each stop a register page with its name set vertically, attendance stamps per location, and a roll of works. */
+:root{
+  --paper:#ECEEEC;     /* 北陆的阴天 */
+  --sheet:#F7F8F6;
+  --ink:#1C1E21;       /* 墨 */
+  --muted:#596068;
+  --line:#CBD0CE;
+  --crimson:#9A1C20;   /* 朱肉 */
+  --eye:#2C6C68;       /* 人偶之眼 */
+  --mincho:"Shippori Mincho B1","Noto Serif SC","Songti SC",serif;
+  --serif:"Noto Serif SC","Songti SC",serif;
+  --body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1113; --sheet:#16191C; --ink:#E5E3DE; --muted:#9AA0A7; --line:#2A2F35;
+    --crimson:#E2484B; --eye:#73B9B2;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1113; --sheet:#16191C; --ink:#E5E3DE; --muted:#9AA0A7; --line:#2A2F35;
+  --crimson:#E2484B; --eye:#73B9B2;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--eye);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--eye);outline-offset:2px}
+[lang="ja"]{font-family:var(--mincho)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--mincho);font-weight:800;font-size:18px;white-space:nowrap;text-decoration:none}
+.nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{padding:5px 10px;border-radius:2px;color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--sheet)}
+.pill{font-family:var(--mono);font-size:13px;padding:3px 10px;border:1.5px solid var(--crimson);color:var(--crimson);border-radius:2px;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums}
+
+/* ---------- page ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 72px;display:grid;gap:84px}
+section{min-width:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 32px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+h2{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(1.55rem,3.2vw,2.1rem);line-height:1.2}
+h2 .ja{font-family:var(--mincho);font-weight:500;font-size:.62em;color:var(--muted);margin-left:12px;letter-spacing:.2em}
+.sec-head p{margin:0;color:var(--muted);max-width:60ch}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.5;padding:0 6px;border:1px solid currentColor;border-radius:2px;margin-right:8px;vertical-align:1px;white-space:nowrap}
+
+/* ---------- cover ---------- */
+.cover{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 56px;align-items:center}
+.eyebrow{margin:0;font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--muted)}
+.title{margin:.2em 0 .1em;font-family:var(--mincho);font-weight:800;font-size:clamp(3.6rem,11vw,7.6rem);line-height:.95;letter-spacing:-.01em}
+.subtitle{margin:0 0 .9em;font-family:var(--serif);font-weight:700;font-size:clamp(1.1rem,2.3vw,1.45rem);letter-spacing:.08em}
+.subtitle span{color:var(--crimson)}
+.lede{margin:0;font-size:17px;max-width:56ch}
+.facts{display:flex;flex-wrap:wrap;gap:16px 34px;margin:26px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.facts div{display:grid}
+.facts dt{font-size:12px;color:var(--muted);order:2}
+.facts dd{margin:0;font-family:var(--mincho);font-weight:800;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums;order:1}
+.facts .nospoil{align-self:center;font-size:13px;color:var(--eye);border:1px solid var(--eye);border-radius:2px;padding:2px 10px}
+
+.chart{background:var(--sheet);border:1px solid var(--line);padding:22px 22px 18px;position:relative}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;font-family:var(--mincho);font-weight:700;font-size:15px}
+.chart-head span{font-family:var(--mono);font-weight:400;font-size:12px;color:var(--muted)}
+.board{height:8px;background:var(--ink);opacity:.85;margin:0 12% 22px;border-radius:1px}
+.desks{display:grid;grid-template-columns:repeat(6,1fr);gap:16px 12px}
+.desk{aspect-ratio:4/3;border:1.5px solid var(--ink);border-radius:2px;position:relative;opacity:.8}
+.desk::after{content:"";position:absolute;left:28%;right:28%;bottom:-8px;height:3px;background:var(--ink);border-radius:1px}
+.desk.missing{border:1.5px dashed var(--crimson);opacity:1;animation:flicker 4s 1.2s ease-in-out 2}
+.desk.missing::after{background:var(--crimson);opacity:.7}
+.desk.missing span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mincho);font-weight:800;color:var(--crimson);font-size:14px}
+@keyframes flicker{0%,100%{opacity:1}8%{opacity:.15}12%{opacity:1}16%{opacity:.3}20%{opacity:1}}
+.chart-foot{margin:22px 0 0;font-size:13px;color:var(--muted);line-height:1.6}
+.chart-foot b{color:var(--crimson);font-weight:700}
+
+/* ---------- map ---------- */
+.map-wrap{background:var(--sheet);border:1px solid var(--line);overflow-x:auto}
+#map{display:block;width:100%;min-width:560px;height:auto;max-height:640px}
+#map .grid line{stroke:var(--line);stroke-width:1}
+#map .grid text{fill:var(--muted);font-family:var(--mono);font-size:12px}
+#map .sea{fill:var(--muted);font-family:var(--mincho);font-size:18px;letter-spacing:.35em;opacity:.7}
+#map .river{fill:none;stroke:var(--eye);stroke-width:2;stroke-dasharray:2 5;opacity:.8}
+#map .river-l{fill:var(--eye);font-family:var(--mincho);font-size:13px}
+#map .leg{fill:none;stroke:var(--ink);stroke-linecap:round}
+#map .leg.rail{stroke-width:2.4;stroke-dasharray:10 6}
+#map .leg.bus{stroke-width:3}
+#map .dot{fill:var(--crimson);stroke:var(--sheet);stroke-width:4}
+#map .sub{fill:var(--sheet);stroke:var(--muted);stroke-width:2}
+#map .code{fill:var(--ink);font-family:var(--mincho);font-weight:800;font-size:22px}
+#map .sub-l{fill:var(--muted);font-family:var(--mincho);font-size:14px}
+#map a:hover .dot{stroke:var(--eye);stroke-width:5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:12px 2px 0;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend svg{width:36px;height:12px}
+.legend line{stroke:var(--ink);stroke-linecap:round}
+
+/* ---------- stops ---------- */
+.stops{list-style:none;padding:0;margin:0;display:grid;gap:22px}
+.stop{display:grid;grid-template-columns:76px minmax(0,1fr);background:var(--sheet);border:1px solid var(--line);scroll-margin-top:80px}
+.spine{border-right:1px solid var(--line);padding:20px 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.spine .no{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.08em}
+.spine .vname{writing-mode:vertical-rl;font-family:var(--mincho);font-weight:800;font-size:26px;letter-spacing:.24em;line-height:1}
+.spine .days{writing-mode:vertical-rl;font-size:12px;color:var(--muted);letter-spacing:.14em}
+.page{padding:24px clamp(18px,3.2vw,36px) 22px;display:grid;gap:14px;min-width:0}
+.page-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.page h3{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,2.4vw,1.65rem);line-height:1.3;text-wrap:balance}
+.where{font-size:14px;color:var(--muted)}
+.works{display:flex;flex-wrap:wrap;gap:6px}
+.work{font-size:12.5px;padding:1px 9px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+.work b{font-family:var(--mincho);font-weight:700;color:var(--ink)}
+.page .intro{margin:0;max-width:66ch}
+.cols{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px 32px}
+.cols > div{min-width:0}
+h4{margin:2px 0 8px;font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--muted)}
+.spots{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.spot{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:4px 16px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);padding:12px 2px;cursor:pointer}
+.spot:hover .hanko{border-color:var(--crimson)}
+.spot .txt{display:grid;gap:1px;min-width:0}
+.spot .n{font-weight:700;line-height:1.45}
+.spot .n .tag{margin:0 0 0 8px;color:var(--eye);font-size:10px;font-weight:400}
+.spot .a{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.5}
+.spot .s{font-size:14.5px;line-height:1.65;margin-top:3px}
+.hanko{width:44px;height:44px;border-radius:50%;border:1.5px dashed var(--line);display:grid;place-items:center;font-family:var(--mincho);font-weight:800;font-size:13px;color:var(--muted);transition:transform .25s cubic-bezier(.3,1.6,.6,1)}
+.spot[aria-pressed="true"] .hanko{border:2.5px solid var(--crimson);color:var(--crimson);font-size:20px;transform:rotate(-12deg);box-shadow:inset 0 0 0 2px var(--sheet),inset 0 0 0 3.5px var(--crimson)}
+.spot.static{cursor:default;grid-template-columns:minmax(0,1fr)}
+.side{display:grid;gap:16px;align-content:start}
+.side p{margin:0;font-size:14.5px}
+.side cite{font-family:var(--mincho);font-style:normal;font-weight:700;font-size:17px}
+.side small{display:block;color:var(--muted);font-size:13px;line-height:1.55;margin-top:2px}
+.next{margin:0;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.next .tag{color:var(--ink)}
+
+/* ---------- roll of works ---------- */
+.roll{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.rrow{display:grid;grid-template-columns:64px minmax(0,1.5fr) minmax(0,1.2fr) minmax(0,.9fr) auto;gap:4px 22px;align-items:center;padding:14px 2px;border-bottom:1px solid var(--line)}
+.rrow .yr{font-family:var(--mincho);font-weight:800;font-size:24px;font-variant-numeric:tabular-nums}
+.rrow .t b{display:block;font-family:var(--mincho);font-weight:800;font-size:19px;line-height:1.3}
+.rrow .t span{font-size:13.5px;color:var(--muted)}
+.rrow .by{font-size:14px}
+.rrow .by small{display:block;font-size:12.5px;color:var(--muted)}
+.rrow .at{font-family:var(--mincho);font-size:14px;color:var(--muted)}
+.seen{font:inherit;font-size:13px;padding:5px 12px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seen:hover{border-color:var(--ink);color:var(--ink)}
+.seen[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+
+/* ---------- calendar ---------- */
+.cal{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.ev{background:var(--sheet);border:1px solid var(--line);padding:14px 16px;display:grid;gap:2px}
+.ev.now{border:2px solid var(--crimson);padding:13px 15px}
+.ev .d{font-family:var(--mincho);font-weight:800;font-size:20px;line-height:1.2;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ev .d .tag{color:var(--crimson);font-family:var(--mono);font-weight:400;margin:0}
+.ev .n{font-weight:700;font-size:15px}
+.ev small{font-size:13px;color:var(--muted)}
+
+/* ---------- notes ---------- */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px 36px}
+.notes article{border-top:2px solid var(--ink);padding-top:12px;min-width:0}
+.notes h3{margin:0 0 6px;font-family:var(--serif);font-weight:900;font-size:17px}
+.notes p{margin:0 0 8px;font-size:15px}
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.ghost{font:inherit;font-size:13px;padding:6px 14px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.ghost.armed{color:var(--crimson);border-color:var(--crimson)}
+.actions small{font-size:12px;color:var(--muted)}
+
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px;line-height:1.7}
+footer p{margin:0 0 6px;max-width:84ch}
+
+@media (max-width:860px){
+  .cover{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .rrow{grid-template-columns:56px minmax(0,1fr) auto}
+  .rrow .by,.rrow .at{grid-column:2 / 3}
+  .rrow .seen{grid-column:3;grid-row:1}
+}
+@media (max-width:600px){
+  .brand{display:none}
+  .wrap{gap:68px}
+  .stop{grid-template-columns:1fr}
+  .spine{flex-direction:row;justify-content:flex-start;gap:14px;padding:14px 18px;border-right:0;border-bottom:1px solid var(--line)}
+  .spine .vname,.spine .days{writing-mode:horizontal-tb;letter-spacing:.1em}
+  .spine .vname{font-size:22px}
+  .desks{gap:12px 9px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Another 路书</a>
+    <nav class="nav-links" aria-label="章节">
+      <a href="#route">路线</a>
+      <a href="#stops">巡礼</a>
+      <a href="#roll">名册</a>
+      <a href="#cal-sec">节庆</a>
+      <a href="#notes">出发前</a>
+    </nav>
+    <a class="pill" href="#stops" id="pill">出席 0/0</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="cover" id="top" aria-labelledby="t">
+    <div>
+      <p class="eyebrow">夜見山北中学 · 3 年 3 组 · 1998</p>
+      <h1 class="title" id="t">Another</h1>
+      <p class="subtitle">路书 · 北陆到京都的<span>怪谈</span>与<span>推理</span>巡礼</p>
+      <p class="lede">夜见山是虚构的，但 2012 年动画版的背景大多取自富山县的砺波平原。从那里顺着庄川往上游走，就到了《寒蝉鸣泣之时》的雏见泽原型白川乡；再翻山到《冰菓》的飞驒高山，最后去绫辻行人出身的京都，在和歌山供养人偶的神社收尾。</p>
+      <dl class="facts">
+        <div><dt>站</dt><dd id="fStops">6</dd></div>
+        <div><dt>天</dt><dd id="fDays">10</dd></div>
+        <div><dt>部作品</dt><dd id="fWorks">5</dd></div>
+        <span class="nospoil">全篇不剧透</span>
+      </dl>
+    </div>
+    <figure class="chart" aria-label="3 年 3 组的座位表，少了一张桌子" style="margin:0">
+      <div class="chart-head"><span lang="ja">3年3組 座席表</span><span>1998.04</span></div>
+      <div class="board" aria-hidden="true"></div>
+      <div class="desks" id="desks" aria-hidden="true"></div>
+      <figcaption class="chart-foot">开学那天，如果 3 年 3 班的桌椅<b>少了一套</b>，那一年就是“有的年份”。</figcaption>
+    </figure>
+  </section>
+
+  <section id="route" aria-labelledby="h-route">
+    <div class="sec-head">
+      <h2 id="h-route">路线<span class="ja">道程</span></h2>
+      <p>按经纬度比例画。青色虚线是庄川，从白川乡往北流进富山湾，Another 第 1 集的水坝和雏见泽的“水坝战争”都在这条河上。</p>
+    </div>
+    <div class="map-wrap"><svg id="map" role="img" aria-label="巡礼路线图"></svg></div>
+    <div class="legend" aria-hidden="true">
+      <span><svg viewBox="0 0 36 12"><line x1="2" y1="6" x2="34" y2="6" stroke-width="2.4" stroke-dasharray="10 6"/></svg>新干线 / JR</span>
+      <span><svg viewBox="0 0 36 12"><line x1="2" y1="6" x2="34" y2="6" stroke-width="3"/></svg>巴士</span>
+      <span><svg viewBox="0 0 36 12"><circle cx="18" cy="6" r="4" style="fill:var(--sheet);stroke:var(--muted);stroke-width:2"/></svg>顺路的取景地</span>
+    </div>
+  </section>
+
+  <section id="stops" aria-labelledby="h-stops">
+    <div class="sec-head">
+      <h2 id="h-stops">巡礼<span class="ja">聖地巡礼</span></h2>
+      <p>到了一处，点右边的圆圈盖一个“済”。记录只存在这台设备的浏览器里。</p>
+    </div>
+    <ol class="stops" id="stopList"></ol>
+  </section>
+
+  <section id="roll" aria-labelledby="h-roll">
+    <div class="sec-head">
+      <h2 id="h-roll">名册<span class="ja">出席簿</span></h2>
+      <p>按年份排列。出发前补完，标一下看过。</p>
+    </div>
+    <ol class="roll" id="rollList"></ol>
+  </section>
+
+  <section id="cal-sec" aria-labelledby="h-cal">
+    <div class="sec-head">
+      <h2 id="h-cal">节庆<span class="ja">祭</span></h2>
+      <p>想赶上哪个就倒推出发日期。红框是这个月的。日期每年可能微调，出发前查官方公告。</p>
+    </div>
+    <ul class="cal" id="cal"></ul>
+  </section>
+
+  <section id="notes" aria-labelledby="h-notes">
+    <div class="sec-head">
+      <h2 id="h-notes">出发前<span class="ja">心得</span></h2>
+    </div>
+    <div class="notes">
+      <article>
+        <h3>证件</h3>
+        <p>中国护照去日本需要签证。这条路线全在日本国内，不需要额外手续。</p>
+      </article>
+      <article>
+        <h3>交通</h3>
+        <p>东京到新高冈坐北陆新干线约 2.5–3 小时。砺波平原的水坝、闲乘寺公园和御母衣水坝都在郊外，最好租车。</p>
+        <p>白川乡进出靠巴士：南砺这边坐「世界遺産バス」，去高山坐浓飞巴士，旺季提前订座。</p>
+      </article>
+      <article>
+        <h3>别打扰别人</h3>
+        <p>好几处“圣地”是在读的学校和民宅：巌浄閣在高中校园里，斐太高校还在上课，白川乡的合掌屋大多有人住。不要擅自进门，不要拍学生和住户。淡嶋神社是供养人偶的地方，安静参拜。</p>
+      </article>
+      <article>
+        <h3>天气</h3>
+        <p>北陆有句老话：“弁当忘れても傘忘れるな”，忘了带便当也别忘了带伞。Another 那种阴沉的天，在这里很常见。12 到 2 月白川乡大雪，冬季点灯要提前预约。</p>
+      </article>
+    </div>
+    <div class="actions">
+      <button type="button" class="ghost" id="reset">清空出席和名册记录</button>
+      <small id="resetHint"></small>
+    </div>
+  </section>
+
+  <footer>
+    <p>资料核对于 2026 年 10 月。开放时间、参观规则和节庆日期会变，以官方信息为准。记录只保存在当前浏览器里。</p>
+    <p>参考：<a href="https://furaba-animeseichi.blog.jp/archives/24803411.html" target="_blank" rel="noopener">Another 聖地巡礼</a> · <a href="https://reichenbach54.com/higurashi-seichi/" target="_blank" rel="noopener">ひぐらし 白川郷</a> · <a href="https://ja.wikipedia.org/wiki/%E5%BE%A1%E6%AF%8D%E8%A1%A3%E3%83%80%E3%83%A0" target="_blank" rel="noopener">御母衣ダム</a> · <a href="https://www.hidatakayama.or.jp/modelCourse/detail_35.html" target="_blank" rel="noopener">飛騨高山「氷菓」モデルコース</a> · <a href="https://www.vill.shirakawa.lg.jp/2223.htm" target="_blank" rel="noopener">白川村 どぶろく祭</a> · <a href="https://ja.wikipedia.org/wiki/%E5%85%AD%E9%81%93%E7%8F%8D%E7%9A%87%E5%AF%BA" target="_blank" rel="noopener">六道珍皇寺</a></p>
+    <p>姊妹篇：<a href="https://claude.ai/artifact/RNxN5jJc8eXz3nZv1ZzhWZ" target="_blank" rel="noopener">God Bless America 路书</a> · <a href="https://claude.ai/artifact/W9xUMjWbyWyd4KooQPxcaZ" target="_blank" rel="noopener">007 路书</a></p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var WORKS = [
+    { id: "jk", y: 1987, t: "十角館の殺人", zh: "十角馆杀人事件", by: "绫辻行人", form: "小说 · 2024 年真人剧", at: ["kyo"] },
+    { id: "shiki", y: 1998, t: "屍鬼", zh: "尸鬼", by: "小野不由美", form: "小说 · 2010 年动画", at: ["kyo"] },
+    { id: "hyouka", y: 2001, t: "氷菓", zh: "冰菓", by: "米泽穗信", form: "小说 · 2012 年京都动画", at: ["tak"] },
+    { id: "higu", y: 2002, t: "ひぐらしのなく頃に", zh: "寒蝉鸣泣之时", by: "龙骑士07", form: "同人游戏 · 2006 年动画", at: ["shi"] },
+    { id: "another", y: 2009, t: "Another", zh: "Another", by: "绫辻行人", form: "小说 · 2012 年 P.A.WORKS 动画 · 2012 年真人电影", at: ["tok", "nan", "kad"] }
+  ];
+  var WORK = {};
+  WORKS.forEach(function (w) { WORK[w.id] = w; });
+
+  var STOPS = [
+    {
+      id: "tok", v: "東京", name: "东京 · 浅草桥", days: 1, lat: 35.697, lon: 139.786, lab: [0, -20, "middle"], leg: "rail", works: ["another"],
+      title: "序章：先去看人偶",
+      intro: "Another 里，见崎鸣家楼下是一间人偶馆，名字很长：「夜見のたそがれの、うつろなる蒼き瞳の。」。2012 年真人电影版里的人偶出自人偶作家恋月姬之手。去北陆之前，先在东京看一场人偶展。",
+      spots: [
+        { n: "Parabolica-bis", a: "台东区柳桥 · 浅草桥站附近", s: "杂志《夜想》的画廊，办过恋月姬等人偶作家的展览。展期不定，出发前查官网。" }
+      ],
+      side: [["人偶馆的名字", "夜見のたそがれの、うつろなる蒼き瞳の。", "大意是“夜见的黄昏里，空洞的苍蓝之瞳”"]],
+      trivia: "绫辻行人的 Another 小说 2009 年出版，2020 年出了续作《Another 2001》，舞台还是夜见山。",
+      next: "北陆新干线到新高冈约 2.5–3 小时，换 JR 城端线到福野约 30 分钟"
+    },
+    {
+      id: "nan", v: "南砺・砺波", name: "富山 · 南砺与砺波", days: 2, lat: 36.55, lon: 136.93, lab: [-16, -4, "end"], leg: "bus", works: ["another"],
+      title: "夜见山的原型",
+      intro: "动画制作公司 P.A.WORKS 的总部就在南砺市，所以夜见山的街景、学校和山川大多取自身边的砺波平原。田野里一栋栋被防风林围起来的独立农舍叫“散居村”，是这里最有辨识度的风景。",
+      spots: [
+        { n: "福野駅", a: "JR 城端线 · 南砺市", s: "保留着木造老站舍，动画街景的参考之一。" },
+        { n: "巌浄閣", a: "南砺福野高校校园内", s: "明治时期的木造洋风校舍，国家重要文化财。3 年 3 班暑假合宿去的「咲谷記念館」以它为原型。在高中校园里，参观方式出发前确认。" },
+        { n: "庄川合口ダム", a: "砺波市庄川町", s: "第 1 集里出现的水坝。" },
+        { n: "閑乗寺公園", a: "南砺市井波一带", s: "第 12 集的取景参考。展望台可以俯瞰整片散居村。" },
+        { n: "ミラージュランド", a: "鱼津市 · 3 月中旬到 11 月底营业", s: "第 0 集（OVA）里摩天轮的原型。鱼津在富山市东边，要单独抽半天。" }
+      ],
+      side: [["片头曲", "凶夢伝染", "ALI PROJECT"], ["片尾曲", "anamnesis", "加藤有加利"]],
+      trivia: "“夜见”的日语读音是 yomi，和“黄泉”一样。",
+      next: "从城端站坐「世界遺産バス」，经五箇山到白川乡"
+    },
+    {
+      id: "shi", v: "白川郷", name: "五箇山 · 白川乡", days: 2, lat: 36.26, lon: 136.91, lab: [-16, 14, "end"], leg: "bus", works: ["higu"],
+      title: "雏见泽村",
+      intro: "《寒蝉鸣泣之时》的雏见泽村以岐阜县白川村为原型。从南砺沿庄川往上游走，先经过五箇山，再到白川乡荻町的合掌村。两地在 1995 年一起列入世界遗产。推荐在合掌屋民宿住一晚，等游客散了再看村子。",
+      spots: [
+        { n: "五箇山 相倉・菅沼", a: "南砺市", s: "不是取景地，但就在路上，比白川乡安静得多。", kind: "info" },
+        { n: "白川八幡神社", a: "荻町", s: "古手神社的原型。" },
+        { n: "飯島八幡神社", a: "饭岛地区", s: "祭具殿的原型。" },
+        { n: "荻町城跡展望台", a: "荻町北侧", s: "俯瞰整个合掌村，是最有雏见泽感觉的角度。" },
+        { n: "御母衣ダム 与 荘川桜", a: "白川乡往南约 30 公里 · 自驾", s: "雏见泽的“水坝战争”和“鬼渊村死守同盟”，原型是 1950 年代当地人反对修建这座水坝成立的“死守会”。湖边两棵老樱树是从被淹没的寺院移栽过来的。" }
+      ],
+      side: [["片头曲", "ひぐらしのなく頃に", "島みやえい子"]],
+      trivia: "白川乡的どぶろく祭（浊酒祭）每年 10 月 14–19 日在几座神社轮流举行，白川八幡神社是 14–15 日。",
+      next: "坐浓飞巴士约 50 分钟到高山"
+    },
+    {
+      id: "tak", v: "飛騨高山", name: "飞驒高山", days: 2, lat: 36.14, lon: 137.25, lab: [16, 12, "start"], leg: "rail", works: ["hyouka"],
+      title: "神山市，不吓人的那种推理",
+      intro: "《冰菓》的神山市就是原作者米泽穗信的家乡飞驒高山。这里没有诅咒和死亡，只有古典部和一句“我很好奇”。它和 Another 同在 2012 年播出，算是“校园推理”的另一面。",
+      spots: [
+        { n: "斐太高校", a: "高山市 · 在读学校", s: "神山高中的原型，也是米泽穗信的母校。只在校外看，别进校园。" },
+        { n: "煥章館", a: "高山市图书馆", s: "动画里图书馆的参考。" },
+        { n: "中橋", a: "宫川上的红桥", s: "动画里没有出现。原作短篇集『いまさら翼といわれても』里，奉太郎和里志就约在这样一座桥边。" },
+        { n: "飛騨一宮水無神社", a: "JR 飞驒一之宫站", s: "最终话「遠まわりする雛」里生雏祭的原型。每年 4 月 3 日，几位盛装的“活人偶”在这里巡行。" }
+      ],
+      side: [["片头曲", "優しさの理由", "ChouCho"]],
+      trivia: "高山祭一年两次：春季 4 月 14–15 日，秋季 10 月 9–10 日。",
+      next: "JR 特急飞驒号到名古屋，换新干线到京都，约 3.5–4 小时"
+    },
+    {
+      id: "kyo", v: "京都", name: "京都", days: 2, lat: 35.01, lon: 135.77, lab: [16, 8, "start"], leg: "rail", works: ["jk", "shiki", "another"],
+      title: "新本格的起点，和通往黄泉的井",
+      intro: "绫辻行人是京都人。他在京都大学推理小说研究会认识了后来的妻子、《尸鬼》的作者小野不由美，同一个社团还走出了我孙子武丸、法月纶太郎。1987 年，他的《十角馆杀人事件》开启了“新本格”。京都本身也是一座离“那边”很近的城市。",
+      spots: [
+        { n: "京都大学 吉田校区", a: "左京区", s: "京大推理研所在的校园。校园可以散步，社团活动室不对外开放。" },
+        { n: "六道珍皇寺", a: "东山区", s: "传说平安时代的小野篁每晚从寺里的「冥土通いの井戸」下到冥府。平时只能隔着格子看，特别参观时可以走近。8 月 7–10 日有六道参拜。" },
+        { n: "みなとや幽霊子育飴本舗", a: "六道珍皇寺旁", s: "传说一位死去的母亲每晚化作幽灵来买糖喂孩子。这家糖铺开了几百年。" },
+        { n: "一条戻橋", a: "晴明神社附近", s: "传说有人在这座桥上死而复生，阴阳师安倍晴明把式神藏在桥下。" },
+        { n: "一条妖怪ストリート", a: "大将军商店街", s: "传说平安时代的百鬼夜行走过这条路。现在每家店门口都摆着手作的妖怪。" }
+      ],
+      side: [["带一本书", "十角館の殺人", "绫辻行人，1987"], ["再带一本", "屍鬼", "小野不由美，1998"]],
+      trivia: "Another 讲的是死者混进活人中间。在京都，这类故事从平安时代就有了。",
+      next: "JR 到和歌山，换南海加太线到加太，约 2 小时"
+    },
+    {
+      id: "kad", v: "加太", name: "和歌山 · 加太", days: 1, lat: 34.27, lon: 135.07, lab: [16, 8, "start"], works: ["another"],
+      title: "终点：人偶归去的地方",
+      intro: "从 Another 的人偶馆、《冰菓》的活人偶一路走来，最后到这里。淡嶋神社接收全国各地送来供养的人偶，殿前殿后摆得满满当当。",
+      spots: [
+        { n: "淡嶋神社", a: "和歌山市加太", s: "人偶供养的神社。每年 3 月 3 日的“雏流し”，把供养的雏人偶放上小船送入大海。这里是供养的地方，安静参拜，拍照克制。" }
+      ],
+      side: [],
+      trivia: "加太到关西机场约 1 小时多，可以从这里直接回国。",
+      next: "巡礼结束。"
+    }
+  ];
+
+  /* 顺路的取景地：地图上画成空心点 */
+  var SUBS = [
+    { n: "鱼津", lat: 36.82, lon: 137.41, lab: [12, 5, "start"] },
+    { n: "御母衣", lat: 36.15, lon: 136.91, lab: [-12, 18, "end"] }
+  ];
+  /* 庄川：从御母衣经白川乡、五箇山北流，在砺波平原入富山湾（示意） */
+  var RIVER = [[136.91, 36.07], [136.91, 36.15], [136.90, 36.26], [136.89, 36.40], [136.95, 36.55], [137.00, 36.68], [137.05, 36.78]];
+
+  var FIESTAS = [
+    { m: 3, d: "3 月 3 日", n: "雛流し", at: "加太 · 淡嶋神社", note: "把供养的雏人偶放上小船送入大海" },
+    { m: 4, d: "4 月 3 日", n: "飛騨生きびな祭", at: "高山 · 水無神社", note: "《冰菓》最终话的原型" },
+    { m: 4, d: "4 月 14–15 日", n: "春の高山祭", at: "高山", note: "" },
+    { m: 8, d: "8 月 7–10 日", n: "六道まいり", at: "京都 · 六道珍皇寺", note: "迎接祖先之灵回家的日子" },
+    { m: 10, d: "10 月 9–10 日", n: "秋の高山祭", at: "高山", note: "" },
+    { m: 10, d: "10 月 14–19 日", n: "どぶろく祭", at: "白川乡", note: "几座神社轮流办，白川八幡神社是 14–15 日" },
+    { m: 1, d: "1–2 月", n: "白川郷 冬季点灯", at: "白川乡", note: "需要提前预约" }
+  ];
+
+  var KEY = "another-roadbook-v1";
+  var state = { done: {}, seen: {} };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") {
+      if (saved.done && typeof saved.done === "object") state.done = saved.done;
+      if (saved.seen && typeof saved.seen === "object") state.seen = saved.seen;
+    }
+  } catch (e) { /* 没有存储时照常显示 */ }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch];
+    });
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  /* ---------- 座位表：30 张桌子，第 31 个位置空着 ---------- */
+  (function () {
+    var h = "";
+    for (var i = 0; i < 30; i++) h += '<span class="desk"></span>';
+    h += '<span class="desk missing"><span>?</span></span>';
+    $("desks").innerHTML = h;
+  })();
+
+  /* ---------- 地图：等距圆柱投影，按北纬 35.5° 修正经度比例 ---------- */
+  var LON0 = 134.6, LON1 = 140.3, LAT0 = 33.8, LAT1 = 37.3, K = Math.cos(35.5 * Math.PI / 180), S = 170;
+  var MW = Math.round((LON1 - LON0) * K * S), MH = Math.round((LAT1 - LAT0) * S);
+  function px(lon, lat) { return [(lon - LON0) * K * S, (LAT1 - lat) * S]; }
+  function f1(n) { return n.toFixed(1); }
+  function renderMap() {
+    var h = [];
+    h.push('<g class="grid">');
+    [34, 35, 36, 37].forEach(function (lat) {
+      var y = px(LON0, lat)[1];
+      h.push('<line x1="0" x2="' + MW + '" y1="' + f1(y) + '" y2="' + f1(y) + '"/><text x="8" y="' + f1(y - 6) + '">' + lat + "°N</text>");
+    });
+    [135, 136, 137, 138, 139, 140].forEach(function (lon) {
+      var x = px(lon, LAT0)[0];
+      h.push('<line y1="0" y2="' + MH + '" x1="' + f1(x) + '" x2="' + f1(x) + '"/><text x="' + f1(x + 6) + '" y="' + (MH - 8) + '">' + lon + "°E</text>");
+    });
+    h.push("</g>");
+    [["日本海", 135.9, 37.0], ["富山湾", 137.55, 36.95], ["太平洋", 138.9, 34.15]].forEach(function (s) {
+      var p = px(s[1], s[2]);
+      h.push('<text class="sea" x="' + f1(p[0]) + '" y="' + f1(p[1]) + '" text-anchor="middle">' + s[0] + "</text>");
+    });
+    h.push('<path class="river" d="' + RIVER.map(function (c, i) { var p = px(c[0], c[1]); return (i ? "L" : "M") + f1(p[0]) + "," + f1(p[1]); }).join(" ") + '"/>');
+    var rl = px(136.80, 36.42);
+    h.push('<text class="river-l" x="' + f1(rl[0]) + '" y="' + f1(rl[1]) + '" text-anchor="end">庄川</text>');
+    for (var i = 0; i < STOPS.length - 1; i++) {
+      var a = px(STOPS[i].lon, STOPS[i].lat), b = px(STOPS[i + 1].lon, STOPS[i + 1].lat);
+      h.push('<path class="leg ' + STOPS[i].leg + '" d="M' + f1(a[0]) + "," + f1(a[1]) + " L" + f1(b[0]) + "," + f1(b[1]) + '"/>');
+    }
+    SUBS.forEach(function (s) {
+      var p = px(s.lon, s.lat);
+      h.push('<circle class="sub" cx="' + f1(p[0]) + '" cy="' + f1(p[1]) + '" r="5"/><text class="sub-l" x="' + f1(p[0] + s.lab[0]) + '" y="' + f1(p[1] + s.lab[1]) + '" text-anchor="' + s.lab[2] + '">' + s.n + "</text>");
+    });
+    STOPS.forEach(function (s, i) {
+      var p = px(s.lon, s.lat);
+      h.push('<a href="#stop-' + s.id + '" aria-label="第 ' + (i + 1) + " 站 " + esc(s.name) + '"><circle class="dot" cx="' + f1(p[0]) + '" cy="' + f1(p[1]) + '" r="8"/>' +
+        '<text class="code" x="' + f1(p[0] + s.lab[0]) + '" y="' + f1(p[1] + s.lab[1]) + '" text-anchor="' + s.lab[2] + '">' + s.v.split("・")[0] + "</text></a>");
+    });
+    var svg = $("map");
+    svg.setAttribute("viewBox", "0 0 " + MW + " " + MH);
+    svg.innerHTML = h.join("");
+    svg.setAttribute("aria-label", "巡礼路线：" + STOPS.map(function (s) { return s.name; }).join(" → "));
+  }
+
+  /* ---------- 巡礼 ---------- */
+  function renderStops() {
+    var day = 1;
+    $("stopList").innerHTML = STOPS.map(function (s, idx) {
+      var from = day, to = day + s.days - 1;
+      day = to + 1;
+      var spots = s.spots.map(function (p, i) {
+        var txt = '<span class="txt"><span class="n" lang="ja">' + esc(p.n) + (p.kind === "info" ? '<span class="tag">顺路</span>' : "") + "</span>" +
+          '<span class="a">' + esc(p.a) + '</span><span class="s">' + esc(p.s) + "</span></span>";
+        if (p.kind) return '<li><div class="spot static">' + txt + "</div></li>";
+        return '<li><button type="button" class="spot" data-spot="' + s.id + "-" + i + '" aria-pressed="false">' + txt + '<span class="hanko" aria-hidden="true">出席</span></button></li>';
+      }).join("");
+      var side = s.side.map(function (x) {
+        return "<div><h4>" + esc(x[0]) + '</h4><p><cite lang="ja">' + esc(x[1]) + "</cite>" + (x[2] ? "<small>" + esc(x[2]) + "</small>" : "") + "</p></div>";
+      }).join("") + "<div><h4>冷知识</h4><p>" + esc(s.trivia) + "</p></div>";
+      return '<li class="stop" id="stop-' + s.id + '">' +
+        '<div class="spine"><span class="no">' + pad(idx + 1) + '</span><span class="vname" lang="ja">' + esc(s.v) + '</span><span class="days">' +
+          (from === to ? "第 " + from + " 天" : "第 " + from + "–" + to + " 天") + "</span></div>" +
+        '<div class="page">' +
+          '<div class="page-top"><h3>' + esc(s.title) + '</h3><span class="where">' + esc(s.name) + "</span></div>" +
+          '<div class="works">' + s.works.map(function (w) { return '<span class="work"><b lang="ja">' + esc(WORK[w].t) + "</b> · " + WORK[w].y + "</span>"; }).join("") + "</div>" +
+          '<p class="intro">' + esc(s.intro) + "</p>" +
+          '<div class="cols"><div><h4>巡礼点</h4><ul class="spots">' + spots + '</ul></div><div class="side">' + side + "</div></div>" +
+          '<p class="next"><span class="tag">' + (idx === STOPS.length - 1 ? "终" : "NEXT") + "</span>" + esc(s.next) + "</p>" +
+        "</div></li>";
+    }).join("");
+    $("fStops").textContent = STOPS.length;
+    $("fDays").textContent = day - 1;
+    $("fWorks").textContent = WORKS.length;
+  }
+
+  function renderRoll() {
+    var names = {};
+    STOPS.forEach(function (s) { names[s.id] = s.v; });
+    $("rollList").innerHTML = WORKS.map(function (w) {
+      return '<li class="rrow"><span class="yr">' + w.y + '</span><span class="t"><b lang="ja">' + esc(w.t) + "</b>" + (w.zh !== w.t ? "<span>《" + esc(w.zh) + "》</span>" : "") + "</span>" +
+        '<span class="by">' + esc(w.by) + "<small>" + esc(w.form) + '</small></span><span class="at" lang="ja">' + w.at.map(function (a) { return esc(names[a]); }).join(" · ") + "</span>" +
+        '<button type="button" class="seen" data-seen="' + w.id + '" aria-pressed="false">看过</button></li>';
+    }).join("");
+  }
+
+  function renderCal() {
+    var now = new Date().getMonth() + 1;
+    var list = FIESTAS.slice().sort(function (a, b) { return a.m - b.m; });
+    $("cal").innerHTML = list.map(function (f) {
+      return '<li class="ev' + (f.m === now ? " now" : "") + '"><span class="d">' + esc(f.d) + (f.m === now ? '<span class="tag">本月</span>' : "") + "</span>" +
+        '<span class="n" lang="ja">' + esc(f.n) + "</span><small>" + esc(f.at) + (f.note ? " · " + esc(f.note) : "") + "</small></li>";
+    }).join("");
+  }
+
+  function sync() {
+    document.querySelectorAll("[data-spot]").forEach(function (el) {
+      var on = !!state.done[el.getAttribute("data-spot")];
+      el.setAttribute("aria-pressed", on ? "true" : "false");
+      el.querySelector(".hanko").textContent = on ? "済" : "出席";
+    });
+    document.querySelectorAll("[data-seen]").forEach(function (el) {
+      el.setAttribute("aria-pressed", state.seen[el.getAttribute("data-seen")] ? "true" : "false");
+    });
+    var all = document.querySelectorAll("[data-spot]").length;
+    var got = document.querySelectorAll('[data-spot][aria-pressed="true"]').length;
+    $("pill").textContent = "出席 " + got + "/" + all;
+  }
+
+  document.addEventListener("click", function (e) {
+    var spot = e.target.closest("[data-spot]");
+    if (spot) {
+      var k = spot.getAttribute("data-spot");
+      if (state.done[k]) delete state.done[k]; else state.done[k] = true;
+      save(); sync(); return;
+    }
+    var seen = e.target.closest("[data-seen]");
+    if (seen) {
+      var w = seen.getAttribute("data-seen");
+      if (state.seen[w]) delete state.seen[w]; else state.seen[w] = true;
+      save(); sync();
+    }
+  });
+
+  var resetBtn = $("reset"), resetTimer = null;
+  function disarm() {
+    resetBtn.classList.remove("armed");
+    resetBtn.textContent = "清空出席和名册记录";
+    if ($("resetHint").textContent === "清空后无法恢复") $("resetHint").textContent = "";
+  }
+  resetBtn.addEventListener("click", function () {
+    if (!resetBtn.classList.contains("armed")) {
+      resetBtn.classList.add("armed");
+      resetBtn.textContent = "再点一次，确认清空";
+      $("resetHint").textContent = "清空后无法恢复";
+      resetTimer = setTimeout(disarm, 4000);
+      return;
+    }
+    clearTimeout(resetTimer);
+    state.done = {};
+    state.seen = {};
+    save(); sync(); disarm();
+    $("resetHint").textContent = "已清空";
+  });
+
+  renderMap();
+  renderStops();
+  renderRoll();
+  renderCal();
+  sync();
+})();
+</script>
+</body>
+</html>
