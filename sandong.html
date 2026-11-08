@@ -1,0 +1,1308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>三东中场秀</title>
+<meta name="description" content="照着 Bad Bunny 在 Super Bowl LX 的路子，给 Super Bowl LXI 做的中场秀构想：胶东（山东）、关东（东北）、海东（韩国）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700;900&family=ZCOOL+QingKe+HuangYou&display=swap">
+<style>
+/* Layout: a show-caller's book. Poster cover, a to-scale map of the three "east"s around the Yellow Sea,
+   a top-down field plan, a run-of-show you can play on a console (with synthesized drums),
+   a side-by-side with Bad Bunny's LX show, a dream cast, and the closing roll call. */
+:root{
+  --bg:#F6F2EA;        /* 雪后的米白 */
+  --card:#FFFDF8;
+  --sunk:#EEE8DC;
+  --ink:#1C1814;
+  --muted:#655B50;
+  --line:#DDD3C3;
+  --line2:#B9AE9C;
+  --jd:#1C59B0;        /* 胶东：海蓝 */
+  --gd:#C62A2A;        /* 关东：大花红 */
+  --hd:#8F6200;        /* 海东：铜锣黄（文字用） */
+  --hd-fill:#EDB12C;   /* 海东：铜锣黄（色块用） */
+  --pink:#D63F76;      /* 大花粉 */
+  --pink-t:#B02A5E;
+  --sea:#DCE6EE;
+  --land:#F4EEE2;
+  --coast:#9DAAB7;
+  --grass1:#3E8B47;
+  --grass2:#38813F;
+  --chalk:#F3F7F0;
+  --display:"ZCOOL QingKe HuangYou","Noto Sans SC",system-ui,sans-serif;
+  --ko-display:"Black Han Sans","Noto Sans KR",sans-serif;
+  --body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0D0B; --card:#181512; --sunk:#221E1A; --ink:#F2ECE2; --muted:#A99E90; --line:#342E28; --line2:#51483E;
+    --jd:#74A6F2; --gd:#FF6F61; --hd:#F2C14E; --hd-fill:#E5A92A; --pink:#FF7EA9; --pink-t:#FF9CBE;
+    --sea:#0F1C27; --land:#29231D; --coast:#465868;
+    --grass1:#24572C; --grass2:#204F28; --chalk:#D8E3D5;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0D0B; --card:#181512; --sunk:#221E1A; --ink:#F2ECE2; --muted:#A99E90; --line:#342E28; --line2:#51483E;
+  --jd:#74A6F2; --gd:#FF6F61; --hd:#F2C14E; --hd-fill:#E5A92A; --pink:#FF7EA9; --pink-t:#FF9CBE;
+  --sea:#0F1C27; --land:#29231D; --coast:#465868;
+  --grass1:#24572C; --grass2:#204F28; --chalk:#D8E3D5;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--jd);outline-offset:2px}
+[lang="ko"]{font-family:var(--ko);word-break:keep-all}
+.mono{font-family:var(--mono)}
+.jd{color:var(--jd)} .gd{color:var(--gd)} .hd{color:var(--hd)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1140px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--display);font-size:21px;white-space:nowrap;text-decoration:none;line-height:1}
+.brand span{color:var(--gd)}
+.nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{padding:5px 10px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--card)}
+.go{display:inline-flex;align-items:center;gap:6px;font:500 13px var(--mono);padding:5px 12px;border:0;border-radius:999px;background:var(--gd);color:#fff;white-space:nowrap;cursor:pointer}
+.go svg{width:11px;height:11px}
+
+/* ---------- page ---------- */
+.wrap{max-width:1140px;margin:0 auto;padding-inline:16px;padding-block:32px 80px;display:grid;gap:92px}
+section{min-width:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 32px;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.15;letter-spacing:.02em}
+h2 small{font-family:var(--mono);font-size:.38em;color:var(--muted);letter-spacing:.08em;margin-left:12px;vertical-align:.4em}
+.sec-head p{margin:0;color:var(--muted);max-width:58ch}
+h3{margin:0}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:36px 60px;align-items:center}
+.eyebrow{margin:0;font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--muted)}
+.eyebrow b{font-weight:500;color:var(--gd)}
+.title{margin:.06em 0 .1em;font-family:var(--display);font-weight:400;font-size:clamp(6rem,19vw,11.5rem);line-height:.9;letter-spacing:.04em}
+.trio{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-wrap:wrap;gap:10px}
+.trio li{display:flex;align-items:baseline;gap:8px;padding:5px 14px 5px 13px;border-radius:999px;background:var(--card);border:1.5px solid currentColor}
+.trio b{font-family:var(--display);font-weight:400;font-size:23px;line-height:1.2}
+.trio span{font-size:14px;color:var(--muted)}
+.lede{margin:0 0 12px;font-size:17.5px;max-width:58ch}
+.lede-2{margin:0;color:var(--muted);max-width:58ch}
+.facts{display:flex;flex-wrap:wrap;gap:16px 36px;margin:26px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.facts div{display:grid}
+.facts dt{font-size:12.5px;color:var(--muted);order:2}
+.facts dd{margin:0;font-family:var(--display);font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums;order:1}
+.poster{margin:0}
+.poster svg{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 1px 0 var(--line),0 18px 40px -18px rgba(60,20,10,.45)}
+.poster figcaption{margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
+
+/* ---------- map ---------- */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start}
+.map-card{margin:0;background:var(--sea);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.map-card svg{display:block;width:100%;height:auto}
+.map-card figcaption{background:var(--card);border-top:1px solid var(--line);padding:10px 14px;font-size:13px;color:var(--muted)}
+.m-land{fill:var(--land);stroke:var(--coast);stroke-width:1.5;stroke-linejoin:round}
+.m-sea{fill:var(--coast);font-size:24px;letter-spacing:.5em}
+.m-reg{font-family:var(--display);font-size:46px}
+.m-reg-sub{font-size:17px;fill:var(--muted)}
+.m-city circle{fill:var(--ink)}
+.m-city text{font-size:18px;fill:var(--ink);paint-order:stroke;stroke:var(--land);stroke-width:5px;stroke-linejoin:round}
+.m-city.sea text{stroke:var(--sea)}
+.m-note{font-size:15.5px;fill:var(--muted)}
+.m-cape{fill:none;stroke:var(--ink);stroke-width:2}
+.m-route{transition:opacity .25s}
+.m-route path{fill:none;stroke:currentColor;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+.m-route polygon{fill:currentColor}
+.m-route text{fill:currentColor;font-size:21px;font-weight:700;paint-order:stroke;stroke:var(--land);stroke-width:6px;stroke-linejoin:round}
+.m-route.sea text{stroke:var(--sea)}
+.map.focus .m-route:not(.on){opacity:.12}
+.m-route.r1{color:var(--gd)} .m-route.r2{color:var(--jd)} .m-route.r3{color:var(--hd)}
+
+.bridges{display:grid;gap:12px}
+.bridge{display:block;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--c);border-radius:8px;padding:14px 16px 14px 16px;cursor:pointer;transition:box-shadow .2s,border-color .2s}
+.bridge:hover{border-color:var(--c)}
+.bridge[aria-pressed="true"]{border-color:var(--c);box-shadow:0 0 0 1.5px var(--c)}
+.bridge .k{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:4px}
+.bridge h3{font-family:var(--display);font-weight:400;font-size:25px;color:var(--c-t)}
+.bridge .dir{font:500 13px var(--mono);color:var(--muted)}
+.bridge p{margin:0;font-size:15px}
+.bridge .fine{margin-top:6px;font-size:13px;color:var(--muted)}
+.names{margin:18px 0 0;padding:14px 16px;border:1px dashed var(--line2);border-radius:8px;font-size:14px;color:var(--muted)}
+.names b{color:var(--ink);font-weight:700}
+
+.same-h{margin:44px 0 14px;font-family:var(--display);font-weight:400;font-size:26px}
+.same{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.same article{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
+.same h4{margin:0 0 6px;font-family:var(--display);font-weight:400;font-size:22px;line-height:1.3}
+.same p{margin:0;font-size:14.5px}
+.aud{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.aud button{font-size:13px;padding:3px 10px;border-radius:999px;border:1.5px solid var(--line2);background:transparent;cursor:pointer}
+.aud button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.aud-note{margin-top:8px;font-size:12px;color:var(--muted)}
+
+/* ---------- field ---------- */
+.field-wrap{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:24px;align-items:start}
+.pitch{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px}
+.pitch svg{display:block;width:100%;height:auto}
+.zones{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.zones button{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;width:100%;text-align:left;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);cursor:pointer;font-size:15px}
+.zones button:hover{border-color:var(--line2)}
+.zones .num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:600 12.5px var(--mono)}
+.zones button[aria-pressed="true"]{border-color:var(--pink)}
+.zones button[aria-pressed="true"] .num{background:var(--pink);color:#fff}
+.zone-detail{margin-top:14px;padding:14px 16px;background:var(--sunk);border-radius:8px;min-height:120px}
+.zone-detail h4{margin:0 0 4px;font-size:17px}
+.zone-detail p{margin:0;font-size:15px}
+.zone-detail .use{margin-top:6px;font-size:13px;color:var(--muted)}
+
+/* field svg */
+.f-g1{fill:var(--grass1)} .f-g2{fill:var(--grass2)}
+.f-line{stroke:var(--chalk);stroke-width:2;opacity:.55}
+.f-line.b{stroke-width:4;opacity:.8}
+.f-border{fill:none;stroke:var(--chalk);stroke-width:6}
+.f-ez.jd{fill:var(--jd);opacity:.8} .f-ez.hd{fill:var(--hd-fill);opacity:.85}
+.f-ez-t{font-family:var(--display);font-size:52px;text-anchor:middle;dominant-baseline:central;fill:#fff}
+.f-ez-t.dk{fill:#1C1814}
+.f-side{fill:var(--muted);font-size:24px;text-anchor:middle}
+.cab{fill:#BFE08F;stroke:#557F33;stroke-width:2}
+.cab-v{stroke:#557F33;stroke-width:2}
+.stall{fill:#F6E7C8;stroke:#6F5230;stroke-width:2}
+.awn{stroke:#6F5230;stroke-width:2}
+.st-t{font-size:17px;fill:#3A2E22;text-anchor:middle}
+.cloth{stroke:#6E0F1C;stroke-width:3}
+.sea-route{fill:none;stroke:#A9CCFF;stroke-width:7;stroke-dasharray:16 11;stroke-linecap:round}
+.sea-head{fill:#A9CCFF}
+.house{fill:#EAD3A8;stroke:#5A3A22;stroke-width:3}
+.roof{fill:#8E3B2A;stroke:#5A3A22;stroke-width:3}
+.win{fill:#FFF2D6;stroke:#5A3A22;stroke-width:2}
+.corn{fill:#F2B705}
+.chili{fill:#D3261E}
+.tbl{fill:#FFFFFF;fill-opacity:.9;stroke:#2B2620;stroke-width:3}
+.tbl-in{fill:none;stroke:#2B2620;stroke-width:2;stroke-dasharray:6 6}
+.seat{fill:#2B2620}
+.lamp-glow{fill:#FFC94A;opacity:.3}
+.lamp{fill:#FFC94A;stroke:#7A5300;stroke-width:2.5}
+.sign{fill:#FFF8EC;stroke:#3A2E22;stroke-width:2}
+.sign-t{font-size:21px;fill:#3A2E22;text-anchor:middle}
+.arch{fill:none;stroke:#E0356F;stroke-width:9;stroke-linecap:round}
+.tent{fill:#F08A24;stroke:#8A4510;stroke-width:2}
+.store{fill:#EAF2FF;stroke:#2A4A8A;stroke-width:2.5}
+.store-band{fill:#2A9D6E}
+.store-t{font-size:20px;fill:#1E2F55;text-anchor:middle}
+.drum{fill:none;stroke-width:6;stroke-dasharray:3 12;stroke-linecap:round}
+.drum.jd{stroke:#9CC2FF} .drum.gd{stroke:#FF9C92} .drum.hd{stroke:#FFD36B}
+.drum-h.jd{fill:#9CC2FF} .drum-h.gd{fill:#FF9C92} .drum-h.hd{fill:#FFD36B}
+.mk circle{fill:#1C1814;stroke:#fff;stroke-width:3}
+.mk text{fill:#fff;font:600 23px var(--mono);text-anchor:middle;dominant-baseline:central}
+.zone{transition:opacity .3s}
+.zone .outline{fill:transparent;stroke:none}
+.zone.on .outline{stroke:var(--pink);stroke-width:7;animation:pulse 1.6s ease-in-out infinite}
+.zone.on .mk circle{fill:var(--pink)}
+.has-on .zone:not(.on){opacity:.28}
+.pick .zone{cursor:pointer}
+.pick .zone:focus{outline:none}
+.pick .zone:focus-visible .outline{stroke:var(--jd);stroke-width:6}
+@keyframes pulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.35}}
+
+/* ---------- show / console ---------- */
+.show-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:28px;align-items:start}
+.console{position:sticky;top:66px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:12px}
+.con-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.play{width:50px;height:50px;flex:none;border-radius:50%;border:0;background:var(--gd);color:#fff;display:grid;place-items:center;cursor:pointer}
+.play svg{width:18px;height:18px}
+.clock{font:500 24px var(--mono);font-variant-numeric:tabular-nums;line-height:1}
+.clock .of{color:var(--muted);font-size:14px;margin-left:4px}
+.segname{flex:1;min-width:7em;font-family:var(--display);font-size:22px;line-height:1.2}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.speeds{display:inline-flex}
+.speeds button{font:500 12.5px var(--mono);padding:4px 9px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;margin-left:-1px}
+.speeds button:first-child{border-radius:4px 0 0 4px;margin-left:0}
+.speeds button:last-child{border-radius:0 4px 4px 0}
+.speeds button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);position:relative}
+.snd{font-size:13px;padding:4px 11px;border:1.5px solid var(--line2);border-radius:999px;background:transparent;cursor:pointer;white-space:nowrap}
+.snd[aria-pressed="true"]{border-color:var(--gd);color:var(--gd)}
+.strip{position:relative;height:30px;cursor:pointer;touch-action:none;border-radius:5px}
+.strip-in{display:flex;height:100%;border-radius:5px;overflow:hidden}
+.strip-in i{display:block;height:100%;border-right:2px solid var(--card)}
+.strip-in i:last-child{border-right:0}
+.strip .rest{position:absolute;top:0;bottom:0;right:0;left:0;background:var(--card);opacity:.6;pointer-events:none;border-radius:0 5px 5px 0}
+.strip .head{position:absolute;top:-4px;bottom:-4px;left:0;width:3px;margin-left:-1.5px;background:var(--ink);border-radius:2px;pointer-events:none}
+.ticks{display:flex;justify-content:space-between;font:400 11.5px var(--mono);color:var(--muted);margin-top:-6px}
+.con-field svg{display:block;width:100%;height:auto;border-radius:6px}
+.cue-box{background:var(--sunk);border-radius:8px;padding:12px 14px;min-height:112px;display:grid;gap:6px;align-content:start}
+.cue{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline}
+.cue .x{font-size:16.5px;font-weight:500}
+.cue small{grid-column:2;font-size:12.5px;color:var(--muted)}
+.cue.old{opacity:.55}
+.cue.old .x{font-size:14px;font-weight:400}
+.cue-intro{margin:0;font-size:15px;color:var(--muted)}
+.cue-next{font-size:13.5px;color:var(--muted);min-height:1.5em}
+.cue-next .mono{color:var(--ink)}
+.dept{font:500 11.5px var(--mono);padding:0 7px;border:1.5px solid currentColor;border-radius:3px;white-space:nowrap;line-height:1.6;color:var(--muted)}
+.dept[data-d="音乐"]{color:var(--gd)}
+.dept[data-d="舞台"],.dept[data-d="舞蹈"],.dept[data-d="仪式"]{color:var(--jd)}
+.dept[data-d="灯光"],.dept[data-d="烟火"]{color:var(--hd)}
+.dept[data-d="台词"]{color:var(--pink-t)}
+
+.segs{display:grid;gap:14px}
+.seg{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:8px;padding:16px 18px;transition:box-shadow .25s}
+.seg.on{box-shadow:0 0 0 2px var(--c)}
+.seg header{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}
+.seg .tc{font:500 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.seg .where{font-size:13px;color:var(--muted)}
+.seg h3{font-family:var(--display);font-weight:400;font-size:27px;line-height:1.25;margin:2px 0 8px}
+.seg .scene{margin:0 0 10px}
+.songs{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:3px}
+.songs li{display:flex;flex-wrap:wrap;gap:0 10px;font-size:15px}
+.songs li::before{content:"♪";color:var(--gd)}
+.songs span{color:var(--muted)}
+.bb{margin:0;padding:10px 12px;background:var(--sunk);border-radius:6px;font-size:14.5px}
+.bb b{font:600 12px var(--mono);letter-spacing:.06em;margin-right:8px;color:var(--pink-t)}
+.seg-foot{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;margin-top:12px}
+.seg-foot details{flex:1;min-width:12em}
+.seg-foot summary{cursor:pointer;font-size:14px;color:var(--muted)}
+.cuelist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.cuelist li{display:grid;grid-template-columns:3.4em auto 1fr;gap:8px;align-items:baseline;font-size:14px}
+.cuelist .t{font:400 12.5px var(--mono);color:var(--muted)}
+.cuelist small{display:block;font-size:12px;color:var(--muted)}
+.jump{font-size:13.5px;padding:4px 12px;border-radius:999px;border:1.5px solid var(--c);background:transparent;cursor:pointer;white-space:nowrap}
+.jump:hover{background:var(--sunk)}
+
+/* ---------- compare ---------- */
+.cmp{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.cmp .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) minmax(0,1fr)}
+.cmp .row + .row{border-top:1px solid var(--line)}
+.cmp .row > div{padding:12px 16px}
+.cmp .head{background:var(--sunk);font-weight:700;font-size:14.5px}
+.cmp .head .them{color:var(--muted)}
+.cmp .k{font-weight:700;color:var(--muted);font-size:14px}
+.cmp .us{background:color-mix(in srgb,var(--gd) 6%,var(--card))}
+.cmp-note{margin:12px 0 0;font-size:13.5px;color:var(--muted)}
+
+/* ---------- guests ---------- */
+.lead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:16px 18px;border:2px dashed var(--line2);border-radius:8px;margin-bottom:18px}
+.lead b{font-family:var(--display);font-weight:400;font-size:26px}
+.lead span{color:var(--muted)}
+.cast{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 14px}
+.cast h3{font-family:var(--display);font-weight:400;font-size:24px;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid currentColor}
+.cast h3 small{font-family:var(--body);font-size:13px;color:var(--muted);margin-left:8px}
+.cast ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.cast li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 13px}
+.cast li b{display:block;font-size:15.5px}
+.cast li b small{font-weight:400;color:var(--muted);margin-left:6px;font-size:13px}
+.cast li > span{display:block;font-size:14px;color:var(--muted);line-height:1.6}
+.vendors{margin-top:22px}
+.vendors h3{font-size:16px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips > span{padding:4px 12px;border:1px solid var(--line2);border-radius:999px;background:var(--card);font-size:14px}
+.disclaim{margin:16px 0 0;font-size:13.5px;color:var(--muted)}
+
+/* ---------- roll call ---------- */
+.rc-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start}
+.rc-groups{display:grid;gap:18px}
+.rc-g h3{font-size:15px;margin-bottom:8px;color:var(--muted);font-weight:700}
+.rc-g h3 b{font-family:var(--display);font-weight:400;font-size:21px;margin-right:8px;color:var(--c-t)}
+.chip{padding:4px 12px;border:1.5px solid var(--line2);border-radius:999px;background:var(--card);font-size:15px;transition:background .2s,border-color .2s,color .2s;line-height:1.6}
+.chip small{font-size:12px;color:var(--muted);margin-left:5px}
+.chip.lit{background:var(--c);border-color:var(--c);color:var(--on-c)}
+.chip.lit small{color:inherit;opacity:.8}
+.rc-btn{display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:8px 18px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);cursor:pointer;font-size:15px}
+.ball{margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;text-align:center;position:sticky;top:76px}
+.ball svg{display:block;width:100%;max-width:420px;height:auto;margin:0 auto;transition:opacity .5s,transform .5s}
+.ball.hide svg{opacity:.15;transform:scale(.94)}
+.ball figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
+.ball figcaption b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+
+/* ---------- footer ---------- */
+footer{max-width:1140px;margin:0 auto;padding:28px 16px 120px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:grid;gap:10px}
+footer p{margin:0;max-width:80ch}
+footer a{color:var(--ink)}
+
+/* ---------- mini player ---------- */
+.mini{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:30;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);border-radius:999px;padding:6px 18px 6px 6px;box-shadow:0 10px 28px rgba(0,0,0,.28);overflow:hidden}
+.mini[hidden]{display:none}
+.mini .play{width:40px;height:40px}
+.mini .play svg{width:15px;height:15px}
+.mini-t{font:500 15px var(--mono);font-variant-numeric:tabular-nums}
+.mini-s{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px}
+.mini-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(127,127,127,.35)}
+.mini-bar i{display:block;height:100%;width:0;background:var(--hd-fill)}
+.mini a{color:inherit;font-size:13px;white-space:nowrap}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .show-grid{grid-template-columns:1fr}
+  .console{position:static}
+  .same{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cast{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .poster{max-width:440px;width:100%;justify-self:center}
+  .map-grid,.field-wrap,.rc-grid{grid-template-columns:1fr}
+  .ball{position:static}
+  .zones{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .wrap{gap:72px;padding-top:22px}
+  .same,.cast{grid-template-columns:1fr}
+  .cmp .row{grid-template-columns:1fr}
+  .cmp .head{display:none}
+  .cmp .row > div{padding:8px 14px}
+  .cmp .k{padding-top:12px !important;padding-bottom:0 !important;color:var(--ink);font-size:15px}
+  .cmp .row > div[data-l]::before{content:attr(data-l);display:block;font:500 11.5px var(--mono);color:var(--muted);letter-spacing:.04em}
+  .cmp .us{margin:0 10px 12px;border-radius:6px}
+  .segname{flex-basis:100%;order:3}
+  .seg{padding:14px 14px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .zone.on .outline{animation:none}
+  .ball svg{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">三东<span>·</span>中场秀</a>
+    <nav class="nav-links" aria-label="章节">
+      <a href="#map">三个东</a>
+      <a href="#field">场地</a>
+      <a href="#show">台本</a>
+      <a href="#bb">对照</a>
+      <a href="#guests">嘉宾</a>
+      <a href="#rollcall">点名</a>
+    </nav>
+    <button class="go" type="button" id="goShow"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0.5 9.5 5 1 9.5Z" fill="currentColor"/></svg>开演</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div>
+    <p class="eyebrow">Super Bowl LXI 中场秀 · <b>粉丝构想</b> · SoFi Stadium · 2027.02.14</p>
+    <h1 class="title">三东</h1>
+    <ul class="trio" aria-label="三个东">
+      <li class="jd"><b>胶东</b><span>山东</span></li>
+      <li class="gd"><b>关东</b><span>东北</span></li>
+      <li class="hd"><b>海东</b><span>韩国</span></li>
+    </ul>
+    <p class="lede">Bad Bunny 在 Super Bowl LX 用一场中场秀把波多黎各搬进了球场：草丛、粉色小屋、街坊的小摊、一场真婚礼，几乎全程西班牙语。照这个路子，给下一届超级碗做一场山东、东北、韩国。这三个地方在旧称里叫胶东、关东、海东，隔着渤海和黄海，一百多年来互相搬家，也互相学着做饭。</p>
+    <p class="lede-2">Super Bowl LXI 定在 2027 年 2 月 14 日，洛杉矶 SoFi Stadium。洛杉矶的韩国城是全美最大的韩人社区，圣盖博谷也开着不少东北菜馆和山东面馆。那天正好是情人节。</p>
+    <dl class="facts">
+      <div><dt>全长</dt><dd>13:00</dd></div>
+      <div><dt>段落</dt><dd>9 段</dd></div>
+      <div><dt>英语台词</dt><dd>1 句</dd></div>
+      <div><dt>真婚礼</dt><dd>1 场</dd></div>
+    </dl>
+  </div>
+  <figure class="poster">
+    <svg id="poster" viewBox="0 0 400 500" role="img" aria-label="海报：东北大花布上一颗橄榄球，写着“吃了吗？”和韩语“밥 먹었어?”">
+      <defs></defs>
+      <rect width="400" height="500" fill="#B81D2E"/>
+      <rect width="400" height="500" fill="url(#hua-p)"/>
+      <g font-family="ZCOOL QingKe HuangYou, Noto Sans SC, sans-serif" font-size="25">
+        <rect x="22" y="22" width="76" height="40" rx="20" fill="#FFF6E8"/><text x="60" y="51" text-anchor="middle" fill="#1C59B0">胶东</text>
+        <rect x="106" y="22" width="76" height="40" rx="20" fill="#FFF6E8"/><text x="144" y="51" text-anchor="middle" fill="#C62A2A">关东</text>
+        <rect x="190" y="22" width="76" height="40" rx="20" fill="#FFF6E8"/><text x="228" y="51" text-anchor="middle" fill="#8F6200">海东</text>
+      </g>
+      <g transform="translate(200 228) rotate(-13)">
+        <path d="M-172 0 C-120 -122 120 -122 172 0 C120 122 -120 122 -172 0Z" fill="#7A3B1E" stroke="#3E1E0E" stroke-width="4"/>
+        <path d="M-128 -62 Q-108 0 -128 62 M128 -62 Q108 0 128 62" fill="none" stroke="#F5EDE0" stroke-width="9"/>
+        <path d="M-44 -66 H44" stroke="#F5EDE0" stroke-width="5" stroke-linecap="round"/>
+        <path d="M-33 -75 V-57 M-19 -75 V-57 M-5 -75 V-57 M9 -75 V-57 M23 -75 V-57 M37 -75 V-57" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+        <text x="0" y="12" text-anchor="middle" font-family="ZCOOL QingKe HuangYou, Noto Sans SC, sans-serif" font-size="62" fill="#FFF6E8">吃了吗？</text>
+        <text x="0" y="58" text-anchor="middle" font-family="Black Han Sans, Noto Sans KR, sans-serif" font-size="32" fill="#FFD24A" lang="ko">밥 먹었어?</text>
+      </g>
+      <rect x="22" y="404" width="356" height="74" rx="6" fill="#FFF6E8"/>
+      <text x="38" y="434" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#1C1814">SUPER BOWL LXI · 中场秀构想</text>
+      <text x="38" y="460" font-family="IBM Plex Mono, monospace" font-size="13.5" fill="#655B50">SoFi Stadium · Inglewood · 2027.02.14</text>
+    </svg>
+    <figcaption>底纹是东北大花布；球上那句，是整场最后的一句话。</figcaption>
+  </figure>
+</section>
+
+<!-- ================= MAP ================= -->
+<section id="map">
+  <div class="sec-head">
+    <h2>为什么是这三个“东”</h2>
+    <p>山东人过海闯关东，山东人渡海下仁川，半岛上的人过江到了延边。三条路把黄海围成一圈。</p>
+  </div>
+  <div class="map-grid">
+    <figure class="map-card">
+      <svg id="mapSvg" class="map" viewBox="0 0 581 675" role="img" aria-label="黄海和渤海周边示意图：闯关东、下仁川、过图们江三条迁徙路线"></svg>
+      <figcaption>按经纬度比例画的示意图，不画国界。点右边的卡片，只看那一条路。</figcaption>
+    </figure>
+    <div>
+      <div class="bridges">
+        <button class="bridge" type="button" data-route="r1" aria-pressed="false" style="--c:var(--gd);--c-t:var(--gd)">
+          <span class="k"><h3>闯关东</h3><span class="dir">胶东 → 关东</span></span>
+          <p>清代到民国，数以千万计的山东人走陆路出山海关，或者从登州、烟台坐船过渤海到大连、营口。今天在东北问一圈祖籍，很多人会说“山东”。大连话和烟台话至今同属胶辽官话。</p>
+          <p class="fine">学界一种估计：清代约 800 万，民国约 1,800 万。</p>
+        </button>
+        <button class="bridge" type="button" data-route="r2" aria-pressed="false" style="--c:var(--jd);--c-t:var(--jd)">
+          <span class="k"><h3>下仁川</h3><span class="dir">胶东 → 海东</span></span>
+          <p>1880 年代起，山东人渡海到仁川谋生，那里有了朝鲜半岛唯一的唐人街。山东炸酱面在仁川变成了韩国的 <span lang="ko">짜장면</span>。20 世纪初韩国常见的白菜里，就有“山东白菜”（<span lang="ko">산동배추</span>）和“芝罘白菜”，芝罘就是烟台。</p>
+          <p class="fine">成山头到韩国约 94 海里。胶东人爱开玩笑：威海的鸡一叫，海那边都听得见。</p>
+        </button>
+        <button class="bridge" type="button" data-route="r3" aria-pressed="false" style="--c:var(--hd-fill);--c-t:var(--hd)">
+          <span class="k"><h3>过图们江</h3><span class="dir">海东 → 关东</span></span>
+          <p>19 世纪后期起，朝鲜半岛北部的农民渡过图们江、鸭绿江到东北开荒种稻，后来成了中国的朝鲜族。延吉街上的招牌至今是中朝双语，《阿里郎》在江两边都有人唱。</p>
+        </button>
+      </div>
+      <p class="names"><b>三个名字：</b>胶东原指胶莱河以东的山东半岛，这里借来代表整个山东；关东是山海关以东，也就是东北；海东是古书里对朝鲜半岛的称呼，高丽僧人觉训写的《海东高僧传》用的就是这个名字。</p>
+    </div>
+  </div>
+
+  <h3 class="same-h">一样的四件事</h3>
+  <div class="same">
+    <article>
+      <h4>一棵白菜</h4>
+      <p>胶州大白菜、东北的酸菜缸、韩国入冬腌的泡菜（<span lang="ko">김장</span>）。三种过冬的办法，用的是同一种菜。整场秀从一片白菜地开场。</p>
+    </article>
+    <article>
+      <h4>一句“吃了吗”</h4>
+      <p>中国人见面问“吃了吗”，韩国人问“<span lang="ko">밥 먹었어?</span>”。都不是真要请你吃饭，是问你过得好不好。整场最后一句就是它。</p>
+    </article>
+    <article>
+      <h4>一杯酒</h4>
+      <p>山东酒桌讲座次，主陪对门、副陪背门；东北喊“整一个”；韩国喊“<span lang="ko">원샷</span>”。三边都劝酒，劝法不一样。</p>
+    </article>
+    <article>
+      <h4>一面锣鼓</h4>
+      <p>山东鼓子秧歌、东北大秧歌、朝鲜族农乐舞，都是锣鼓开道、绕着场子转圈。朝鲜族农乐舞 2009 年进了联合国非遗名录。</p>
+      <div class="aud" role="group" aria-label="试听锣鼓点">
+        <button type="button" data-rh="jd" aria-pressed="false">鼓子秧歌</button>
+        <button type="button" data-rh="gd" aria-pressed="false">大秧歌</button>
+        <button type="button" data-rh="hd" aria-pressed="false">农乐</button>
+        <button type="button" data-rh="all" aria-pressed="false">三队合一</button>
+      </div>
+      <p class="aud-note">浏览器现场合成的简化鼓点，不是录音。</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= FIELD ================= -->
+<section id="field">
+  <div class="sec-head">
+    <h2>场地</h2>
+    <p>俯视整块球场：西半场是胶东，中场和北边线是关东，东半场是海东。点编号看每一处布景。</p>
+  </div>
+  <div class="field-wrap">
+    <div class="pitch" id="pitchBig"></div>
+    <div>
+      <ul class="zones" id="zoneList"></ul>
+      <div class="zone-detail" id="zoneDetail" aria-live="polite">
+        <h4>十处布景</h4>
+        <p>中心是一张玻璃转桌，整场在它上面唱。其他布景按段落轮流亮起，不用的时候推下场或者熄灯。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHOW ================= -->
+<section id="show">
+  <div class="sec-head">
+    <h2>台本 <small>13:00 · 9 段</small></h2>
+    <p>导播台可以把整场按时间放一遍：场地图跟着亮，下面滚动分镜。默认 ×10 速度，约 78 秒放完；打开“锣鼓”能听到每段的鼓点。</p>
+  </div>
+  <div class="show-grid">
+    <div class="console" id="console">
+      <div class="con-top">
+        <button class="play" id="play" type="button" aria-label="播放"></button>
+        <div class="clock"><span id="tNow">00:00</span><span class="of">/ 13:00</span></div>
+        <div class="segname" id="segName">序 · 白菜地</div>
+        <div class="ctl">
+          <div class="speeds" role="group" aria-label="播放速度">
+            <button type="button" data-speed="1" aria-pressed="false">×1</button>
+            <button type="button" data-speed="10" aria-pressed="true">×10</button>
+            <button type="button" data-speed="30" aria-pressed="false">×30</button>
+          </div>
+          <button class="snd" id="snd" type="button" aria-pressed="false">锣鼓：关</button>
+        </div>
+      </div>
+      <div class="strip" id="strip" role="slider" tabindex="0" aria-label="演出进度" aria-valuemin="0" aria-valuemax="780" aria-valuenow="0" aria-valuetext="00:00">
+        <div class="strip-in" id="stripIn"></div>
+        <div class="rest" id="stripRest"></div>
+        <div class="head" id="stripHead"></div>
+      </div>
+      <div class="ticks" aria-hidden="true"><span>00:00</span><span>03:15</span><span>06:30</span><span>09:45</span><span>13:00</span></div>
+      <div class="con-field" id="pitchCon"></div>
+      <div class="cue-box" id="cueBox" aria-live="polite"></div>
+      <div class="cue-next" id="cueNext"></div>
+    </div>
+    <div class="segs" id="segs"></div>
+  </div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section id="bb">
+  <div class="sec-head">
+    <h2>对照 Bad Bunny</h2>
+    <p>骨架照着 Super Bowl LX 那场搭：一个家乡、几处日常生活的布景、真的街坊、一场真婚礼，最后用一句英语收尾。</p>
+  </div>
+  <div class="cmp" role="table" aria-label="Bad Bunny 中场秀与三东中场秀对照">
+    <div class="row head" role="row"><div role="columnheader"></div><div class="them" role="columnheader">Bad Bunny · Super Bowl LX（2026）</div><div role="columnheader">三东 · Super Bowl LXI（2027 构想）</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">语言</div><div role="cell" data-l="Bad Bunny">几乎全程西班牙语，用英语说的是那句 “God bless America”</div><div class="us" role="cell" data-l="三东">全程山东话、东北话、韩语，英语只有一句 “Have you eaten?”</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">开场</div><div role="cell" data-l="Bad Bunny">从一人多高的草丛里走出来，身边是戴 pava 草帽的人</div><div class="us" role="cell" data-l="三东">从胶州大白菜地里站起来，身边是戴草帽砍白菜的农人</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">街坊</div><div role="cell" data-l="Bad Bunny">La Marqueta：椰子摊、多米诺牌桌、小吃摊，请的是波多黎各的真商户</div><div class="us" role="cell" data-l="三东">胶东大集和首尔夜市：煎饼、散啤、烧烤、<span lang="ko">포장마차</span>，请的是真摊主</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">小屋</div><div role="cell" data-l="Bad Bunny">粉色 casita，一群明星在门廊上开派对</div><div class="us" role="cell" data-l="三东">东北炕头小院，嘉宾盘腿上炕嗑瓜子、打扑克</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">婚礼</div><div role="cell" data-l="Bad Bunny">一对新人在秀里真的结了婚</div><div class="us" role="cell" data-l="三东">情人节当天，烟台新郎和延吉新娘真结婚：花饽饽、流水席、<span lang="ko">폐백</span>抛枣栗</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">跨界嘉宾</div><div role="cell" data-l="Bad Bunny">Lady Gaga 来唱拉丁编曲的 Die With a Smile</div><div class="us" role="cell" data-l="三东">美国嘉宾把自己的一首英文歌改成二人转小帽，长鼓伴奏</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">前辈嘉宾</div><div role="cell" data-l="Bad Bunny">Ricky Martin 唱 Lo Que Le Pasó a Hawaii</div><div class="us" role="cell" data-l="三东">《好汉歌》原唱在大合流时领唱</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">沉下来的一段</div><div role="cell" data-l="Bad Bunny">《El Apagón》，唱波多黎各的停电</div><div class="us" role="cell" data-l="三东">熄灯一分钟，场上只剩一盏马灯，留给所有离开家的人</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">结尾</div><div role="cell" data-l="Bad Bunny">把整片美洲点一遍名，球上写着 “Together, We Are America”</div><div class="us" role="cell" data-l="三东">把黄海两岸和洛杉矶点一遍名，球上写着“吃了吗？<span lang="ko">밥 먹었어?</span>”</div></div>
+  </div>
+  <p class="cmp-note">左列根据赛后报道整理；右列是这份构想。</p>
+</section>
+
+<!-- ================= GUESTS ================= -->
+<section id="guests">
+  <div class="sec-head">
+    <h2>炕头名单</h2>
+    <p>梦想嘉宾，纯属构想，名单上的人都没被问过。每人只安排一件事，像 Bad Bunny 那场一样，嘉宾是来串门的，主角还是那块地方。</p>
+  </div>
+  <div class="lead"><b>主唱：空着</b><span>Bad Bunny 是一个人扛下整场的。这个位置得会说山东话、东北话，还得能唱两句韩语，留给你来定。</span></div>
+  <div class="cast">
+    <div class="jd">
+      <h3>胶东<small>山东</small></h3>
+      <ul>
+        <li><b>黄渤<small>青岛</small></b><span>转桌主陪。开场后第一个举杯，说那句“俺先干了，你随意”。</span></li>
+        <li><b>刘欢</b><span>《好汉歌》原唱。大合流时领唱，是 Ricky Martin 那样的前辈嘉宾。</span></li>
+        <li><b>山东快书艺人</b><span>和主唱对口说唱，鸳鸯板当节拍器。</span></li>
+      </ul>
+    </div>
+    <div class="gd">
+      <h3>关东<small>东北</small></h3>
+      <ul>
+        <li><b>赵本山<small>铁岭</small></b><span>炕头小院的“炕主”，招呼大家上炕。</span></li>
+        <li><b>那英<small>沈阳</small></b><span>熄灯那一分钟，清唱东北《摇篮曲》。</span></li>
+        <li><b>宝石Gem</b><span>《野狼disco》原唱，带全场做“左手右手一个慢动作”。</span></li>
+        <li><b>二人转剧团</b><span>和主唱演对手戏，转手绢、甩扇子。</span></li>
+      </ul>
+    </div>
+    <div class="hd">
+      <h3>海东<small>韩国 · 延边</small></h3>
+      <ul>
+        <li><b>PSY</b><span>《江南Style》，教全场跳骑马舞。</span></li>
+        <li><b>ROSÉ</b><span>《APT.》原唱，在转桌上开 <span lang="ko">아파트</span> 游戏。</span></li>
+        <li><b>延边阿妈妮合唱团</b><span>清唱《阿里郎》，熄灯时哼着垫底。</span></li>
+        <li><b>象帽舞队</b><span>甩十二米长的白飘带。</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>美国<small>跨界</small></h3>
+      <ul>
+        <li><b>Bruno Mars</b><span>《APT.》的另一位原唱，2014 年超级碗中场秀的主秀。把自己的一首英文歌改成二人转小帽唱，对应 Lady Gaga 那一段。</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="vendors">
+    <h3>真摊主（对应 La Marqueta）</h3>
+    <div class="chips">
+      <span>青岛的散啤摊</span><span>淄博烧烤</span><span>烟台花饽饽</span><span>临沂煎饼</span><span>哈尔滨的冻梨摊</span><span>延吉早市的打糕</span><span>仁川中华街的老面馆</span><span>洛杉矶韩国城的炸鸡店</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROLL CALL ================= -->
+<section id="rollcall">
+  <div class="sec-head">
+    <h2>最后的点名</h2>
+    <p>Bad Bunny 喊完 “God bless America”，把美洲的国家一个个点了名。这里用的是“Have you eaten?”，然后从济南点到济州，从漠河点到洛杉矶。</p>
+  </div>
+  <div class="rc-grid">
+    <div class="rc-groups" id="rcGroups">
+      <div class="rc-g" style="--c:var(--jd);--on-c:#fff;--c-t:var(--jd)">
+        <h3><b>胶东</b>山东全部 16 个地级市</h3>
+        <div class="chips">
+          <span class="chip">济南</span><span class="chip">青岛</span><span class="chip">淄博</span><span class="chip">枣庄</span><span class="chip">东营</span><span class="chip">烟台</span><span class="chip">潍坊</span><span class="chip">济宁</span><span class="chip">泰安</span><span class="chip">威海</span><span class="chip">日照</span><span class="chip">临沂</span><span class="chip">德州</span><span class="chip">聊城</span><span class="chip">滨州</span><span class="chip">菏泽</span>
+        </div>
+      </div>
+      <div class="rc-g" style="--c:var(--gd);--on-c:#fff;--c-t:var(--gd)">
+        <h3><b>关东</b>东北三省</h3>
+        <div class="chips">
+          <span class="chip">大连</span><span class="chip">沈阳</span><span class="chip">鞍山</span><span class="chip">丹东</span><span class="chip">营口</span><span class="chip">锦州</span><span class="chip">长春</span><span class="chip">吉林</span><span class="chip">延吉</span><span class="chip">通化</span><span class="chip">哈尔滨</span><span class="chip">齐齐哈尔</span><span class="chip">牡丹江</span><span class="chip">佳木斯</span><span class="chip">鹤岗</span><span class="chip">漠河</span>
+        </div>
+      </div>
+      <div class="rc-g" style="--c:var(--hd-fill);--on-c:#1C1814;--c-t:var(--hd)">
+        <h3><b>海东</b>韩国</h3>
+        <div class="chips">
+          <span class="chip">仁川<small lang="ko">인천</small></span><span class="chip">首尔<small lang="ko">서울</small></span><span class="chip">水原<small lang="ko">수원</small></span><span class="chip">春川<small lang="ko">춘천</small></span><span class="chip">江陵<small lang="ko">강릉</small></span><span class="chip">大田<small lang="ko">대전</small></span><span class="chip">清州<small lang="ko">청주</small></span><span class="chip">全州<small lang="ko">전주</small></span><span class="chip">光州<small lang="ko">광주</small></span><span class="chip">大邱<small lang="ko">대구</small></span><span class="chip">浦项<small lang="ko">포항</small></span><span class="chip">蔚山<small lang="ko">울산</small></span><span class="chip">釜山<small lang="ko">부산</small></span><span class="chip">济州<small lang="ko">제주</small></span>
+        </div>
+      </div>
+      <div class="rc-g" style="--c:var(--pink);--on-c:#fff;--c-t:var(--pink-t)">
+        <h3><b>海外</b>离家最远的那桌</h3>
+        <div class="chips">
+          <span class="chip">洛杉矶韩国城<small>Koreatown</small></span><span class="chip">圣盖博谷<small>San Gabriel Valley</small></span><span class="chip">法拉盛<small>Flushing</small></span><span class="chip">英格尔伍德<small>Inglewood</small></span>
+        </div>
+      </div>
+      <div><button class="rc-btn" id="rcGo" type="button"><svg width="12" height="12" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0.5 9.5 5 1 9.5Z" fill="currentColor"/></svg>点一遍名</button></div>
+    </div>
+    <figure class="ball" id="ball">
+      <svg viewBox="0 0 400 260" role="img" aria-label="橄榄球上写着：吃了吗？밥 먹었어? Have you eaten?">
+        <g transform="translate(200 130) rotate(-8)">
+          <path d="M-182 0 C-128 -128 128 -128 182 0 C128 128 -128 128 -182 0Z" fill="#7A3B1E" stroke="#3E1E0E" stroke-width="4"/>
+          <path d="M-136 -66 Q-114 0 -136 66 M136 -66 Q114 0 136 66" fill="none" stroke="#F5EDE0" stroke-width="9"/>
+          <path d="M-46 -70 H46" stroke="#F5EDE0" stroke-width="5" stroke-linecap="round"/>
+          <path d="M-35 -79 V-61 M-21 -79 V-61 M-7 -79 V-61 M7 -79 V-61 M21 -79 V-61 M35 -79 V-61" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <text x="0" y="0" text-anchor="middle" font-family="ZCOOL QingKe HuangYou, Noto Sans SC, sans-serif" font-size="56" fill="#FFF6E8">吃了吗？</text>
+          <text x="0" y="40" text-anchor="middle" font-family="Black Han Sans, Noto Sans KR, sans-serif" font-size="30" fill="#FFD24A" lang="ko">밥 먹었어?</text>
+          <text x="0" y="72" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="17" fill="#F5EDE0">Have you eaten?</text>
+        </g>
+      </svg>
+      <figcaption><b>“饭好了，回家吃饭。”</b>点完名，主唱举起这颗球，说完最后一句，灯黑。</figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>这是一份粉丝构想，和 NFL、Apple Music、任何艺人和品牌都没有关系。名单上的人都没被联系过；曲目、人数、尺寸都是策划草案，真要演，版权和许可都得另谈。</p>
+  <p>Bad Bunny 中场秀细节参考：<a href="https://www.yahoo.com/entertainment/music/articles/highlights-bad-bunny-super-bowl-023718224.html" target="_blank" rel="noopener">Yahoo / FOX 5</a> · <a href="https://wset.com/news/entertainment/top-5-moments-from-bad-bunnys-super-bowl-lx-halftime-show" target="_blank" rel="noopener">WSET</a> · <a href="https://amp.foxsports.com/stories/nfl/bad-bunny-super-bowl-halftime-show-lady-gaga-ricky-martin" target="_blank" rel="noopener">FOX Sports</a>。Super Bowl LXI 日期和场馆：<a href="https://www.foxla.com/news/2027-super-bowl-lxi-sofi-staduim-los-angeles" target="_blank" rel="noopener">FOX 11 LA</a>。</p>
+  <p>三东的历史：<a href="https://en.wikipedia.org/wiki/Incheon_Chinatown" target="_blank" rel="noopener">仁川中华街</a> · <a href="https://www.icjg.go.kr/eng/cttu0102a08" target="_blank" rel="noopener">仁川炸酱面博物馆（原共和春）</a> · <a href="https://www.khan.co.kr/article/201105032133455/amp" target="_blank" rel="noopener">韩国的山东白菜（京乡新闻）</a> · <a href="https://ims.sdu.edu.cn/__local/8/8A/1B/E0534541B725B753EF83705C5E6_08245F19_318AA.pdf" target="_blank" rel="noopener">闯关东移民规模（山东大学）</a> · <a href="https://you.ctrip.com/sight/rongcheng899/10614.html" target="_blank" rel="noopener">成山头</a>。资料核对于 2026 年 11 月。</p>
+</footer>
+
+<div class="mini" id="mini" hidden>
+  <button class="play" id="miniPlay" type="button" aria-label="暂停"></button>
+  <span class="mini-t" id="miniT">00:00</span>
+  <span class="mini-s" id="miniS"></span>
+  <a href="#show">导播台</a>
+  <div class="mini-bar"><i id="miniBar"></i></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  function fmt(s) { s = Math.max(0, Math.floor(s)); return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  var reduceMotion = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var ICON_PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 0.8 9.4 5 2 9.2Z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.4" height="8" rx=".4" fill="currentColor"/><rect x="6" y="1" width="2.4" height="8" rx=".4" fill="currentColor"/></svg>';
+
+  /* ======================= 大花布 pattern ======================= */
+  function petals(cx, cy, n, rad, r, fill, rot) {
+    var s = "";
+    for (var i = 0; i < n; i++) {
+      var a = (rot || 0) + i * 2 * Math.PI / n;
+      s += '<circle cx="' + (cx + rad * Math.cos(a)).toFixed(1) + '" cy="' + (cy + rad * Math.sin(a)).toFixed(1) + '" r="' + r.toFixed(1) + '" fill="' + fill + '"/>';
+    }
+    return s;
+  }
+  function peony(cx, cy, k) {
+    return petals(cx, cy, 8, 13 * k, 11 * k, "#F27BA5", 0) + petals(cx, cy, 6, 7 * k, 7 * k, "#E0356F", 0.3) +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + (5 * k).toFixed(1) + '" fill="#FFD24A"/>';
+  }
+  function blossom(cx, cy, k, fill) {
+    return petals(cx, cy, 5, 6 * k, 5 * k, fill, -Math.PI / 2) + '<circle cx="' + cx + '" cy="' + cy + '" r="' + (3 * k).toFixed(1) + '" fill="#FFD24A"/>';
+  }
+  function leaf(cx, cy, deg, len) {
+    return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + len + '" ry="' + (len * 0.42).toFixed(1) + '" fill="#1E8A4C" transform="rotate(' + deg + " " + cx + " " + cy + ')"/>';
+  }
+  function hua(id, size) {
+    var k = size / 100;
+    return '<pattern id="' + id + '" width="' + size + '" height="' + size + '" patternUnits="userSpaceOnUse"><g transform="scale(' + k + ')">' +
+      '<rect width="100" height="100" fill="#B81D2E"/>' +
+      leaf(14, 50, -30, 12) + leaf(52, 14, 40, 12) + leaf(50, 54, 20, 10) + leaf(88, 50, -40, 9) + leaf(66, 90, 30, 8) +
+      peony(32, 32, 1) + peony(78, 24, 0.6) + blossom(76, 76, 1, "#FFF4E0") + blossom(26, 78, 1, "#3A78D6") + blossom(56, 63, 0.6, "#FFF4E0") +
+      "</g></pattern>";
+  }
+  $("#poster defs").innerHTML = hua("hua-p", 80);
+
+  /* ======================= Map ======================= */
+  var LON0 = 116.5, LAT1 = 46.4, KX = 38.75, KY = 50;
+  function P(lon, lat) { return [+((lon - LON0) * KX).toFixed(1), +((LAT1 - lat) * KY).toFixed(1)]; }
+  function pt(p) { var q = P(p[0], p[1]); return q[0] + "," + q[1]; }
+  var COAST = [
+    [116.5,32.9],[120.95,32.9],[120.75,33.4],[120.55,33.8],[120.25,34.3],[119.45,34.75],[119.55,35.35],[119.95,35.75],[120.25,36.0],
+    [120.45,36.1],[120.7,36.35],[121.2,36.65],[121.9,36.85],[122.45,36.9],[122.55,37.15],[122.7,37.4],[122.45,37.45],[122.1,37.55],
+    [121.45,37.6],[120.75,37.82],[120.3,37.68],[119.9,37.35],[119.3,37.12],[118.95,37.3],[119.15,37.75],[118.95,38.05],[118.1,38.25],
+    [117.7,38.6],[117.7,39.05],[118.4,39.1],[119.0,39.25],[119.55,39.85],[119.9,40.05],[120.55,40.45],[121.05,40.85],[121.9,40.95],
+    [122.25,40.6],[121.95,40.25],[121.5,39.65],[121.55,39.3],[121.25,38.95],[121.15,38.75],[121.65,38.88],[122.2,39.2],[122.9,39.6],
+    [123.7,39.8],[124.35,39.85],[124.9,39.6],[125.3,39.45],[125.15,39.0],[125.4,38.75],[125.0,38.4],[124.7,38.1],[125.5,37.85],
+    [126.1,37.75],[126.6,37.45],[126.8,37.0],[126.2,36.85],[126.5,36.4],[126.7,35.98],[126.4,35.4],[126.3,34.8],[126.5,34.3],
+    [127.2,34.55],[127.7,34.7],[128.4,34.85],[129.05,35.1],[129.4,35.5],[129.45,36.0],[129.4,37.0],[128.95,37.75],[128.6,38.2],
+    [128.2,38.7],[127.5,39.15],[127.6,39.8],[128.6,40.2],[129.2,40.65],[129.8,41.6],[129.9,41.9],[130.3,42.3],[130.7,42.3],
+    [130.8,42.65],[131.3,42.9],[131.5,43.0],[131.5,46.4],[116.5,46.4]
+  ];
+  var CITIES = [
+    ["济南",117.0,36.65,"r"],["青岛",120.38,36.07,"r",1],["烟台",121.45,37.46,"bl"],["威海",122.12,37.51,"t",1],
+    ["大连",121.61,38.91,"r",1],["沈阳",123.43,41.8,"r"],["长春",125.32,43.82,"r"],["哈尔滨",126.63,45.75,"r"],
+    ["延吉",129.51,42.89,"r"],["丹东",124.35,40.0,"l"],["仁川",126.62,37.46,"l",1],["首尔",126.98,37.57,"r"],
+    ["釜山",129.07,35.18,"r"],["山海关",119.75,40.0,"l"]
+  ];
+  // routes: list of paths; each path is ["L", pts...] or ["Q", start, ctrl, end]
+  var ROUTES = [
+    { id: "r1", name: "闯关东", label: [121.15, 42.0, "middle"], sea: false,
+      paths: [["Q", [121.45,37.46], [120.85,38.2], [121.61,38.91]],
+              ["L", [117.0,36.65], [117.07,39.0], [119.75,40.0], [123.43,41.8], [125.32,43.82], [126.63,45.75]]] },
+    { id: "r2", name: "下仁川", label: [124.4, 37.78, "middle"], sea: true,
+      paths: [["Q", [122.12,37.51], [124.4,37.0], [126.62,37.46]]] },
+    { id: "r3", name: "过图们江", label: [127.7, 42.3, "end"], sea: false,
+      paths: [["Q", [128.3,41.0], [128.7,42.2], [129.42,42.8]],
+              ["Q", [125.5,40.25], [125.6,41.0], [126.05,41.62]]] }
+  ];
+  function arrow(x, y, ang, size) {
+    var a1 = ang + Math.PI * 0.82, a2 = ang - Math.PI * 0.82;
+    return '<polygon points="' + [x, y, x + size * Math.cos(a1), y + size * Math.sin(a1), x + size * Math.cos(a2), y + size * Math.sin(a2)].map(function (v) { return v.toFixed(1); }).join(",") + '"/>';
+  }
+  function routeMarkup(r) {
+    var s = '<g class="m-route ' + r.id + (r.sea ? " sea" : "") + '" data-route="' + r.id + '">';
+    r.paths.forEach(function (p) {
+      var d, end, prev;
+      if (p[0] === "Q") {
+        var a = P(p[1][0], p[1][1]), c = P(p[2][0], p[2][1]), b = P(p[3][0], p[3][1]);
+        d = "M" + a + " Q" + c + " " + b; end = b; prev = c;
+      } else {
+        var pts = p.slice(1).map(function (q) { return P(q[0], q[1]); });
+        d = "M" + pts.map(String).join(" L"); end = pts[pts.length - 1]; prev = pts[pts.length - 2];
+      }
+      s += '<path d="' + d + '"/>' + arrow(end[0], end[1], Math.atan2(end[1] - prev[1], end[0] - prev[0]), 15);
+    });
+    var L = P(r.label[0], r.label[1]);
+    s += '<text x="' + L[0] + '" y="' + L[1] + '" text-anchor="' + r.label[2] + '">' + r.name + "</text></g>";
+    return s;
+  }
+  (function buildMap() {
+    var s = '<path class="m-land" d="M' + COAST.map(pt).join(" L") + 'Z"/>';
+    var j = P(126.55, 33.38);
+    s += '<ellipse class="m-land" cx="' + j[0] + '" cy="' + j[1] + '" rx="16.5" ry="8.5"/>';
+    var b = P(119.9, 38.9), y = P(124.2, 35.2);
+    s += '<text class="m-sea" x="' + b[0] + '" y="' + b[1] + '" text-anchor="middle">渤海</text>';
+    s += '<text class="m-sea" x="' + y[0] + '" y="' + y[1] + '" text-anchor="middle">黄海</text>';
+    [["胶东","山东",118.25,35.45,"jd"],["关东","东北",122.3,44.55,"gd"],["海东","韩国",127.95,36.25,"hd"]].forEach(function (r) {
+      var q = P(r[2], r[3]);
+      s += '<text class="m-reg ' + r[4] + '" x="' + q[0] + '" y="' + q[1] + '" text-anchor="middle" fill="currentColor">' + r[0] + "</text>";
+      s += '<text class="m-reg-sub" x="' + q[0] + '" y="' + (q[1] + 24) + '" text-anchor="middle">' + r[1] + "</text>";
+    });
+    ROUTES.forEach(function (r) { s += routeMarkup(r); });
+    var cp = P(122.7, 37.4), cn = P(122.95, 36.55);
+    s += '<circle class="m-cape" cx="' + cp[0] + '" cy="' + cp[1] + '" r="6"/>';
+    s += '<text class="m-note" x="' + cn[0] + '" y="' + cn[1] + '">↖ 成山头</text><text class="m-note" x="' + cn[0] + '" y="' + (cn[1] + 19) + '">距韩国约 94 海里</text>';
+    CITIES.forEach(function (c) {
+      var q = P(c[1], c[2]), tx = q[0] + 9, ty = q[1] + 6, an = "start";
+      if (c[3] === "l") { tx = q[0] - 9; an = "end"; }
+      if (c[3] === "t") { tx = q[0]; ty = q[1] - 11; an = "middle"; }
+      if (c[3] === "bl") { tx = q[0] - 6; ty = q[1] + 22; an = "end"; }
+      s += '<g class="m-city' + (c[4] ? " sea" : "") + '"><circle cx="' + q[0] + '" cy="' + q[1] + '" r="4.5"/><text x="' + tx + '" y="' + ty + '" text-anchor="' + an + '">' + c[0] + "</text></g>";
+    });
+    $("#mapSvg").innerHTML = s;
+  })();
+  (function mapFocus() {
+    var map = $("#mapSvg"), btns = $$(".bridge");
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var on = b.getAttribute("aria-pressed") !== "true";
+        btns.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+        $$(".m-route", map).forEach(function (g) { g.classList.remove("on"); });
+        map.classList.toggle("focus", on);
+        if (on) {
+          b.setAttribute("aria-pressed", "true");
+          var g = $('.m-route[data-route="' + b.dataset.route + '"]', map);
+          if (g) g.classList.add("on");
+        }
+      });
+    });
+  })();
+
+  /* ======================= Field ======================= */
+  var ZONES = [
+    { id: "cabbage", n: 1, name: "白菜地", use: "序 · 白菜地", mk: [256, 188],
+      txt: "西半场 320 棵两米高的布艺胶州大白菜，一垄一垄排到中线附近。开场用，第一段结束时由农人推下场。" },
+    { id: "market", n: 2, name: "胶东大集", use: "一 · 胶东大集", mk: [296, 418],
+      txt: "南边线六个摊：煎饼鏊子、淄博烧烤炉、袋装青岛啤酒、蛤蜊摊、花饽饽蒸笼、一车大葱。摊主请真的，从青岛、烟台、淄博、临沂来。" },
+    { id: "table", n: 3, name: "转桌主舞台", use: "一 · 四 · 六 · 尾声", mk: [668, 196],
+      txt: "中场一张直径约 11 米的玻璃转盘桌。按山东酒桌的规矩排座：主陪对着门，副陪背对门。主唱整场在它上面转着唱，十二个座位留给嘉宾。" },
+    { id: "route", n: 4, name: "过海航线", use: "过场 · 过海", mk: [318, 352],
+      txt: "地面 LED 投出渤海和一条从烟台到大连的航线。六十个人挑着扁担沿着它走向中场，扁担一头是被褥，一头是种子。" },
+    { id: "flower", n: 5, name: "大花布", use: "二 · 关东大炕", mk: [756, 392],
+      txt: "40 × 30 米的东北大花布：红底、粉牡丹、绿叶子，三百人从两边拉开。这是航拍的招牌画面，也给炕头小院铺了地。" },
+    { id: "kang", n: 6, name: "炕头小院", use: "二 · 关东大炕", mk: [438, 46],
+      txt: "北边线一座东北农家院：火炕、窗花、挂着的苞米和辣椒串，门口一盆冻梨。嘉宾盘腿坐在炕上嗑瓜子、打扑克。对应 Bad Bunny 的粉色 casita。" },
+    { id: "yanbian", n: 7, name: "延边街", use: "三 · 延边婚礼", mk: [896, 252],
+      txt: "两块中朝双语招牌夹着一道婚礼拱门。象帽舞和那场真婚礼都在这里。" },
+    { id: "night", n: 8, name: "海东夜市", use: "四 · 海东夜市", mk: [906, 462],
+      txt: "东半场：橘色帐篷的포장마차，门口摆塑料桌的便利店（편의점），炸鸡配啤酒。" },
+    { id: "lantern", n: 9, name: "马灯", use: "五 · 熄灯", mk: [540, 326],
+      txt: "熄灯那一分钟全场唯一的光，放在转桌正中。" },
+    { id: "drums", n: 10, name: "三队锣鼓", use: "六 · 大合流", mk: [50, 424],
+      txt: "大合流时三支锣鼓队的进场方向：鼓子秧歌从西端区，东北大秧歌从北边线，农乐队从东端区，在转桌边会合。" }
+  ];
+  var ZBY = {}; ZONES.forEach(function (z) { ZBY[z.id] = z; });
+
+  function zoneG(id, inner, outline, pick) {
+    var z = ZBY[id];
+    return '<g class="zone" data-zone="' + id + '"' + (pick ? ' tabindex="0" role="button" aria-label="' + z.n + " " + z.name + '"' : "") + ">" +
+      inner + outline.replace(/^<(\w+)/, '<$1 class="outline"') +
+      '<g class="mk" transform="translate(' + z.mk[0] + " " + z.mk[1] + ')"><circle r="22"/><text>' + z.n + "</text></g></g>";
+  }
+  function fieldSVG(pid, pick) {
+    var s = '<svg viewBox="-30 -64 1260 664" role="img" aria-label="球场俯视平面图：十处布景">';
+    s += "<defs>" + hua(pid + "-hua", 64) + "</defs>";
+    s += '<text class="f-side" x="600" y="-26">北边线 · 关东 ↑</text>';
+    s += '<text class="f-side" x="600" y="582">南边线</text>';
+    for (var i = 0; i < 24; i++) s += '<rect class="' + (i % 2 ? "f-g2" : "f-g1") + '" x="' + i * 50 + '" y="0" width="50" height="533"/>';
+    s += '<rect class="f-ez jd" x="0" y="0" width="100" height="533"/><rect class="f-ez hd" x="1100" y="0" width="100" height="533"/>';
+    for (var yd = 0; yd <= 100; yd += 5) { var x = 100 + yd * 10; s += '<line class="f-line' + (yd % 10 === 0 ? " b" : "") + '" x1="' + x + '" y1="0" x2="' + x + '" y2="533"/>'; }
+    s += '<rect class="f-border" x="0" y="0" width="1200" height="533"/>';
+    s += '<text class="f-ez-t" x="50" y="226">胶</text><text class="f-ez-t" x="50" y="306">东</text>';
+    s += '<text class="f-ez-t dk" x="1150" y="226">海</text><text class="f-ez-t dk" x="1150" y="306">东</text>';
+
+    // 1 cabbage
+    var cab = "";
+    for (var r = 0; r < 7; r++) for (var k = 0; k < 11; k++) {
+      var cx = 130 + k * 24 + (r % 2) * 12, cy = 60 + r * 42;
+      cab += '<circle class="cab" cx="' + cx + '" cy="' + cy + '" r="11"/><path class="cab-v" d="M' + cx + " " + (cy - 7) + "V" + (cy + 7) + '"/>';
+    }
+    s += zoneG("cabbage", cab, '<rect x="110" y="40" width="294" height="294" rx="12"/>', pick);
+    // 2 market
+    var mk = "", names = ["煎饼", "烧烤", "啤酒", "嘎啦", "饽饽", "大葱"];
+    for (var m = 0; m < 6; m++) {
+      var sx = 128 + m * 58;
+      mk += '<rect class="stall" x="' + sx + '" y="452" width="50" height="54" rx="3"/>';
+      mk += '<rect class="awn" x="' + (sx - 3) + '" y="440" width="56" height="14" rx="3" fill="' + (m % 2 ? "#C62A2A" : "#1C59B0") + '"/>';
+      mk += '<text class="st-t" x="' + (sx + 25) + '" y="486">' + names[m] + "</text>";
+    }
+    s += zoneG("market", mk, '<rect x="116" y="428" width="362" height="90" rx="10"/>', pick);
+    // 5 flower cloth (drawn before route/table so they sit on top)
+    s += zoneG("flower", '<rect class="cloth" x="410" y="110" width="380" height="316" fill="url(#' + pid + '-hua)"/>', '<rect x="404" y="104" width="392" height="328" rx="6"/>', pick);
+    // 4 route
+    s += zoneG("route", '<path class="sea-route" d="M300 400 Q410 340 498 228"/><polygon class="sea-head" points="510,212 482,226 500,240"/>', '<rect x="282" y="198" width="246" height="220" rx="12"/>', pick);
+    // 6 kang
+    var kang = '<rect class="house" x="470" y="44" width="112" height="54"/><polygon class="roof" points="460,48 526,10 592,48"/>' +
+      '<rect class="win" x="484" y="56" width="26" height="24"/><path d="M497 56V80M484 68H510" stroke="#5A3A22" stroke-width="1.5"/>' +
+      '<rect class="win" x="546" y="60" width="20" height="38"/>' +
+      '<ellipse class="corn" cx="530" cy="62" rx="4" ry="8"/><ellipse class="corn" cx="530" cy="78" rx="4" ry="8"/><ellipse class="chili" cx="576" cy="62" rx="3" ry="7"/><ellipse class="chili" cx="576" cy="77" rx="3" ry="7"/>';
+    s += zoneG("kang", kang, '<rect x="452" y="2" width="148" height="104" rx="10"/>', pick);
+    // 3 table
+    var tbl = '<circle class="tbl" cx="600" cy="266" r="58"/><circle class="tbl-in" cx="600" cy="266" r="32"/>';
+    for (var q = 0; q < 12; q++) { var a = q * Math.PI / 6; tbl += '<circle class="seat" cx="' + (600 + 72 * Math.cos(a)).toFixed(1) + '" cy="' + (266 + 72 * Math.sin(a)).toFixed(1) + '" r="7"/>'; }
+    s += zoneG("table", tbl, '<circle cx="600" cy="266" r="86"/>', pick);
+    // 9 lantern
+    s += zoneG("lantern", '<circle class="lamp-glow" cx="600" cy="266" r="26"/><circle class="lamp" cx="600" cy="266" r="11"/>', '<circle cx="600" cy="266" r="30"/>', pick);
+    // 7 yanbian
+    var yb = '<rect class="sign" x="830" y="46" width="32" height="166" rx="3"/><rect class="sign" x="930" y="46" width="32" height="166" rx="3"/>' +
+      '<text class="sign-t" x="846" y="80">延</text><text class="sign-t" x="846" y="104">吉</text><text class="sign-t" x="846" y="152" lang="ko">연</text><text class="sign-t" x="846" y="176" lang="ko">길</text>' +
+      '<text class="sign-t" x="946" y="80">冷</text><text class="sign-t" x="946" y="104">面</text><text class="sign-t" x="946" y="152" lang="ko">냉</text><text class="sign-t" x="946" y="176" lang="ko">면</text>' +
+      '<path class="arch" d="M870 212 Q896 104 922 212"/>';
+    s += zoneG("yanbian", yb, '<rect x="818" y="34" width="156" height="192" rx="10"/>', pick);
+    // 8 night market
+    var nm = "";
+    for (var t = 0; t < 4; t++) { var tx = 846 + t * 58; nm += '<polygon class="tent" points="' + tx + ",404 " + (tx + 26) + ",342 " + (tx + 52) + ',404"/>'; }
+    nm += '<rect class="store" x="966" y="430" width="120" height="82" rx="3"/><rect class="store-band" x="966" y="430" width="120" height="16"/><text class="store-t" x="1026" y="484" lang="ko">편의점</text>';
+    s += zoneG("night", nm, '<rect x="834" y="328" width="264" height="194" rx="10"/>', pick);
+    // 10 drums
+    var dr = '<path class="drum jd" d="M24 266 H520"/><polygon class="drum-h jd" points="538,266 516,254 516,278"/>' +
+      '<path class="drum gd" d="M672 -22 L640 186"/><polygon class="drum-h gd" points="637,204 630,180 652,184"/>' +
+      '<path class="drum hd" d="M1176 266 H682"/><polygon class="drum-h hd" points="664,266 686,254 686,278"/>';
+    s += zoneG("drums", dr, '<rect x="16" y="246" width="1170" height="40" rx="20" style="pointer-events:none"/>', pick);
+    s += "</svg>";
+    return s;
+  }
+
+  // big pitch: pickable
+  var pitchBig = $("#pitchBig");
+  pitchBig.innerHTML = fieldSVG("fb", true);
+  var bigSvg = $("svg", pitchBig);
+  bigSvg.classList.add("pick");
+  var zoneList = $("#zoneList"), zoneDetail = $("#zoneDetail");
+  zoneList.innerHTML = ZONES.map(function (z) {
+    return '<li><button type="button" data-zone="' + z.id + '" aria-pressed="false"><span class="num">' + z.n + "</span><span>" + z.name + "</span></button></li>";
+  }).join("");
+  var picked = null;
+  function pickZone(id) {
+    picked = (picked === id) ? null : id;
+    $$(".zone", bigSvg).forEach(function (g) { g.classList.toggle("on", g.dataset.zone === picked); });
+    bigSvg.classList.toggle("has-on", !!picked);
+    $$("button", zoneList).forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.zone === picked)); });
+    if (picked) {
+      var z = ZBY[picked];
+      zoneDetail.innerHTML = "<h4>" + z.n + " · " + z.name + "</h4><p>" + z.txt + '</p><p class="use">用在：' + z.use + "</p>";
+    } else {
+      zoneDetail.innerHTML = "<h4>十处布景</h4><p>中心是一张玻璃转桌，整场在它上面唱。其他布景按段落轮流亮起，不用的时候推下场或者熄灯。</p>";
+    }
+  }
+  zoneList.addEventListener("click", function (e) { var b = e.target.closest("button[data-zone]"); if (b) pickZone(b.dataset.zone); });
+  bigSvg.addEventListener("click", function (e) { var g = e.target.closest(".zone"); if (g) pickZone(g.dataset.zone); });
+  bigSvg.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var g = e.target.closest(".zone"); if (g) { e.preventDefault(); pickZone(g.dataset.zone); }
+  });
+
+  // console pitch: display only
+  var pitchCon = $("#pitchCon");
+  pitchCon.innerHTML = fieldSVG("fc", false);
+  var conSvg = $("svg", pitchCon);
+  conSvg.setAttribute("aria-hidden", "true");
+
+  /* ======================= Run of show ======================= */
+  var KO = function (s) { return '<span lang="ko">' + s + "</span>"; };
+  var SEGS = [
+    { name: "序 · 白菜地", r: "jd", t0: 0, t1: 40, zones: ["cabbage"], rh: null,
+      songs: [["《沂蒙山小调》", "山东民歌，唢呐独奏第一句"]],
+      scene: "天还没亮，西半场是 320 棵两米高的胶州大白菜，一垄一垄排开。一声鸡叫，接着是海浪。四十个戴草帽的农人弯腰砍白菜，主唱从菜垄里直起身来。",
+      bb: "Bad Bunny 开场从一人多高的草丛里走出来，身边是戴 pava 草帽的人。这里换成白菜地：后面东北的酸菜、韩国的泡菜，用的都是这一棵菜。",
+      cues: [[0, "灯光", "全场暗，西端区一束晨雾蓝"], [1, "音效", "一声鸡叫，接海浪"], [5, "台词", "“起来了！砍白菜去！”", "胶东话 · 画外音"],
+        [9, "音乐", "唢呐独奏《沂蒙山小调》第一句"], [15, "舞台", "40 名戴草帽的农人在菜垄里弯腰收白菜"], [23, "镜头", "摇臂贴着白菜叶推进，主唱从菜垄里站起来"],
+        [30, "灯光", "日出的暖橙色从西往东扫过全场"], [36, "音乐", "808 低音落地，唢呐转进《好汉歌》前奏"]] },
+    { name: "一 · 胶东大集", r: "jd", t0: 40, t1: 190, zones: ["market", "table"], rh: "jd",
+      songs: [["《好汉歌》", "Remix，唢呐 + 808"], ["山东快书", "鸳鸯板当节拍，对口说唱"], ["《沂蒙山小调》", "副歌切成 hook，全场跟唱"]],
+      scene: "南边线一溜摊子亮灯，是赶大集：煎饼鏊子、淄博烧烤炉、挂成一串的袋装青岛啤酒、蛤蜊摊、花饽饽蒸笼、一车大葱，摊主都是真摊主。两百名鼓子秧歌演员踩着大鼓进场。中场的转桌亮起来，主唱按山东酒桌的规矩坐到主陪的位置。",
+      bb: "对应 La Marqueta：Bad Bunny 把波多黎各的小商户请进场，椰子摊、多米诺牌桌、小吃摊一路排开。",
+      cues: [[40, "音乐", "《好汉歌》Remix 起：“大河向东流”"], [46, "舞台", "南边线的大集摊位依次亮灯"],
+        [58, "舞蹈", "200 名鼓子秧歌演员从西端区踩鼓进场：伞头、鼓子、棒槌、花"], [78, "台词", "“嫚儿，来二斤嘎啦，再打一袋啤酒！”", "青岛话"],
+        [84, "镜头", "特写：摊主把啤酒从桶里灌进塑料袋，插上吸管"], [92, "音乐", "切山东快书：鸳鸯板打拍子，主唱和快书艺人对口说唱"],
+        [122, "舞台", "中场转桌亮起，主唱坐到主陪的位置，对着门"], [130, "台词", "“俺先干了，你随意！”", "山东话"],
+        [140, "镜头", "俯拍转桌转一整圈，十二位嘉宾依次举杯"], [152, "音乐", "《沂蒙山小调》副歌切成 hook，看台跟唱"],
+        [176, "灯光", "收成一束光，打向西半场的地面"]] },
+    { name: "过场 · 过海", r: "sea", t0: 190, t1: 230, zones: ["route"], rh: null,
+      songs: [["无伴奏", "风声、海浪、汽笛"]],
+      scene: "全场转深蓝，地面 LED 投出一片渤海和一条从烟台到大连的航线。六十个人挑着扁担、背着包袱，从西半场走向中场，扁担一头是被褥，一头是种子。北边的造雪机启动，雪落下来。",
+      bb: "Bad Bunny 那场没有这一段，是给三东加的：山东人过海闯关东，是这三个地方连到一起的开头。",
+      cues: [[190, "灯光", "全场转深蓝；地面 LED 投出渤海和烟台—大连的航线"], [194, "舞蹈", "60 人挑扁担、背包袱，从西半场走向中场"],
+        [200, "音效", "汽笛，风雪声渐起"], [207, "台词", "“过海去，关东有饭吃。”", "胶东话 · 画外音"], [218, "舞台", "北边线的造雪机启动，雪落下来"]] },
+    { name: "二 · 关东大炕", r: "gd", t0: 230, t1: 420, zones: ["flower", "kang"], rh: "gd",
+      songs: [["《小拜年》", "东北民间小调，二人转开场"], ["《东北人都是活雷锋》", "“翠花，上酸菜”"], ["《野狼disco》", "全场跟做“左手右手一个慢动作”"]],
+      scene: "三百名舞者从两条边线把一块 40 × 30 米的东北大花布拉开，红牡丹绿叶子在雪里铺满中场。北边线的炕头小院亮灯：火炕、窗花、挂着的苞米和辣椒串，门口一盆冻梨，嘉宾们盘腿坐在炕上嗑瓜子、打扑克。一口一人高的酸菜缸揭开盖，铁锅炖冒出一柱白汽。",
+      bb: "炕头小院对应 Bad Bunny 的粉色 casita：一群明星在小屋门廊上跳舞喝酒，镜头时不时切过去。",
+      cues: [[230, "舞台", "300 名舞者从两条边线拉开 40×30 米的东北大花布"], [233, "镜头", "航拍：红牡丹绿叶子的大花布在雪里铺开"],
+        [240, "音乐", "唢呐起《小拜年》：“正月里来是新年儿呀”"], [248, "舞蹈", "二人转对手戏：主唱和二人转演员转手绢、甩扇子"],
+        [280, "舞台", "炕头小院亮灯，嘉宾盘腿上炕，嗑瓜子、打扑克"], [290, "台词", "“来来来，上炕暖和暖和！”", "东北话"],
+        [300, "音乐", "《东北人都是活雷锋》：“翠花，上酸菜”"], [306, "舞台", "一人高的酸菜缸揭盖，铁锅炖冒出一柱白汽"],
+        [330, "音乐", "切《野狼disco》，鼓点加倍"], [334, "灯光", "头顶升起一颗冻梨形状的迪斯科球"],
+        [340, "舞蹈", "1,000 名穿大花袄的舞者齐跳，看台跟做“左手右手一个慢动作”"], [382, "台词", "“老铁们，整一个！”", "东北话"],
+        [402, "舞台", "雪停，大花布从中间收起，露出延边街的中朝双语招牌"]] },
+    { name: "三 · 延边婚礼", r: "yb", t0: 420, t1: 500, zones: ["yanbian"], rh: "hd",
+      songs: [["《阿里郎》", "朝鲜族阿妈妮合唱团清唱，再转快板"]],
+      scene: "延边街的招牌上，汉字和韩文并排。象帽舞演员头顶十二米长的白飘带，原地甩出一个个圆。婚礼拱门亮起：今天是情人节，一对真新人在这里结婚，新郎来自烟台，新娘来自延吉。新郎家从烟台带来胶东花饽饽，东北流水席开席；行" + KO("폐백") + "礼时长辈往新人怀里抛枣和栗子，新娘用裙摆接。汉语里，枣栗也讨“早立子”的口彩。",
+      bb: "对应那场真婚礼：Bad Bunny 的秀里有一对新人真的在台上结了婚。三东这场正好赶上情人节，Super Bowl LXI 定在 2027 年 2 月 14 日。",
+      cues: [[420, "音乐", "朝鲜族阿妈妮合唱团清唱《阿里郎》：“" + KO("아리랑 아리랑 아라리요") + "”"], [426, "舞蹈", "象帽舞：演员头顶 12 米白飘带，原地甩出一个个圆"],
+        [440, "仪式", "婚礼拱门亮起，一对真新人入场：新郎来自烟台，新娘来自延吉"], [448, "仪式", "新郎家带来的胶东花饽饽摆上桌，东北流水席开席"],
+        [458, "仪式", KO("폐백") + "：长辈抛枣和栗子，新娘用裙摆接"], [468, "台词", "“" + KO("결혼 축하해요!") + " 新婚快乐！”", "主唱证婚 · 韩语 + 普通话"],
+        [482, "音乐", "长鼓一敲，《阿里郎》转快板，白飘带变成霓虹线"]] },
+    { name: "四 · 海东夜市", r: "hd", t0: 500, t1: 640, zones: ["night", "table"], rh: "hd",
+      songs: [["《APT.》", "农乐鼓队 + 唢呐编曲"], ["《江南Style》", "骑马舞，大花袄配韩服"], ["美国嘉宾的一首英文歌", "改成二人转小帽唱一段"]],
+      scene: "东半场亮起首尔的夜：橘色帐篷的" + KO("포장마차") + "，门口摆着塑料桌的便利店，炸鸡配啤酒。美国嘉宾和韩国嘉宾在转桌上合唱《APT.》，全场跟着玩手叠手的" + KO("아파트") + "游戏。然后是《江南Style》：鼓子秧歌、大秧歌和农乐的演员混在一起跳骑马舞。",
+      bb: "对应 Lady Gaga 那一段：美国巨星把自己的歌改成主人家的曲风。Bad Bunny 那边是拉丁编曲，这边是二人转小帽和长鼓。",
+      cues: [[500, "舞台", "东半场亮起首尔夜市：" + KO("포장마차") + "、便利店门口的塑料桌、炸鸡和啤酒"], [506, "灯光", "霓虹粉和青色"],
+        [512, "音乐", "《APT.》，农乐鼓队 + 唢呐编曲"], [518, "嘉宾", "美国嘉宾和韩国嘉宾登上转桌合唱"],
+        [540, "互动", "大屏教动作，全场玩手叠手的" + KO("아파트") + "游戏"], [562, "台词", "三种干杯：“干了！”“整一个！”“" + KO("원샷!") + "”", "山东话 · 东北话 · 韩语"],
+        [572, "音乐", "《江南Style》"], [578, "舞蹈", "鼓子秧歌、大秧歌、农乐的演员混在一起跳骑马舞"],
+        [608, "嘉宾", "美国嘉宾把自己的一首英文歌改成二人转小帽唱一段"], [630, "灯光", "霓虹一盏一盏灭掉"]] },
+    { name: "五 · 熄灯", r: "dark", t0: 640, t1: 700, zones: ["lantern"], rh: null,
+      songs: [["东北《摇篮曲》", "“月儿明，风儿静”，一个人清唱"], ["《阿里郎》", "阿妈妮们哼着垫在下面"]],
+      scene: "全场熄灯，只剩中场一盏马灯。风声、海浪、远处的汽笛。三段录音轮流响起：一个胶东老人，一个延边奶奶，一个洛杉矶韩国城的女儿，说的都是家里谁、什么时候、带着什么离开了家。看台上七万部手机亮起来，像雪落在场上。",
+      bb: "对应《El Apagón》那段：Bad Bunny 在秀里唱了那首写波多黎各停电的歌。这里的熄灯，是留给所有离开家的人的一分钟。",
+      cues: [[640, "灯光", "全场熄灯，只剩中场一盏马灯"], [642, "音效", "风声、海浪、远处的汽笛"],
+        [647, "台词", "“俺爷爷十六岁过的海，一副担子，一头被褥，一头白菜种。”", "胶东话 · 录音"],
+        [657, "台词", "“" + KO("할머니는 두만강을 건너왔어요.") + "”", "韩语 · 录音：奶奶是渡过图们江来的。"],
+        [665, "台词", "“" + KO("엄마는 가방 두 개랑 김치 한 통을 들고 LA에 왔어요.") + "”", "韩语 · 录音：妈妈拎着两个包、一罐泡菜到的洛杉矶。"],
+        [673, "互动", "看台七万部手机亮起，像雪落在场上"], [680, "音乐", "一个人清唱东北《摇篮曲》，阿妈妮们哼《阿里郎》垫在下面"]] },
+    { name: "六 · 大合流", r: "all", t0: 700, t1: 760, zones: ["drums", "table"], rh: "all",
+      songs: [["三队锣鼓", "鼓子秧歌、东北大秧歌、朝鲜族农乐"], ["《好汉歌》", "大合唱：“大河向东流哇”"]],
+      scene: "三支锣鼓队从三个方向进场：鼓子秧歌从西端区，东北大秧歌从北边线，农乐队从东端区。一开始各打各的点，越走越近，在中场的转桌边拧成同一个节拍。《好汉歌》大合唱，五色烟火。",
+      bb: "对应收尾的大合唱。Bad Bunny 最后一首是 DtMF（我该多拍点照片的）。三东的最后一首选了全中国都会唱的《好汉歌》，歌里那群好汉就在山东梁山。",
+      cues: [[700, "音乐", "三支锣鼓队分别从西端区、北边线、东端区进场"], [708, "音乐", "三种鼓点各打各的，越走越近"],
+        [724, "音乐", "在中场转桌边汇合，锣鼓拧成同一个节拍"], [730, "音乐", "《好汉歌》大合唱：“大河向东流哇”，全场跟喊“嘿呀咿儿呀”"],
+        [742, "烟火", "五色烟火：青、红、黄、白，夜空当黑。中韩都讲五方色"], [756, "灯光", "全场白光"]] },
+    { name: "尾声 · 吃了吗", r: "end", t0: 760, t1: 780, zones: ["table"], rh: null,
+      songs: [],
+      scene: "主唱站上转桌，说出整场唯一一句英语。然后开始点名：从济南到济州，从漠河到洛杉矶的韩国城。最后举起一颗橄榄球，上面写着“吃了吗？" + KO("밥 먹었어?") + "”。",
+      bb: "对应 “God bless America”：Bad Bunny 用这句英语起头，把整片美洲点了一遍名，手里的球写着 Together, We Are America。这边用的是三个地方都会问的一句话：吃了吗？",
+      cues: [[760, "台词", "“Have you eaten?”", "英语 · 整场唯一一句"],
+        [763, "台词", "点名：济南、青岛、烟台、威海……大连、沈阳、长春、哈尔滨、延吉……仁川、首尔、釜山、济州……洛杉矶韩国城、圣盖博谷、法拉盛", "主唱"],
+        [773, "舞台", "主唱举起橄榄球：“吃了吗？" + KO("밥 먹었어?") + "”"], [776, "台词", "“饭好了，回家吃饭。”", "普通话"], [779, "灯光", "黑"]] }
+  ];
+  var TOTAL = 780;
+  var REG = {
+    jd: ["var(--jd)", "胶东 · 山东"], gd: ["var(--gd)", "关东 · 东北"], hd: ["var(--hd-fill)", "海东 · 韩国"],
+    yb: ["var(--hd-fill)", "延边 · 关东和海东之间"], sea: ["var(--jd)", "渤海"], dark: ["var(--ink)", "全场熄灯"],
+    all: ["var(--pink)", "三东合流"], end: ["var(--pink)", "尾声"]
+  };
+  var STRIP = {
+    jd: "var(--jd)", gd: "var(--gd)", hd: "var(--hd-fill)", yb: "linear-gradient(90deg,var(--gd),var(--hd-fill))",
+    sea: "color-mix(in srgb,var(--jd) 50%,var(--card))", dark: "var(--ink)",
+    all: "linear-gradient(90deg,var(--jd),var(--gd),var(--hd-fill))", end: "var(--pink)"
+  };
+  var CUES = [];
+  SEGS.forEach(function (s, i) { s.cues.forEach(function (c) { CUES.push({ t: c[0], d: c[1], x: c[2], n: c[3] || "", seg: i }); }); });
+  CUES.sort(function (a, b) { return a.t - b.t; });
+
+  // segment cards
+  var segsEl = $("#segs");
+  segsEl.innerHTML = SEGS.map(function (s, i) {
+    return '<article class="seg" id="seg-' + i + '" style="--c:' + REG[s.r][0] + '">' +
+      '<header><span class="tc">' + fmt(s.t0) + "–" + fmt(s.t1) + '</span><span class="where">' + REG[s.r][1] + "</span></header>" +
+      "<h3>" + s.name + "</h3>" +
+      '<p class="scene">' + s.scene + "</p>" +
+      (s.songs.length ? '<ul class="songs">' + s.songs.map(function (x) { return "<li><b>" + x[0] + "</b><span>" + x[1] + "</span></li>"; }).join("") + "</ul>" : "") +
+      '<p class="bb"><b>对照</b>' + s.bb + "</p>" +
+      '<div class="seg-foot"><details><summary>分镜 ' + s.cues.length + " 条</summary>" +
+      '<ol class="cuelist">' + s.cues.map(function (c) {
+        return '<li><span class="t">' + fmt(c[0]) + '</span><span class="dept" data-d="' + c[1] + '">' + c[1] + '</span><span class="x">' + c[2] + (c[3] ? "<small>" + c[3] + "</small>" : "") + "</span></li>";
+      }).join("") + "</ol></details>" +
+      '<button class="jump" type="button" data-t="' + s.t0 + '">从这里放</button></div></article>';
+  }).join("");
+
+  // strip
+  $("#stripIn").innerHTML = SEGS.map(function (s) {
+    return '<i style="width:' + ((s.t1 - s.t0) / TOTAL * 100).toFixed(3) + "%;background:" + STRIP[s.r] + '" title="' + s.name + '"></i>';
+  }).join("");
+
+  /* ======================= Player ======================= */
+  var t = 0, playing = false, started = false;
+  var speed = store.get("sandong-speed", 10);
+  if ([1, 10, 30].indexOf(speed) < 0) speed = 10;
+  var soundOn = false;
+  var playBtn = $("#play"), miniPlay = $("#miniPlay"), tNow = $("#tNow"), segName = $("#segName");
+  var strip = $("#strip"), stripRest = $("#stripRest"), stripHead = $("#stripHead");
+  var cueBox = $("#cueBox"), cueNext = $("#cueNext");
+  var mini = $("#mini"), miniT = $("#miniT"), miniS = $("#miniS"), miniBar = $("#miniBar");
+  var segCards = $$(".seg", segsEl);
+  var conZones = $$(".zone", conSvg);
+
+  function segAt(tt) { for (var i = SEGS.length - 1; i >= 0; i--) if (tt >= SEGS[i].t0) return i; return 0; }
+  function cueHTML(c, old) {
+    return '<div class="cue' + (old ? " old" : "") + '"><span class="dept" data-d="' + c.d + '">' + c.d + '</span><span class="x">' + c.x + "</span>" + (c.n && !old ? "<small>" + c.n + "</small>" : "") + "</div>";
+  }
+  var lastSeg = -1, lastCue = -2, lastSec = -1;
+  function render(force) {
+    var si = segAt(Math.min(t, TOTAL - 0.001));
+    var sec = Math.floor(t);
+    var pct = (t / TOTAL * 100);
+    stripHead.style.left = pct + "%";
+    stripRest.style.left = pct + "%";
+    miniBar.style.width = pct + "%";
+    var ci = -1;
+    for (var i = 0; i < CUES.length; i++) { if (CUES[i].t <= t) ci = i; else break; }
+    if (sec !== lastSec || force) {
+      lastSec = sec;
+      tNow.textContent = fmt(t); miniT.textContent = fmt(t);
+      strip.setAttribute("aria-valuenow", String(sec));
+      strip.setAttribute("aria-valuetext", fmt(t) + " " + SEGS[si].name);
+      var nx = CUES[ci + 1];
+      if (!started) cueNext.innerHTML = "";
+      else if (nx) cueNext.innerHTML = '下一条 <span class="mono">' + fmt(nx.t) + "</span> · " + nx.d + " · " + nx.x.replace(/<[^>]+>/g, "");
+      else cueNext.textContent = "全场结束。再按一次播放从头开始。";
+    }
+    if (si !== lastSeg || force) {
+      lastSeg = si;
+      segName.textContent = SEGS[si].name; miniS.textContent = SEGS[si].name;
+      segCards.forEach(function (c, k) { c.classList.toggle("on", started && k === si); });
+      var zs = SEGS[si].zones;
+      conZones.forEach(function (g) { g.classList.toggle("on", started && zs.indexOf(g.dataset.zone) >= 0); });
+      conSvg.classList.toggle("has-on", started);
+    }
+    if (ci !== lastCue || force) {
+      lastCue = ci;
+      if (!started) {
+        cueBox.innerHTML = '<p class="cue-intro">按 ▶ 开演。场地图会跟着段落亮起来，这里滚动灯光、音乐、台词的每一条分镜。点进度条或者右边的“从这里放”可以跳着看。</p>';
+      } else {
+        var h = "";
+        for (var j = ci; j >= Math.max(0, ci - 2); j--) h += cueHTML(CUES[j], j !== ci);
+        cueBox.innerHTML = h || '<p class="cue-intro">……</p>';
+      }
+    }
+  }
+  var lastTs = null;
+  function tick(ts) {
+    if (!playing) { lastTs = null; return; }
+    if (lastTs != null) t += Math.min(0.25, (ts - lastTs) / 1000) * speed;
+    lastTs = ts;
+    if (t >= TOTAL) { t = TOTAL; render(); setPlaying(false); return; }
+    render();
+    requestAnimationFrame(tick);
+  }
+  function setPlaying(p) {
+    if (p && t >= TOTAL) t = 0;
+    if (p) started = true;
+    playing = p;
+    [playBtn, miniPlay].forEach(function (b) { b.innerHTML = p ? ICON_PAUSE : ICON_PLAY; b.setAttribute("aria-label", p ? "暂停" : "播放"); });
+    render(true);
+    if (p) { lastTs = null; requestAnimationFrame(tick); }
+    updateMini();
+    kick();
+  }
+  function seek(tt) {
+    t = Math.max(0, Math.min(TOTAL, tt));
+    started = true;
+    render(true);
+    kick();
+  }
+  playBtn.addEventListener("click", function () { setPlaying(!playing); });
+  miniPlay.addEventListener("click", function () { setPlaying(!playing); });
+  $("#goShow").addEventListener("click", function () {
+    $("#show").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    if (!playing) setPlaying(true);
+  });
+  segsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".jump"); if (!b) return;
+    seek(+b.dataset.t);
+    if (!playing) setPlaying(true);
+  });
+  $$(".speeds button").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(+b.dataset.speed === speed));
+    b.addEventListener("click", function () {
+      speed = +b.dataset.speed; store.set("sandong-speed", speed);
+      $$(".speeds button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    });
+  });
+  // strip seeking
+  var dragging = false;
+  function seekFromX(clientX) {
+    var r = strip.getBoundingClientRect();
+    seek((clientX - r.left) / r.width * TOTAL);
+  }
+  strip.addEventListener("pointerdown", function (e) { dragging = true; try { strip.setPointerCapture(e.pointerId); } catch (x) {} seekFromX(e.clientX); });
+  strip.addEventListener("pointermove", function (e) { if (dragging) seekFromX(e.clientX); });
+  strip.addEventListener("pointerup", function () { dragging = false; });
+  strip.addEventListener("pointercancel", function () { dragging = false; });
+  strip.addEventListener("keydown", function (e) {
+    var d = { ArrowLeft: -10, ArrowRight: 10, ArrowDown: -10, ArrowUp: 10, PageDown: -60, PageUp: 60 }[e.key];
+    if (e.key === "Home") { e.preventDefault(); seek(0); return; }
+    if (e.key === "End") { e.preventDefault(); seek(TOTAL); return; }
+    if (d) { e.preventDefault(); seek(t + d); }
+  });
+
+  // mini player
+  var consoleVisible = true;
+  function updateMini() { mini.hidden = !(playing && !consoleVisible); }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { consoleVisible = es[0].isIntersecting; updateMini(); }, { threshold: 0.15 }).observe($("#console"));
+  }
+
+  /* ======================= Drums (Web Audio) ======================= */
+  var ac = null, out = null, nbuf = null, timer = null, curKey = null, step = 0, nextT = 0;
+  var audition = null, audLeft = 0;
+  function ensureAudio() {
+    if (!ac) {
+      var C = window.AudioContext || window.webkitAudioContext;
+      if (!C) return false;
+      ac = new C();
+      var comp = ac.createDynamicsCompressor();
+      out = ac.createGain(); out.gain.value = 0.5;
+      out.connect(comp); comp.connect(ac.destination);
+      nbuf = ac.createBuffer(1, ac.sampleRate, ac.sampleRate);
+      var d = nbuf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    if (ac.state === "suspended") ac.resume();
+    return true;
+  }
+  function env(g, at, v, dur) {
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(v, at + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+  }
+  function tone(at, f0, f1, dur, v, type) {
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.type = type || "sine";
+    o.frequency.setValueAtTime(f0, at);
+    if (f1 && f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, at + dur * 0.7);
+    env(g, at, v, dur);
+    o.connect(g); g.connect(out);
+    o.start(at); o.stop(at + dur + 0.05);
+  }
+  function hiss(at, dur, v, type, freq, q) {
+    var s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+    s.buffer = nbuf; f.type = type; f.frequency.value = freq; f.Q.value = q || 0.8;
+    env(g, at, v, dur);
+    s.connect(f); f.connect(g); g.connect(out);
+    s.start(at, Math.random() * 0.5, dur + 0.05);
+  }
+  var VOICE = {
+    D: function (at) { tone(at, 112, 52, 0.5, 0.9); hiss(at, 0.04, 0.22, "lowpass", 900); },                // 大鼓「咚」
+    C: function (at) { hiss(at, 0.7, 0.3, "highpass", 5200, 0.7);                                          // 锣镲齐鸣「锵」
+      [1, 1.47, 2.09, 2.63].forEach(function (r, i) { tone(at, 230 * r, 228 * r, 1.0 - i * 0.15, 0.08 / (i + 1) + 0.02, "triangle"); }); },
+    Q: function (at) { hiss(at, 0.07, 0.26, "highpass", 6000); },                                            // 闷镲「七」
+    G: function (at) { tone(at, 160, 78, 0.38, 0.7); hiss(at, 0.05, 0.28, "bandpass", 2600, 1.4);           // 长鼓双面「덩」+ 小锣
+      [1, 1.35, 1.92].forEach(function (r) { tone(at, 1180 * r, 1180 * r, 0.22, 0.035, "triangle"); }); },
+    k: function (at) { tone(at, 135, 70, 0.32, 0.6); },                                                      // 长鼓低面「쿵」
+    K: function (at) { hiss(at, 0.05, 0.4, "bandpass", 3200, 2.2); tone(at, 520, 340, 0.05, 0.16, "triangle"); } // 鞭面「덕」
+  };
+  var RH = {
+    jd: { bpm: 104, div: 2, steps: ["D", "", "D", "", "D", "D", "C", ""] },
+    gd: { bpm: 126, div: 2, steps: ["D", "C", "D", "C", "D", "D", "C", "Q"] },
+    hd: { bpm: 96, div: 3, steps: ["G", "", "K", "k", "", "K", "k", "", "K", "k", "K", ""] },
+    all: { bpm: 116, div: 2, steps: ["DG", "C", "Dk", "K", "DG", "D", "CK", "Q"] }
+  };
+  function wantKey() {
+    if (audition) return audition;
+    if (playing && soundOn) return SEGS[segAt(Math.min(t, TOTAL - 0.001))].rh;
+    return null;
+  }
+  function schedTick() {
+    if (!ac) return;
+    var key = wantKey();
+    if (key !== curKey) { curKey = key; step = 0; nextT = ac.currentTime + 0.06; }
+    if (!key) { clearInterval(timer); timer = null; return; }
+    var R = RH[key], dur = 60 / R.bpm / R.div;
+    if (nextT < ac.currentTime - 0.2) nextT = ac.currentTime + 0.05;
+    while (nextT < ac.currentTime + 0.12) {
+      var s = R.steps[step % R.steps.length];
+      for (var i = 0; i < s.length; i++) { var v = VOICE[s[i]]; if (v) v(nextT); }
+      nextT += dur; step++;
+      if (audition && key === audition && --audLeft <= 0) { audition = null; syncAud(); break; }
+    }
+  }
+  function kick() { if (ac && !timer && wantKey()) timer = setInterval(schedTick, 25); }
+  var sndBtn = $("#snd");
+  sndBtn.addEventListener("click", function () {
+    if (!ensureAudio()) { sndBtn.textContent = "锣鼓：此浏览器不支持"; return; }
+    soundOn = !soundOn;
+    sndBtn.setAttribute("aria-pressed", String(soundOn));
+    sndBtn.textContent = soundOn ? "锣鼓：开" : "锣鼓：关";
+    kick();
+  });
+  var audBtns = $$(".aud button");
+  function syncAud() { audBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.rh === audition)); }); }
+  audBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (!ensureAudio()) return;
+      if (audition === b.dataset.rh) { audition = null; }
+      else { audition = b.dataset.rh; audLeft = RH[audition].steps.length * 4; }
+      syncAud();
+      kick();
+    });
+  });
+
+  /* ======================= Roll call ======================= */
+  var rcTimer = null, ball = $("#ball");
+  $("#rcGo").addEventListener("click", function () {
+    var chips = $$("#rcGroups .chip");
+    clearInterval(rcTimer);
+    chips.forEach(function (c) { c.classList.remove("lit"); });
+    if (reduceMotion) { chips.forEach(function (c) { c.classList.add("lit"); }); return; }
+    ball.classList.add("hide");
+    var i = 0;
+    rcTimer = setInterval(function () {
+      if (i < chips.length) { chips[i].classList.add("lit"); i++; }
+      else { clearInterval(rcTimer); ball.classList.remove("hide"); }
+    }, 150);
+  });
+
+  render(true);
+  [playBtn, miniPlay].forEach(function (b) { b.innerHTML = ICON_PLAY; });
+})();
+</script>
+</body>
+</html>
